@@ -1,0 +1,184 @@
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using ConestogaVirtualGameStore.Models;
+using ConestogaVirtualGameStore.ViewModels;
+using ConestogaVirtualGameStore.Repository;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+namespace ConestogaVirtualGameStore.Controllers
+{
+    public class GamesController : Controller
+    {
+        private readonly IRepository<Game> _gameRepository;
+
+        public GamesController(IRepository<Game> gameRepository)
+        {
+            _gameRepository = gameRepository;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var games = await _gameRepository.GetAllAsync();
+            return View(games);
+        }
+
+        public async Task<IActionResult> Games()
+        {
+            var games = await _gameRepository.GetAllAsync();
+            return View(games);
+        }
+
+        [HttpGet]
+        public IActionResult AddGame()
+        {
+            var model = new CreateGameViewModel
+            {
+                Genres = GetGenres(),
+                Platforms = GetPlatforms()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGame(CreateGameViewModel model)
+        {
+            ModelState.Remove("Genres");
+            ModelState.Remove("Platforms");
+            if (ModelState.IsValid)
+            {
+                var game = new Game
+                {
+                    Title = model.Title,
+                    Genere = model.SelectedGenre,
+                    ReleaseDate = model.ReleaseDate,
+                    Description = model.Description,
+                    Platform = model.SelectedPlatform,
+                    Price = model.Price,
+                    CoverImageURL = model.CoverImageURL
+                };
+
+                await _gameRepository.AddAsync(game);
+                return RedirectToAction("Games");
+            }
+
+            model.Genres = GetGenres();
+            model.Platforms = GetPlatforms();
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditGame(int id)
+        {
+            var game = await _gameRepository.GetByIdAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            // Convert Game object to CreateGameViewModel
+            var model = new CreateGameViewModel
+            {
+                Title = game.Title,
+                SelectedGenre = game.Genere,
+                ReleaseDate = game.ReleaseDate,
+                Description = game.Description,
+                SelectedPlatform = game.Platform,
+                Price = game.Price,
+                CoverImageURL = game.CoverImageURL,
+                Genres = GetGenres(),
+                Platforms = GetPlatforms()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditGame(CreateGameViewModel model, int id)
+        {
+            var game = await _gameRepository.GetByIdAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            ModelState.Remove("Genres");
+            ModelState.Remove("Platforms");
+
+            if (ModelState.IsValid)
+            {
+                // Update the existing game object rather than creating a new one
+                game.Title = model.Title;
+                game.Genere = model.SelectedGenre;
+                game.ReleaseDate = model.ReleaseDate;
+                game.Description = model.Description;
+                game.Platform = model.SelectedPlatform;
+                game.Price = model.Price;
+                game.CoverImageURL = model.CoverImageURL;
+
+                await _gameRepository.UpdateAsync(game);
+                return RedirectToAction("Games");
+            }
+
+            // Repopulate the genres and platforms if model state is invalid
+            model.Genres = GetGenres();
+            model.Platforms = GetPlatforms();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteGame(int id)
+        {
+            var game = await _gameRepository.GetByIdAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            return View(game);
+        }
+
+        [HttpPost, ActionName("DeleteGame")]
+        public async Task<IActionResult> ConfirmDeleteGame(int id)
+        {
+            await _gameRepository.DeleteAsync(id);
+            return RedirectToAction("Games");
+        }
+
+        public async Task<IActionResult> GameDetail(int id)
+        {
+            var game = await _gameRepository.GetByIdAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            return View(game);
+        }
+
+        private IEnumerable<SelectListItem> GetGenres()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Action", Text = "Action" },
+                new SelectListItem { Value = "Adventure", Text = "Adventure" },
+                new SelectListItem { Value = "RPG", Text = "RPG" },
+                new SelectListItem { Value = "Strategy", Text = "Strategy" },
+                new SelectListItem { Value = "Sports", Text = "Sports" }
+            };
+        }
+
+        private IEnumerable<SelectListItem> GetPlatforms()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "PC", Text = "PC" },
+                new SelectListItem { Value = "PlayStation", Text = "PlayStation" },
+                new SelectListItem { Value = "Xbox", Text = "Xbox" },
+                new SelectListItem { Value = "Switch", Text = "Switch" }
+            };
+        }
+    }
+}

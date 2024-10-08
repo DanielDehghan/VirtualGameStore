@@ -1,22 +1,185 @@
-html {
-  font-size: 14px;
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    background-color: #212529;
+}
+
+main {
+    flex-grow: 1; 
+}
+#NavBar, #Footer {
+    background-color: #780000;
+}
+
+
+#GameDataRow {
+    color: white;
+}
+
+#GameCard {
+    color: black;
+}
+#Footer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+/*Navbar Hover effects */
+/* General Navbar Styling */
+#NavBar .nav-link {
+    position: relative;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease; 
+}
+
+   
+    #NavBar .nav-link:hover {
+        transform: translateX(5px);
+        color: #ffc107; 
+        text-decoration: none;
+    }
+
+    
+    #NavBar .nav-link::before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000000;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #NavBar .nav-link:hover::before {
+        visibility: visible;
+        width: 100%;
+    }
+
+    
+    #NavBar .nav-link:hover {
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+/*for image slider*/
+
+.slider-image {
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+}
+.slider {
+    width: 80%; 
+    margin: 0 auto;
+    position: relative;
+}
+
+.caption {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+    .caption h3 {
+        margin: 0;
+        font-size: 18px;
+        text-align: center; 
+    }
+
+
+.game-container {
+    display: block;
+    text-decoration: none;
+    color: inherit; 
+    position: relative;
+}
+
+    .game-container:hover .caption {
+        background-color: rgba(0, 0, 0, 0.9); 
+    }
+
+
+
+.game-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.game-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.game-info {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.back-button {
+    margin-top: 20px;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    background-color: #343a40; /* Dark background */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+    .dropdown-item:hover {
+        background-color: crimson;
+        color: white;
+        transform: scale(1.05);
+        border-radius: 5px;
+    }
+
+/* Divider Line Styling */
+.dropdown-divider {
+    background-color: white;
+    margin: 5px 0;
 }
