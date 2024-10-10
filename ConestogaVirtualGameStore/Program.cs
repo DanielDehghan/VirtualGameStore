@@ -1,7 +1,16 @@
+using ConestogaVirtualGameStore.Models;
+using ConestogaVirtualGameStore.Repository;
+using Microsoft.EntityFrameworkCore;
+using MyVirtualGameStore.AppDbContext;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<VirtualGameStoreContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IRepository<Game>, Repository<Game>>();
 
 var app = builder.Build();
 

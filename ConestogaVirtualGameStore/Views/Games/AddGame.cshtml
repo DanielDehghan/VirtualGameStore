@@ -1,0 +1,76 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.CreateGameViewModel;
+
+<form asp-action="AddGame" method="post">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" placeholder="Enter game title" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="SelectedGenre" class="control-label"></label>
+            <div class="input-group">
+                <select asp-for="SelectedGenre" class="form-control" asp-items="Model.Genres">
+                    <option value="">Select Genre</option>
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-gamepad"></i></span>
+                </div>
+            </div>
+            <span asp-validation-for="SelectedGenre" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="ReleaseDate" class="control-label"></label>
+            <div class="input-group date" id="releaseDatePicker">
+                <input type="date" asp-for="ReleaseDate" class="form-control" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter game description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="SelectedPlatform" class="control-label"></label>
+            <select asp-for="SelectedPlatform" class="form-control" asp-items="Model.Platforms">
+                <option value="">Select Platform</option>
+            </select>
+            <span asp-validation-for="SelectedPlatform" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Price" class="control-label"></label>
+            <div class="input-group">
+                <input asp-for="Price" class="form-control" placeholder="Enter game price" />
+                <div class="input-group-append">
+                    <span class="input-group-text">$</span>
+                </div>
+            </div>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label asp-for="CoverImageURL" class="control-label"></label>
+            <input asp-for="CoverImageURL" class="form-control" placeholder="Enter cover image URL" />
+            <span asp-validation-for="CoverImageURL" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add Game" class="btn btn-primary btn-block" />
+    </div>
+</form>
