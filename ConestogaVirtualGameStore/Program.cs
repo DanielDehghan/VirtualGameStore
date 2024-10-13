@@ -76,7 +76,7 @@ async Task CreateRoles(RoleManager<IdentityRole> roleManager, UserManager<Applic
 	var adminUser = new ApplicationUser
 	{
 		UserName = "admin@game.com",
-		Email = "admin@game",
+		Email = "admin@game.com",
 		FirstName = "Admin",
 		LastName = "User"
 	};
