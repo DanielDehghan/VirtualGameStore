@@ -26,7 +26,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
-// Create roles and admin user at application startup
+// Create roles and admin user
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
