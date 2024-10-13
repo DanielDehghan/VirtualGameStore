@@ -183,3 +183,64 @@ main {
     background-color: white;
     margin: 5px 0;
 }
+
+/*Login command Register forms*/
+.login-form-container,
+.register-form-container {
+    max-width: 400px; 
+    margin: 100px auto; 
+    padding: 20px;
+    background-color: #972828; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.login-form-title,
+.register-form-title {
+    text-align: center; 
+    color: white; 
+}
+
+.login-form-group,
+.register-form-group {
+    margin-bottom: 15px; 
+}
+
+.login-form-label,
+.register-form-label {
+    display: block; 
+    margin-bottom: 5px; 
+    color: #fff; 
+}
+
+.login-form-control,
+.register-form-control {
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    font-size: 16px; 
+}
+
+.login-form-btn,
+.register-form-btn {
+    width: 100%; 
+    padding: 10px; 
+    background-color: #212529; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer;
+}
+
+    .login-form-btn:hover,
+    .register-form-btn:hover {
+        background-color: #413939; 
+    }
+
+.login-form-error,
+.register-form-error {
+    font-size: 0.9em; 
+    color: red; 
