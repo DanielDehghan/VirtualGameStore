@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<VirtualGameStoreContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IRepository<Game>, Repository<Game>>();
+builder.Services.AddScoped<IRepository<Event>, Repository<Event>>();
 
 var app = builder.Build();
 

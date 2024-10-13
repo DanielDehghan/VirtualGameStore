@@ -13,6 +13,7 @@
 
     .table-hover tbody tr:hover {
         background-color: #3a3a3a; /* Highlight on hover */
+        color: white;
     }
 
     .table th, .table td {
@@ -62,6 +63,7 @@
                 <th>Province</th>
                 <th>Postal Code</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -69,7 +71,7 @@
             {
                 <tr id="EventDataRow">
                     <td>@Event.Name</td>
-                    <td>@Event.Date.ToShortDateString()</td>
+                    <td>@Event.Date</td>
                     <td>@Event.Address</td>
                     <td>@Event.Country</td>
                     <td>@Event.City</td>
@@ -80,7 +82,7 @@
                         <a asp-action="EditEvent" asp-route-id="@Event.EventId" class="btn btn-sm btn-primary">
                             <i class="fas fa-edit"></i> Edit
                         </a>
-                        <a asp-action="DeletEvent" asp-route-id="@Event.EventId" class="btn btn-sm btn-danger">
+                        <a asp-action="DeleteEvent" asp-route-id="@Event.EventId" class="btn btn-sm btn-danger">
                             <i class="fas fa-trash"></i> Delete
                         </a>
                     </td>

@@ -4,7 +4,13 @@
     ViewData["Title"] = Model.Title; // Set the page title to the game title
 }
 
-<div class="game-detail-container">
+<style>
+    #text {
+        color: white;
+    }
+</style>
+
+<div class="game-detail-container" id="text">
     <h1>@Model.Title</h1>
     <div class="game-image">
         <img src="@Model.CoverImageURL" alt="@Model.Title" />
@@ -20,9 +26,4 @@
         <a href="@Url.Action("Index", "Games")" class="btn btn-primary">Back to Games List</a>
     </div>
 </div>
-
-
-    <style>
-
-    </style>
 }

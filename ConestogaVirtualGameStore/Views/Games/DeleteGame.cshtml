@@ -1,21 +1,29 @@
 ﻿@model Game
 
-<h2>Delete Game</h2>
+<style>
+    #text {
+        color: white;
+    }
+</style>
 
-<h3> Are you sure you want to delete this game?</h3>
+<div id="text">
+    <h2>Delete Game</h2>
 
-<div>
-    <h4>@Model.Title</h4>
-    <p>@Model.Genere</p>
-    <p>@Model.ReleaseDate.ToShortDateString()</p>
-    <p>@Model.Platform</p>
-    <p>@Model.Price.ToString("C")</p>
-    <img src="@Model.CoverImageURL" alt="@Model.Title" style="max-height: 200px;" />
+    <h3> Are you sure you want to delete this game?</h3>
+
+    <div>
+        <h4>@Model.Title</h4>
+        <p>@Model.Genere</p>
+        <p>@Model.ReleaseDate.ToShortDateString()</p>
+        <p>@Model.Platform</p>
+        <p>@Model.Price.ToString("C")</p>
+        <img src="@Model.CoverImageURL" alt="@Model.Title" style="max-height: 200px;" />
+    </div>
 </div>
 
 <form asp-action="DeleteGame">
     <input type="hidden" asp-for="GameId" />
-    <input type="submit" value="ConfirmDeleteGame" class="btn btn-danger" />
+    <input type="submit" value="Confirm Delete Game" class="btn btn-danger" />
     <a href="@Url.Action("Games")" class="btn btn-secondary">Cancel</a>
 </form>
 

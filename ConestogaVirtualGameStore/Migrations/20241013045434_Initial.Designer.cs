@@ -12,7 +12,7 @@ using MyVirtualGameStore.AppDbContext;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241013015023_Initial")]
+    [Migration("20241013045434_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

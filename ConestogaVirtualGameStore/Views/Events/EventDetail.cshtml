@@ -4,10 +4,16 @@
     ViewData["Title"] = Model.Name; // Set the page title to the event title
 }
 
-<div class="game-detail-container">
+<style>
+    #text {
+        color: white;
+    }
+</style>
+
+<div class="game-detail-container" id="text">
     <h1>@Model.Name</h1>
     <div class="event-info">
-        <p><strong>Date:</strong> @Model.Date.ToString("MMMM dd, yyyy")</p>
+        <p><strong>Date:</strong> @Model.Date</p>
         <p><strong>Address:</strong> @Model.Address</p>
         <p><strong>Country:</strong> @Model.Country</p>
         <p><strong>City:</strong> @Model.City</p>
@@ -19,9 +25,4 @@
         <a href="@Url.Action("Index", "Events")" class="btn btn-primary">Back to Events List</a>
     </div>
 </div>
-
-
-<style>
-
-</style>
 }
