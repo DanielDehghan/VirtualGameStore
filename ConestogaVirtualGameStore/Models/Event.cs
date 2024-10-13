@@ -34,7 +34,6 @@ namespace ConestogaVirtualGameStore.Models
         [StringLength(255)]
         public string PostalCode { get; set; }
 
-        [Required]
         [StringLength(1000)]
         public string? Description { get; set; }
     }
