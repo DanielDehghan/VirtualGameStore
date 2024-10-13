@@ -1,5 +1,27 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Event
+
 @{
+    ViewData["Title"] = Model.Name; // Set the page title to the event title
+}
+
+<div class="game-detail-container">
+    <h1>@Model.Name</h1>
+    <div class="event-info">
+        <p><strong>Date:</strong> @Model.Date.ToString("MMMM dd, yyyy")</p>
+        <p><strong>Address:</strong> @Model.Address</p>
+        <p><strong>Country:</strong> @Model.Country</p>
+        <p><strong>City:</strong> @Model.City</p>
+        <p><strong>Province:</strong> @Model.Province</p>
+        <p><strong>Postal Code:</strong> @Model.PostalCode</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+    </div>
+    <div class="back-button">
+        <a href="@Url.Action("Index", "Events")" class="btn btn-primary">Back to Events List</a>
+    </div>
+</div>
+
+
+<style>
+
+</style>
 }

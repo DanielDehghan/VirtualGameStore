@@ -29,10 +29,10 @@ namespace MyVirtualGameStore.AppDbContext
             );
 
             modelBuilder.Entity<Event>().HasData(
-                 new Event { EventId = 1, Name = "Conestoga Esports Meetup", Date = new DateTime(2024, 12, 15), Address = "108 University Ave E", Country = "Canada", City = "Waterloo", Province = "Ontario", PostalCode = "N2J 2W2", Description = "A meetup event with the Conestoga Esports team and their fans" },
-                 new Event { EventId = 2, Name = "Conestoga Retro Game Sale", Date = new DateTime(2024, 12, 18), Address = "299 Doon Valley Dr", Country = "Canada", City = "Kitchener", Province = "Ontario", PostalCode = "N2G 4M4", Description = "A retro game sale with many popular and beloved classic games" },
-                 new Event { EventId = 3, Name = "Conestoga Gaming Convention", Date = new DateTime(2024, 12, 20), Address = "775 Main Street East", Country = "Canada", City = "Milton", Province = "Ontario", PostalCode = "L9T 3Z3", Description = "A game convention with sales, fan-favourite game actors, and sneak peak on new game releases on the Conestoga Video Game Store website" },
-                 new Event { EventId = 4, Name = "Conestoga Gaming Tournament", Date = new DateTime(2024, 1, 4), Address = "850 Fountain Street South", Country = "Canada", City = "Cambridge", Province = "Ontario", PostalCode = "N3H 0A8", Description = "A game tournament that has competitors facing each other in various fighting and fps games to win a cash prize" }
+                 new Event { EventId = 1, Name = "Conestoga Esports Meetup", Date = new DateTime(2024, 12, 15, 14, 30, 00), Address = "108 University Ave E", Country = "Canada", City = "Waterloo", Province = "Ontario", PostalCode = "N2J 2W2", Description = "A meetup event with the Conestoga Esports team and their fans" },
+                 new Event { EventId = 2, Name = "Conestoga Retro Game Sale", Date = new DateTime(2024, 12, 18, 12, 00, 00), Address = "299 Doon Valley Dr", Country = "Canada", City = "Kitchener", Province = "Ontario", PostalCode = "N2G 4M4", Description = "A retro game sale with many popular and beloved classic games" },
+                 new Event { EventId = 3, Name = "Conestoga Gaming Convention", Date = new DateTime(2024, 12, 20, 08, 00, 00), Address = "775 Main Street East", Country = "Canada", City = "Milton", Province = "Ontario", PostalCode = "L9T 3Z3", Description = "A game convention with sales, fan-favourite game actors, and sneak peak on new game releases on the Conestoga Video Game Store website" },
+                 new Event { EventId = 4, Name = "Conestoga Gaming Tournament", Date = new DateTime(2024, 1, 4, 17, 00, 00), Address = "850 Fountain Street South", Country = "Canada", City = "Cambridge", Province = "Ontario", PostalCode = "N3H 0A8", Description = "A game tournament that has competitors facing each other in various fighting and fps games to win a cash prize" }
             );
         }
     }

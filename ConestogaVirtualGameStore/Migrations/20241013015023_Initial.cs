@@ -8,11 +8,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ConestogaVirtualGameStore.Migrations
 {
     /// <inheritdoc />
-    public partial class initials : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    EventId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    City = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Province = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.EventId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Games",
                 columns: table => new
@@ -33,6 +53,17 @@ namespace ConestogaVirtualGameStore.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "EventId", "Address", "City", "Country", "Date", "Description", "Name", "PostalCode", "Province" },
+                values: new object[,]
+                {
+                    { 1, "108 University Ave E", "Waterloo", "Canada", new DateTime(2024, 12, 15, 14, 30, 0, 0, DateTimeKind.Unspecified), "A meetup event with the Conestoga Esports team and their fans", "Conestoga Esports Meetup", "N2J 2W2", "Ontario" },
+                    { 2, "299 Doon Valley Dr", "Kitchener", "Canada", new DateTime(2024, 12, 18, 12, 0, 0, 0, DateTimeKind.Unspecified), "A retro game sale with many popular and beloved classic games", "Conestoga Retro Game Sale", "N2G 4M4", "Ontario" },
+                    { 3, "775 Main Street East", "Milton", "Canada", new DateTime(2024, 12, 20, 8, 0, 0, 0, DateTimeKind.Unspecified), "A game convention with sales, fan-favourite game actors, and sneak peak on new game releases on the Conestoga Video Game Store website", "Conestoga Gaming Convention", "L9T 3Z3", "Ontario" },
+                    { 4, "850 Fountain Street South", "Cambridge", "Canada", new DateTime(2024, 1, 4, 17, 0, 0, 0, DateTimeKind.Unspecified), "A game tournament that has competitors facing each other in various fighting and fps games to win a cash prize", "Conestoga Gaming Tournament", "N3H 0A8", "Ontario" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Games",
                 columns: new[] { "GameId", "CoverImageURL", "Description", "Genere", "Platform", "Price", "ReleaseDate", "Title" },
                 values: new object[,]
@@ -49,6 +80,9 @@ namespace ConestogaVirtualGameStore.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Events");
+
             migrationBuilder.DropTable(
                 name: "Games");
         }
