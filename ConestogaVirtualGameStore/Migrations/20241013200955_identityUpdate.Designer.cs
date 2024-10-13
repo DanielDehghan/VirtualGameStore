@@ -12,8 +12,8 @@ using MyVirtualGameStore.AppDbContext;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241013062655_IdentityCreation")]
-    partial class IdentityCreation
+    [Migration("20241013200955_identityUpdate")]
+    partial class identityUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -288,7 +288,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 10, 13, 2, 26, 54, 679, DateTimeKind.Local).AddTicks(3566)
+                            Register_Date = new DateTime(2024, 10, 13, 16, 9, 54, 800, DateTimeKind.Local).AddTicks(6877)
                         },
                         new
                         {
@@ -303,7 +303,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "M5H 2N2",
                             Province = "ON",
-                            Register_Date = new DateTime(2024, 10, 13, 2, 26, 54, 679, DateTimeKind.Local).AddTicks(3639)
+                            Register_Date = new DateTime(2024, 10, 13, 16, 9, 54, 800, DateTimeKind.Local).AddTicks(6942)
                         });
                 });
 

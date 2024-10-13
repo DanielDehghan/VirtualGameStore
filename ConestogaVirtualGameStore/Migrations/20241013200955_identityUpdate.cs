@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ConestogaVirtualGameStore.Migrations
 {
     /// <inheritdoc />
-    public partial class IdentityCreation : Migration
+    public partial class identityUpdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,6 +53,7 @@ namespace ConestogaVirtualGameStore.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
+
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -158,19 +161,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.UpdateData(
-                table: "Members",
-                keyColumn: "Member_ID",
-                keyValue: 1,
-                column: "Register_Date",
-                value: new DateTime(2024, 10, 13, 2, 26, 54, 679, DateTimeKind.Local).AddTicks(3566));
-
-            migrationBuilder.UpdateData(
-                table: "Members",
-                keyColumn: "Member_ID",
-                keyValue: 2,
-                column: "Register_Date",
-                value: new DateTime(2024, 10, 13, 2, 26, 54, 679, DateTimeKind.Local).AddTicks(3639));
+        
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -235,20 +226,6 @@ namespace ConestogaVirtualGameStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.UpdateData(
-                table: "Members",
-                keyColumn: "Member_ID",
-                keyValue: 1,
-                column: "Register_Date",
-                value: new DateTime(2024, 10, 12, 22, 49, 36, 487, DateTimeKind.Local).AddTicks(6580));
-
-            migrationBuilder.UpdateData(
-                table: "Members",
-                keyColumn: "Member_ID",
-                keyValue: 2,
-                column: "Register_Date",
-                value: new DateTime(2024, 10, 12, 22, 49, 36, 490, DateTimeKind.Local).AddTicks(8174));
         }
     }
 }
