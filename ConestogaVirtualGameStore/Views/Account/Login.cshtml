@@ -12,15 +12,16 @@
     <div class="login-form-container">
         <h2 class="login-form-title">Login</h2>
         <form asp-action="Login" method="post" id="login-form">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
             <div class="login-form-group">
                 <label asp-for="Email" class="login-form-label"></label>
                 <input asp-for="Email" class="login-form-control" required id="login-email" />
-                <span asp-validation-for="Email" class="login-form-error text-black"></span>
+                <span asp-validation-for="Email" class="login-form-error fw-bolder text-black"></span>
             </div>
             <div class="login-form-group">
                 <label asp-for="Password" class="login-form-label"></label>
                 <input asp-for="Password" class="login-form-control" type="password" required id="login-password" />
-                <span asp-validation-for="Password" class="login-form-error text-black"></span>
+                <span asp-validation-for="Password" class="login-form-error fw-bolder text-black"></span>
             </div>
             <button type="submit" class="login-form-btn">Login</button>
         </form>
