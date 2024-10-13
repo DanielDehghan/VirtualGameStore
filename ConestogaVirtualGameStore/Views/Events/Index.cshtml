@@ -4,39 +4,20 @@
     ViewData["Title"] = "Events";
 }
 
-<style>
-    #EventCard {
-        color: white;
-    }
-</style>
-
 <div class="container mt-5" id="EventCard">
-    <div class="row">
+    <div class="card">
         @if (Model != null)
             @foreach (var Event in Model)
             {
-                <div class="col-md-3 mb-3" style="color:#212545">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">@Event.Name</h5>
-                            <p class="card-text">
-                                @if (Event.Description.Length > 100)
-                                {
-                                    @(Event.Description.Substring(0, 100) + "...")
-                                    <a href="@Url.Action("EventDetail", "Events", new { id = Event.EventId })"> See More Details </a>
-                                }
-                                else
-                                {
-                                    @Event.Description
-                                    <a href="@Url.Action("EventDetail", "Events", new { id = Event.EventId })"> See More </a>
-                                }
-                            </p>
-                        </div>
-                    </div>
+                <h5 class="card-header">@Event.Name</h5>
+                <div class="card-body">
+                    <h5 class="card-title">@Event.Date</h5>
+                    <p class="card-text">@Event.Address, @Event.City, @Event.Province, @Event.Country, @Event.PostalCode</p>
+                    <p class="card-text">@Event.Description</p>
+                    <a asp-action="RegisterEvent" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Register For Event
+                    </a>
                 </div>
-                <a asp-action="RegisterEvent" class="btn btn-success">
-                    <i class="fas fa-plus"></i> Register For Event
-                </a>
             }
     </div>
 </div>
