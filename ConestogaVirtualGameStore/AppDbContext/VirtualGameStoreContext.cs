@@ -17,6 +17,8 @@ namespace MyVirtualGameStore.AppDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Game>()
      .Property(g => g.Price)
      .HasColumnType("decimal(18,2)");
