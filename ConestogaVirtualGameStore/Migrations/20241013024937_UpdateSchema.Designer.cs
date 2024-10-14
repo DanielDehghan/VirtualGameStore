@@ -12,118 +12,18 @@ using MyVirtualGameStore.AppDbContext;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241013045434_Initial")]
-    partial class Initial
+    [Migration("20241013024937_UpdateSchema")]
+    partial class UpdateSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0-rc.1.24451.1")
+                .HasAnnotation("ProductVersion", "9.0.0-rc.2.24474.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Event", b =>
-                {
-                    b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Province")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("EventId");
-
-                    b.ToTable("Events");
-
-                    b.HasData(
-                        new
-                        {
-                            EventId = 1,
-                            Address = "108 University Ave E",
-                            City = "Waterloo",
-                            Country = "Canada",
-                            Date = new DateTime(2024, 12, 15, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A meetup event with the Conestoga Esports team and their fans",
-                            Name = "Conestoga Esports Meetup",
-                            PostalCode = "N2J 2W2",
-                            Province = "Ontario"
-                        },
-                        new
-                        {
-                            EventId = 2,
-                            Address = "299 Doon Valley Dr",
-                            City = "Kitchener",
-                            Country = "Canada",
-                            Date = new DateTime(2024, 12, 18, 12, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A retro game sale with many popular and beloved classic games",
-                            Name = "Conestoga Retro Game Sale",
-                            PostalCode = "N2G 4M4",
-                            Province = "Ontario"
-                        },
-                        new
-                        {
-                            EventId = 3,
-                            Address = "775 Main Street East",
-                            City = "Milton",
-                            Country = "Canada",
-                            Date = new DateTime(2024, 12, 20, 8, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A game convention with sales, fan-favourite game actors, and sneak peak on new game releases on the Conestoga Video Game Store website",
-                            Name = "Conestoga Gaming Convention",
-                            PostalCode = "L9T 3Z3",
-                            Province = "Ontario"
-                        },
-                        new
-                        {
-                            EventId = 4,
-                            Address = "850 Fountain Street South",
-                            City = "Cambridge",
-                            Country = "Canada",
-                            Date = new DateTime(2024, 1, 4, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A game tournament that has competitors facing each other in various fighting and fps games to win a cash prize",
-                            Name = "Conestoga Gaming Tournament",
-                            PostalCode = "N3H 0A8",
-                            Province = "Ontario"
-                        });
-                });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Game", b =>
                 {
@@ -233,6 +133,104 @@ namespace ConestogaVirtualGameStore.Migrations
                             Price = 59.99m,
                             ReleaseDate = new DateTime(2020, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Last of Us: Part 2"
+                        });
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Member", b =>
+                {
+                    b.Property<int>("Member_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Member_ID"));
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("Cart_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("Language_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Phone_Number")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Postal_Code")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Province")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("Register_Date")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Member_ID");
+
+                    b.ToTable("Members");
+
+                    b.HasData(
+                        new
+                        {
+                            Member_ID = 1,
+                            Address = "123 Main St",
+                            City = "New York",
+                            Country = "USA",
+                            Email = "john.doe@example.com",
+                            FirstName = "John",
+                            LastName = "Doe",
+                            Password = "password123",
+                            Phone_Number = "555-1234",
+                            Postal_Code = "10001",
+                            Province = "NY",
+                            Register_Date = new DateTime(2024, 10, 12, 22, 49, 36, 487, DateTimeKind.Local).AddTicks(6580)
+                        },
+                        new
+                        {
+                            Member_ID = 2,
+                            Address = "456 Elm St",
+                            City = "Toronto",
+                            Country = "Canada",
+                            Email = "jane.smith@example.com",
+                            FirstName = "Jane",
+                            LastName = "Smith",
+                            Password = "password456",
+                            Phone_Number = "555-5678",
+                            Postal_Code = "M5H 2N2",
+                            Province = "ON",
+                            Register_Date = new DateTime(2024, 10, 12, 22, 49, 36, 490, DateTimeKind.Local).AddTicks(8174)
                         });
                 });
 #pragma warning restore 612, 618
