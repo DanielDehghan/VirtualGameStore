@@ -12,8 +12,8 @@ using MyVirtualGameStore.AppDbContext;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241013200955_identityUpdate")]
-    partial class identityUpdate
+    [Migration("20241014003359_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,106 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Event", b =>
+                {
+                    b.Property<int>("EventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventId"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("EventId");
+
+                    b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            EventId = 1,
+                            Address = "108 University Ave E",
+                            City = "Waterloo",
+                            Country = "Canada",
+                            Date = new DateTime(2024, 12, 15, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A meetup event with the Conestoga Esports team and their fans",
+                            Name = "Conestoga Esports Meetup",
+                            PostalCode = "N2J 2W2",
+                            Province = "Ontario"
+                        },
+                        new
+                        {
+                            EventId = 2,
+                            Address = "299 Doon Valley Dr",
+                            City = "Kitchener",
+                            Country = "Canada",
+                            Date = new DateTime(2024, 12, 18, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A retro game sale with many popular and beloved classic games",
+                            Name = "Conestoga Retro Game Sale",
+                            PostalCode = "N2G 4M4",
+                            Province = "Ontario"
+                        },
+                        new
+                        {
+                            EventId = 3,
+                            Address = "775 Main Street East",
+                            City = "Milton",
+                            Country = "Canada",
+                            Date = new DateTime(2024, 12, 20, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A game convention with sales, fan-favourite game actors, and sneak peak on new game releases on the Conestoga Video Game Store website",
+                            Name = "Conestoga Gaming Convention",
+                            PostalCode = "L9T 3Z3",
+                            Province = "Ontario"
+                        },
+                        new
+                        {
+                            EventId = 4,
+                            Address = "850 Fountain Street South",
+                            City = "Cambridge",
+                            Country = "Canada",
+                            Date = new DateTime(2024, 12, 28, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A game tournament that has competitors facing each other in various fighting and fps games to win a cash prize",
+                            Name = "Conestoga Gaming Tournament",
+                            PostalCode = "N3H 0A8",
+                            Province = "Ontario"
+                        });
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Game", b =>
@@ -288,7 +388,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 10, 13, 16, 9, 54, 800, DateTimeKind.Local).AddTicks(6877)
+                            Register_Date = new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4785)
                         },
                         new
                         {
@@ -303,7 +403,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "M5H 2N2",
                             Province = "ON",
-                            Register_Date = new DateTime(2024, 10, 13, 16, 9, 54, 800, DateTimeKind.Local).AddTicks(6942)
+                            Register_Date = new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4851)
                         });
                 });
 
