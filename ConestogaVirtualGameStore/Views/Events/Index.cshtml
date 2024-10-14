@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Event>
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="container mt-5" id="EventCard">
+    <div class="card">
+        @if (Model != null)
+            @foreach (var Event in Model)
+            {
+                <h5 class="card-header">@Event.Name</h5>
+                <div class="card-body">
+                    <h5 class="card-title">@Event.Date</h5>
+                    <p class="card-text">@Event.Address, @Event.City, @Event.Province, @Event.Country, @Event.PostalCode</p>
+                    <p class="card-text">@Event.Description</p>
+                    <a asp-action="RegisterEvent" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Register For Event
+                    </a>
+                </div>
+            }
+    </div>
+</div>

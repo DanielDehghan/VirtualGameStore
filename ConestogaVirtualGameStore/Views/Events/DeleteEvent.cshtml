@@ -1,0 +1,33 @@
+﻿@model Event
+
+<style>
+    #text {
+        color: white;
+    }
+</style>
+
+<div id="text">
+    <h2>Delete Event</h2>
+
+    <h3> Are you sure you want to delete this event?</h3>
+
+    <div>
+        <h4>@Model.Name</h4>
+        <p>@Model.Date</p>
+        <p>@Model.Address</p>
+        <p>@Model.Country</p>
+        <p>@Model.City</p>
+        <p>@Model.Province</p>
+        <p>@Model.PostalCode</p>
+        <p>@Model.Description</p>
+    </div>
+</div>
+
+<form asp-action="DeleteEvent">
+    <input type="hidden" asp-for="EventId" />
+    <input type="submit" value="Confirm Delete Event" class="btn btn-danger" />
+    <a href="@Url.Action("Events")" class="btn btn-secondary">Cancel</a>
+</form>
+
+
+
