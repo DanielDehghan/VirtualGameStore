@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyVirtualGameStore.AppDbContext;
 
@@ -11,9 +12,11 @@ using MyVirtualGameStore.AppDbContext;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    partial class VirtualGameStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20241013200955_identityUpdate")]
+    partial class identityUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

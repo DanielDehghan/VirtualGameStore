@@ -26,7 +26,7 @@
         <div class="form-group col-md-6">
             <label asp-for="ReleaseDate" class="control-label"></label>
             <div class="input-group date" id="releaseDatePicker">
-                <input type="date" asp-for="ReleaseDate" class="form-control" />
+                <input type="date" asp-for="ReleaseDate" class="form-control" id="releaseDateInput" value="" placeholder="Select a date" /> <!-- Ensure value is empty -->              
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <i class="fas fa-calendar-alt"></i>

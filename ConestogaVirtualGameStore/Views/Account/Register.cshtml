@@ -1,0 +1,45 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.RegisterViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <title>User Registration</title>
+</head>
+<body>
+    <div class="register-form-container">
+        <h2 class="register-form-title">Register</h2>
+        <form asp-action="Register" method="post" id="register-form">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <div class="register-form-group">
+                <label asp-for="FirstName" class="register-form-label"></label>
+                <input asp-for="FirstName" class="register-form-control" required id="register-email" />
+                <span asp-validation-for="FirstName" class="register-form-error fw-bolder text-black"></span>
+            </div>
+            <div class="register-form-group">
+                <label asp-for="LastName" class="register-form-label"></label>
+                <input asp-for="LastName" class="register-form-control" required id="register-email" />
+                <span asp-validation-for="LastName" class="register-form-error fw-bolder text-black"></span>
+            </div>
+            <div class="register-form-group">
+                <label asp-for="Email" class="register-form-label"></label>
+                <input asp-for="Email" class="register-form-control" required id="register-email" />
+                <span asp-validation-for="Email" class="register-form-error fw-bolder text-black"></span>
+            </div>
+            <div class="register-form-group">
+                <label asp-for="Password" class="register-form-label"></label>
+                <input asp-for="Password" class="register-form-control" type="password" required id="register-password" />
+                <span asp-validation-for="Password" class="register-form-error fw-bolder text-black"></span>
+            </div>
+            <div class="register-form-group">
+                <label asp-for="ConfirmPassword" class="register-form-label"></label>
+                <input asp-for="ConfirmPassword" class="register-form-control" type="password" required id="register-confirm-password" />
+                <span asp-validation-for="ConfirmPassword" class="register-form-error fw-bolder text-black"></span>
+            </div>
+            <button type="submit" class="register-form-btn">Register</button>
+        </form>
+    </div>
+</body>
+</html>
