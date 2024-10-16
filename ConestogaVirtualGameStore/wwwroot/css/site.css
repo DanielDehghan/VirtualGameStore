@@ -242,5 +242,6 @@ main {
 
 .login-form-error,
 .register-form-error {
-    font-size: 0.9em; 
-    color: red; 
+    font-size: 0.9em;
+    color: red;
+}
