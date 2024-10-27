@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace ConestogaVirtualGameStore.ViewModels
@@ -31,13 +32,17 @@ namespace ConestogaVirtualGameStore.ViewModels
 
         [Required(ErrorMessage = "Province is required")]
         [StringLength(255)]
-        public string Province { get; set; }
+        public string SelectedProvince { get; set; }
 
         [Required(ErrorMessage = "Postal Code is required")]
         [StringLength(255)]
+        [RegularExpression(@"[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", ErrorMessage = "Postal code is not valid")]
         public string PostalCode { get; set; }
 
         [StringLength(1000)]
         public string? Description { get; set; }
+
+        [BindNever]
+        public IEnumerable<SelectListItem> Provinces { get; set; }
     }
 }

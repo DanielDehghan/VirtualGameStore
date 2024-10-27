@@ -30,7 +30,10 @@ namespace ConestogaVirtualGameStore.Controllers
         [HttpGet]
         public IActionResult AddEvent()
         {
-            var model = new CreateEventViewModel {};
+            var model = new CreateEventViewModel
+            {
+                Provinces = GetProvinces()
+            };
 
             return View(model);
         }
@@ -38,6 +41,7 @@ namespace ConestogaVirtualGameStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEvent(CreateEventViewModel model)
         {
+            ModelState.Remove("Provinces");
             if (ModelState.IsValid)
             {
                 var Event = new Event
@@ -47,7 +51,7 @@ namespace ConestogaVirtualGameStore.Controllers
                     Address = model.Address,
                     Country = model.Country,
                     City = model.City,
-                    Province = model.Province,
+                    Province = model.SelectedProvince,
                     PostalCode = model.PostalCode,
                     Description = model.Description
                 };
@@ -55,6 +59,8 @@ namespace ConestogaVirtualGameStore.Controllers
                 await _eventRepository.AddAsync(Event);
                 return RedirectToAction("Events");
             }
+
+            model.Provinces = GetProvinces();
 
             return View(model);
         }
@@ -76,9 +82,10 @@ namespace ConestogaVirtualGameStore.Controllers
                 Address = Event.Address,
                 Country = Event.Country,
                 City = Event.City,
-                Province = Event.Province,
+                SelectedProvince = Event.Province,
                 PostalCode = Event.PostalCode,
-                Description = Event.Description,    
+                Description = Event.Description,  
+                Provinces = GetProvinces()
             };
 
             return View(model);
@@ -93,6 +100,8 @@ namespace ConestogaVirtualGameStore.Controllers
                 return NotFound();
             }
 
+            ModelState.Remove("Provinces");
+
             if (ModelState.IsValid)
             {
                 // Update the existing event object rather than creating a new one
@@ -101,13 +110,16 @@ namespace ConestogaVirtualGameStore.Controllers
                 Event.Address = model.Address;
                 Event.Country = model.Country;
                 Event.City = model.City;
-                Event.Province = model.Province;
+                Event.Province = model.SelectedProvince;
                 Event.PostalCode = model.PostalCode;
                 Event.Description = model.Description;
 
                 await _eventRepository.UpdateAsync(Event);
                 return RedirectToAction("Events");
             }
+
+            // Repopulate the provinces if model state is invalid
+            model.Provinces = GetProvinces();
 
             return View(model);
         }
@@ -138,6 +150,26 @@ namespace ConestogaVirtualGameStore.Controllers
                 return NotFound();
             }
             return View(Event);
+        }
+
+        private IEnumerable<SelectListItem> GetProvinces()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Ontario", Text = "Ontario" },
+                new SelectListItem { Value = "Quebec", Text = "Quebec" },
+                new SelectListItem { Value = "Alberta", Text = "Alberta" },
+                new SelectListItem { Value = "British Columbia", Text = "British Columbia" },
+                new SelectListItem { Value = "Saskatchewan", Text = "Saskatchewan" },
+                new SelectListItem { Value = "Manitoba", Text = "Manitoba" },
+                new SelectListItem { Value = "New Brunswick", Text = "New Brunswick" },
+                new SelectListItem { Value = "Nova Scotia", Text = "Nova Scotia" },
+                new SelectListItem { Value = "Prince Edward Island", Text = "Prince Edward Island" },
+                new SelectListItem { Value = "Newfoundland and Labrador", Text = "Newfoundland and Labrador" },
+                new SelectListItem { Value = "Yukon ", Text = "Yukon " },
+                new SelectListItem { Value = "Northwest Territories", Text = "Northwest Territories" },
+                new SelectListItem { Value = "Nunavut ", Text = "Nunavut " },
+            };
         }
     }
 }
