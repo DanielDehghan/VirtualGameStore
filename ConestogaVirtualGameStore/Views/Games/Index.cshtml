@@ -6,30 +6,31 @@
 
 <div class="container mt-5" id="GameCard">
     <div class="row">
-        @if(Model != null)
-        @foreach (var game in Model)
-        {
+        @if (Model != null)
+            @foreach (var game in Model)
+            {
                 <div class="col-md-3 mb-3" style="color:#212545">
-                    <div class="card h-100">
-                    <img src="@game.CoverImageURL" class="card-img-top" alt="@game.Title" style="height: 400px; object-fit: cover;"/>
-                    <div class="card-body">
-                        <h5 class="card-title">@game.Title</h5>
-                        <p class="card-text">
-                            @if(game.Description.Length > 100)
-                            {
-                                @(game.Description.Substring(0, 100)+"...")
-                                    <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })"> See More </a>
-                            }
-                            else
-                            {
-                                @game.Description
-                                    <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })"> See More </a>
-                            }
-                        </p>
-                    </div>
+                    <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })" class="card-link" style="color:floralwhite; text-decoration: none;">
+                        <div class="card h-100 game-card">
+                            <img src="@game.CoverImageURL" class="card-img-top" alt="@game.Title" style="height: 400px; object-fit: cover;" />
+                            <div class="card-body" style="background-color: #780000;">
+                                <h5 class="card-title">@game.Title</h5>
+                                <p class="card-text">
+                                    @if (game.Description.Length > 100)
+                                    {
+                                        @(game.Description.Substring(0, 100) + "...")
+                                        <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })"> See More </a>
+                                    }
+                                    else
+                                    {
+                                        @game.Description
+                                        <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })"> See More </a>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-        }
+            }
     </div>
 </div>
-Z
