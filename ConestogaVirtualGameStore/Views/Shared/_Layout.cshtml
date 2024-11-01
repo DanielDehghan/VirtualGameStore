@@ -35,7 +35,7 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Games" asp-action="Index">Games</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="Index">Events</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="Events">Events</a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
@@ -44,7 +44,7 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Games" asp-action="Games">Manage Games</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="Events">Manage Events</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="ManageEvents">Manage Events</a>
                             </li>
                         }else{
                             <li class="nav-item">
@@ -103,7 +103,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Personal Info</a></li>
                                 <li><a class="dropdown-item" href="#">Prefrences</a></li>
-                                <li><a class="dropdown-item" href="#">Registered Events</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Events" asp-action="RegisteredEvents">Registered Events</a></li>
                                 <li><a class="dropdown-item" href="#">Wishlist</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Support</a></li>

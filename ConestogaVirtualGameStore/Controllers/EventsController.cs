@@ -1,30 +1,102 @@
 ﻿using ConestogaVirtualGameStore.Models;
 using ConestogaVirtualGameStore.Repository;
 using ConestogaVirtualGameStore.ViewModels;
+using MyVirtualGameStore.AppDbContext;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Tracing;
+using Microsoft.EntityFrameworkCore.Internal;
+using System.Collections.Immutable;
 
 namespace ConestogaVirtualGameStore.Controllers
 {
     public class EventsController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IRepository<Event> _eventRepository;
+        private readonly IRepository<MemberEvent> _memberEventRepository;
+        private readonly VirtualGameStoreContext _context;
 
-        public EventsController(IRepository<Event> eventRepository)
+        public EventsController(VirtualGameStoreContext cvgs, IRepository<Event> eventRepository, IRepository<MemberEvent> memberEventRepository, UserManager<ApplicationUser> userManager)
         {
+            _context = cvgs;
             _eventRepository = eventRepository;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var events = await _eventRepository.GetAllAsync();
-            return View(events);
+            _memberEventRepository = memberEventRepository;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Events()
         {
+            int currentMemberId = await GetCurrentMemberId();
+
+            var currentMemberEvents = (from me in _context.MembersEvents
+                                       join e in _context.Events
+                                          on me.Event_ID equals e.EventId into joined
+                                       where me.Member_ID != currentMemberId
+                                       from j in joined.DefaultIfEmpty()
+                                       select joined)
+                                       .AsEnumerable();
+
+            return View(currentMemberEvents);
+        }
+
+        public async Task<IActionResult> ManageEvents()
+        {
             var events = await _eventRepository.GetAllAsync();
             return View(events);
+        }
+
+        public async Task<IActionResult> RegisteredEvents()
+        {
+            int currentMemberId = await GetCurrentMemberId();
+
+            var currentMemberEvents = await (from me in _context.MembersEvents
+                                             join e in _context.Events on me.Event_ID equals e.EventId
+                                             where me.Member_ID == currentMemberId
+                                             select e)
+                                            .ToListAsync();
+
+            return View(currentMemberEvents);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddRegisteredEvent(int id)
+        {
+            int currentMemberId = await GetCurrentMemberId();
+            
+            if (ModelState.IsValid)
+            {
+                var MemberEvent = new MemberEvent
+                {
+                    Event_ID = id,
+                    Member_ID = currentMemberId
+                };
+
+                await _memberEventRepository.AddAsync(MemberEvent);
+                return RedirectToAction("Events");
+            }
+
+            return RedirectToAction("Events");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteRegisteredEvent(int id)
+        {
+            var Event = await _memberEventRepository.GetByIdAsync(id);
+            if (Event == null)
+            {
+                return NotFound();
+            }
+            return View(Event);
+        }
+
+        [HttpPost, ActionName("DeleteRegisteredEvent")]
+        public async Task<IActionResult> ConfirmDeleteRegisteredEvent(int id)
+        {
+            await _memberEventRepository.DeleteAsync(id);
+            return RedirectToAction("Events");
         }
 
         [HttpGet]
@@ -170,6 +242,23 @@ namespace ConestogaVirtualGameStore.Controllers
                 new SelectListItem { Value = "Northwest Territories", Text = "Northwest Territories" },
                 new SelectListItem { Value = "Nunavut ", Text = "Nunavut " },
             };
+        }
+
+        private async Task<int> GetCurrentMemberId() 
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                var currentMemberId = await _context.Members
+                    .Where(m => m.Email == user.Email)
+                    .Select(m => m.Member_ID)
+                    .FirstOrDefaultAsync();
+
+                return currentMemberId;
+            }
+
+            return -1;
         }
     }
 }

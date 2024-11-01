@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Event>
+﻿@model IEnumerable<Event>;
 
 @{
-    ViewData["Title"] = "Events";
+    ViewData["Title"] = "Registered Events";
 }
 
 @if (Model != null)
@@ -15,8 +15,8 @@
                     <h5 class="card-title">@Event.Date</h5>
                     <p class="card-text">@Event.Address, @Event.City, @Event.Province, @Event.Country, @Event.PostalCode</p>
                     <p class="card-text">@Event.Description</p>
-                    <a asp-action="AddRegisteredEvent" class="btn btn-success">
-                        <i class="fas fa-plus"></i> Register For Event
+                    <a asp-action="RegisteredEvents" class="btn btn-danger">
+                        <i class="fas fa-plus"></i> Remove Registered Event
                     </a>
                 </div>
             </div>

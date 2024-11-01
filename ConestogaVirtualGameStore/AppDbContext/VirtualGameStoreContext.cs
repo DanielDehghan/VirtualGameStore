@@ -1,11 +1,9 @@
 ﻿using ConestogaVirtualGameStore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace MyVirtualGameStore.AppDbContext
 {
-
     public class VirtualGameStoreContext : IdentityDbContext<ApplicationUser>
     {
         public VirtualGameStoreContext(DbContextOptions<VirtualGameStoreContext> options) : base(options)
@@ -17,13 +15,15 @@ namespace MyVirtualGameStore.AppDbContext
 
         public DbSet<Event> Events { get; set; }
 
+        public DbSet<MemberEvent> MembersEvents { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Game>()
-     .Property(g => g.Price)
-     .HasColumnType("decimal(18,2)");
+                .Property(g => g.Price)
+                .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<Game>().HasData(
                 new Game { GameId = 1, Title = "Assassin's Creed Mirage", Genere = "Action RPG", ReleaseDate = new DateTime(2023, 10, 05), Description = "An action RPG set in a historical setting, featuring stealth and combat elements.", Platform = "PlayStation 5, Xbox Series X/S, PC", Price = 59.99m, CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/NFf86jgU4AeVYgJBEoEKBpxW.jpg" },
@@ -77,7 +77,12 @@ namespace MyVirtualGameStore.AppDbContext
                   Register_Date = DateTime.Now
               }
 
-          );
+            );
+
+            modelBuilder.Entity<MemberEvent>().HasData(
+                new MemberEvent { Event_ID = 1, Member_ID = 1},
+                new MemberEvent { Event_ID = 2, Member_ID = 2}
+            );
         }
     }
 
