@@ -1,5 +1,7 @@
 ﻿@model ConestogaVirtualGameStore.ViewModels.CreateGameViewModel
 
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
 <form asp-action="EditGame" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="GameId" />
@@ -18,7 +20,7 @@
     <div class="form-group">
         <label asp-for="ReleaseDate" class="control-label"></label>
         <div class="input-group date" id="releaseDatePicker">
-            <input type="date" asp-for="ReleaseDate" class="form-control" />
+            <input type="date" id="releasedate" asp-for="ReleaseDate" class="form-control" />
             <div class="input-group-append">
                 <div class="input-group-text">
                     <i class="fas fa-calendar-alt"></i>
@@ -54,4 +56,12 @@
         <input type="submit" value="Edit Game" class="btn btn-primary" />
     </div>
 </form>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#releasedate", {
+        enableTime: false,
+        dateFormat: "Y-m-d",
+    });
+</script>
 

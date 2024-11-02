@@ -81,7 +81,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 };
 
                 await _eventRepository.AddAsync(Event);
-                return RedirectToAction("Events");
+                return RedirectToAction("ManageEvents");
             }
 
             model.Provinces = GetProvinces();
@@ -139,7 +139,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 Event.Description = model.Description;
 
                 await _eventRepository.UpdateAsync(Event);
-                return RedirectToAction("Events");
+                return RedirectToAction("ManageEvents");
             }
 
             // Repopulate the provinces if model state is invalid
@@ -163,7 +163,7 @@ namespace ConestogaVirtualGameStore.Controllers
         public async Task<IActionResult> ConfirmDeleteEvent(int id)
         {
             await _eventRepository.DeleteAsync(id);
-            return RedirectToAction("Events");
+            return RedirectToAction("ManageEvents");
         }
 
         public async Task<IActionResult> EventDetail(int id)

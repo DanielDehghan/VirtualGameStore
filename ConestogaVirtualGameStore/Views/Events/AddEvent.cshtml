@@ -1,5 +1,7 @@
 ﻿@model ConestogaVirtualGameStore.ViewModels.CreateEventViewModel;
 
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
 <form asp-action="AddEvent" method="post">
     <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
     <div class="form-row">
@@ -14,7 +16,7 @@
         <div class="form-group col-md-6">
             <label asp-for="Date" class="control-label"></label>
             <div class="input-group date" id="releaseDatePicker">
-                <input type="datetime-local" asp-for="Date" id="releaseDateInput" class="form-control" min="@DateTime.Now" value="" placeholder="Select a date" />
+                <input type="datetime-local" asp-for="Date" id="datetime" class="form-control" min="@DateTime.Now" value="" placeholder="Select a date" />
             </div>
             <span asp-validation-for="Date" class="text-danger"></span>
         </div>
@@ -67,3 +69,12 @@
     </div>
         <input type="submit" value="Add Event" class="btn btn-primary btn-block" />
 </form>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#datetime", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today"
+    });
+</script>
