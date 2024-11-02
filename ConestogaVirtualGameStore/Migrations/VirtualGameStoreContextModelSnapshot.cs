@@ -385,7 +385,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 11, 2, 1, 22, 41, 906, DateTimeKind.Local).AddTicks(9527)
+                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5774)
                         },
                         new
                         {
@@ -400,7 +400,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "M5H 2N2",
                             Province = "ON",
-                            Register_Date = new DateTime(2024, 11, 2, 1, 22, 41, 906, DateTimeKind.Local).AddTicks(9591)
+                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5846)
                         });
                 });
 
@@ -412,23 +412,13 @@ namespace ConestogaVirtualGameStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberEvent_ID"));
 
-                    b.Property<int>("EventID")
+                    b.Property<int>("Event_ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RegisteredEvent_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RegisteredMember_ID")
+                    b.Property<int>("Member_ID")
                         .HasColumnType("int");
 
                     b.HasKey("MemberEvent_ID");
-
-                    b.HasIndex("EventID");
-
-                    b.HasIndex("MemberID");
 
                     b.ToTable("MembersEvents");
                 });
@@ -564,25 +554,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("ConestogaVirtualGameStore.Models.MemberEvent", b =>
-                {
-                    b.HasOne("ConestogaVirtualGameStore.Models.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConestogaVirtualGameStore.Models.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-
-                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

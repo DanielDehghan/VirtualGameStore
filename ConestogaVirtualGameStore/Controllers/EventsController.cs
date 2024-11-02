@@ -33,8 +33,8 @@ namespace ConestogaVirtualGameStore.Controllers
 
             // Get all event IDs that the current member has registered for
             var registeredEventIds = await _context.MembersEvents
-                .Where(me => me.RegisteredMember_ID == currentMemberId)
-                .Select(me => me.RegisteredEvent_ID)
+                .Where(me => me.Member_ID == currentMemberId)
+                .Select(me => me.Event_ID)
                 .ToListAsync();
 
             // Get all events that the current member has not registered for
@@ -108,7 +108,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 City = Event.City,
                 SelectedProvince = Event.Province,
                 PostalCode = Event.PostalCode,
-                Description = Event.Description,  
+                Description = Event.Description,
                 Provinces = GetProvinces()
             };
 
@@ -182,8 +182,8 @@ namespace ConestogaVirtualGameStore.Controllers
 
             // Get all event IDs that the current member has registered for
             var registeredEventIds = await _context.MembersEvents
-                .Where(me => me.RegisteredMember_ID == currentMemberId)
-                .Select(me => me.RegisteredEvent_ID)
+                .Where(me => me.Member_ID == currentMemberId)
+                .Select(me => me.Event_ID)
                 .ToListAsync();
 
             // Get all events that the current member has not registered for
@@ -203,11 +203,12 @@ namespace ConestogaVirtualGameStore.Controllers
             {
                 var MemberEvent = new MemberEvent
                 {
-                    RegisteredMember_ID = currentMemberId,
-                    RegisteredEvent_ID = id
+                    Member_ID = currentMemberId,
+                    Event_ID = id
                 };
 
                 await _memberEventRepository.AddAsync(MemberEvent);
+
                 return RedirectToAction("Events");
             }
 
@@ -217,19 +218,16 @@ namespace ConestogaVirtualGameStore.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteRegisteredEvent(int id)
         {
-            var Event = await _memberEventRepository.GetByIdAsync(id);
-            if (Event == null)
-            {
-                return NotFound();
-            }
-            return View(Event);
-        }
+            int currentMemberId = await GetCurrentMemberId();
 
-        [HttpPost, ActionName("DeleteRegisteredEvent")]
-        public async Task<IActionResult> ConfirmDeleteRegisteredEvent(int id)
-        {
-            await _memberEventRepository.DeleteAsync(id);
-            return RedirectToAction("Events");
+            var memberEventId = await _context.MembersEvents
+                .Where(me => me.Event_ID == id && me.Member_ID == currentMemberId)
+                .Select(me => me.MemberEvent_ID)
+                .FirstOrDefaultAsync();
+
+            await _memberEventRepository.DeleteAsync(memberEventId);
+
+            return RedirectToAction("RegisteredEvents");
         }
 
         private IEnumerable<SelectListItem> GetProvinces()
