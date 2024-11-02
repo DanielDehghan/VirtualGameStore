@@ -224,6 +224,34 @@ namespace ConestogaVirtualGameStore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "MembersEvents",
+                columns: table => new
+                {
+                    MemberEvent_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RegisteredMember_ID = table.Column<int>(type: "int", nullable: false),
+                    RegisteredEvent_ID = table.Column<int>(type: "int", nullable: false),
+                    EventID = table.Column<int>(type: "int", nullable: false),
+                    MemberID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MembersEvents", x => x.MemberEvent_ID);
+                    table.ForeignKey(
+                        name: "FK_MembersEvents_Events_EventID",
+                        column: x => x.EventID,
+                        principalTable: "Events",
+                        principalColumn: "EventId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MembersEvents_Members_MemberID",
+                        column: x => x.MemberID,
+                        principalTable: "Members",
+                        principalColumn: "Member_ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Events",
                 columns: new[] { "EventId", "Address", "City", "Country", "Date", "Description", "Name", "PostalCode", "Province" },
@@ -253,8 +281,8 @@ namespace ConestogaVirtualGameStore.Migrations
                 columns: new[] { "Member_ID", "Address", "Cart_ID", "City", "Country", "Email", "FirstName", "Language_ID", "LastName", "Password", "Phone_Number", "Postal_Code", "Province", "Register_Date" },
                 values: new object[,]
                 {
-                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4785) },
-                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4851) }
+                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 2, 1, 22, 41, 906, DateTimeKind.Local).AddTicks(9527) },
+                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 2, 1, 22, 41, 906, DateTimeKind.Local).AddTicks(9591) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -295,6 +323,16 @@ namespace ConestogaVirtualGameStore.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MembersEvents_EventID",
+                table: "MembersEvents",
+                column: "EventID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MembersEvents_MemberID",
+                table: "MembersEvents",
+                column: "MemberID");
         }
 
         /// <inheritdoc />
@@ -316,19 +354,22 @@ namespace ConestogaVirtualGameStore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Events");
-
-            migrationBuilder.DropTable(
                 name: "Games");
 
             migrationBuilder.DropTable(
-                name: "Members");
+                name: "MembersEvents");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Members");
         }
     }
 }

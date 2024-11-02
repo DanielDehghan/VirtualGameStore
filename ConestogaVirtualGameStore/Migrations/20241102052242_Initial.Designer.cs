@@ -12,8 +12,8 @@ using MyVirtualGameStore.AppDbContext;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241027214647_MemberEvents")]
-    partial class MemberEvents
+    [Migration("20241102052242_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -388,7 +388,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 10, 27, 17, 46, 46, 743, DateTimeKind.Local).AddTicks(9114)
+                            Register_Date = new DateTime(2024, 11, 2, 1, 22, 41, 906, DateTimeKind.Local).AddTicks(9527)
                         },
                         new
                         {
@@ -403,36 +403,37 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "M5H 2N2",
                             Province = "ON",
-                            Register_Date = new DateTime(2024, 10, 27, 17, 46, 46, 743, DateTimeKind.Local).AddTicks(9202)
+                            Register_Date = new DateTime(2024, 11, 2, 1, 22, 41, 906, DateTimeKind.Local).AddTicks(9591)
                         });
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.MemberEvent", b =>
                 {
-                    b.Property<int>("Event_ID")
+                    b.Property<int>("MemberEvent_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Event_ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberEvent_ID"));
 
-                    b.Property<int>("Member_ID")
+                    b.Property<int>("EventID")
                         .HasColumnType("int");
 
-                    b.HasKey("Event_ID");
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RegisteredEvent_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RegisteredMember_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("MemberEvent_ID");
+
+                    b.HasIndex("EventID");
+
+                    b.HasIndex("MemberID");
 
                     b.ToTable("MembersEvents");
-
-                    b.HasData(
-                        new
-                        {
-                            Event_ID = 1,
-                            Member_ID = 1
-                        },
-                        new
-                        {
-                            Event_ID = 2,
-                            Member_ID = 2
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -566,6 +567,25 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.MemberEvent", b =>
+                {
+                    b.HasOne("ConestogaVirtualGameStore.Models.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConestogaVirtualGameStore.Models.Member", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -31,72 +31,24 @@ namespace ConestogaVirtualGameStore.Controllers
         {
             int currentMemberId = await GetCurrentMemberId();
 
-            var currentMemberEvents = (from me in _context.MembersEvents
-                                       join e in _context.Events
-                                          on me.Event_ID equals e.EventId into joined
-                                       where me.Member_ID != currentMemberId
-                                       from j in joined.DefaultIfEmpty()
-                                       select joined)
-                                       .AsEnumerable();
+            // Get all event IDs that the current member has registered for
+            var registeredEventIds = await _context.MembersEvents
+                .Where(me => me.RegisteredMember_ID == currentMemberId)
+                .Select(me => me.RegisteredEvent_ID)
+                .ToListAsync();
 
-            return View(currentMemberEvents);
+            // Get all events that the current member has not registered for
+            var availableEvents = await _context.Events
+                .Where(e => !registeredEventIds.Contains(e.EventId))
+                .ToListAsync();
+
+            return View(availableEvents);
         }
 
         public async Task<IActionResult> ManageEvents()
         {
             var events = await _eventRepository.GetAllAsync();
             return View(events);
-        }
-
-        public async Task<IActionResult> RegisteredEvents()
-        {
-            int currentMemberId = await GetCurrentMemberId();
-
-            var currentMemberEvents = await (from me in _context.MembersEvents
-                                             join e in _context.Events on me.Event_ID equals e.EventId
-                                             where me.Member_ID == currentMemberId
-                                             select e)
-                                            .ToListAsync();
-
-            return View(currentMemberEvents);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddRegisteredEvent(int id)
-        {
-            int currentMemberId = await GetCurrentMemberId();
-            
-            if (ModelState.IsValid)
-            {
-                var MemberEvent = new MemberEvent
-                {
-                    Event_ID = id,
-                    Member_ID = currentMemberId
-                };
-
-                await _memberEventRepository.AddAsync(MemberEvent);
-                return RedirectToAction("Events");
-            }
-
-            return RedirectToAction("Events");
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> DeleteRegisteredEvent(int id)
-        {
-            var Event = await _memberEventRepository.GetByIdAsync(id);
-            if (Event == null)
-            {
-                return NotFound();
-            }
-            return View(Event);
-        }
-
-        [HttpPost, ActionName("DeleteRegisteredEvent")]
-        public async Task<IActionResult> ConfirmDeleteRegisteredEvent(int id)
-        {
-            await _memberEventRepository.DeleteAsync(id);
-            return RedirectToAction("Events");
         }
 
         [HttpGet]
@@ -222,6 +174,62 @@ namespace ConestogaVirtualGameStore.Controllers
                 return NotFound();
             }
             return View(Event);
+        }
+
+        public async Task<IActionResult> RegisteredEvents()
+        {
+            int currentMemberId = await GetCurrentMemberId();
+
+            // Get all event IDs that the current member has registered for
+            var registeredEventIds = await _context.MembersEvents
+                .Where(me => me.RegisteredMember_ID == currentMemberId)
+                .Select(me => me.RegisteredEvent_ID)
+                .ToListAsync();
+
+            // Get all events that the current member has not registered for
+            var registeredEvents = await _context.Events
+                .Where(e => registeredEventIds.Contains(e.EventId))
+                .ToListAsync();
+
+            return View(registeredEvents);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddRegisteredEvent(int id)
+        {
+            int currentMemberId = await GetCurrentMemberId();
+
+            if (currentMemberId != -1)
+            {
+                var MemberEvent = new MemberEvent
+                {
+                    RegisteredMember_ID = currentMemberId,
+                    RegisteredEvent_ID = id
+                };
+
+                await _memberEventRepository.AddAsync(MemberEvent);
+                return RedirectToAction("Events");
+            }
+
+            return RedirectToAction("Events");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteRegisteredEvent(int id)
+        {
+            var Event = await _memberEventRepository.GetByIdAsync(id);
+            if (Event == null)
+            {
+                return NotFound();
+            }
+            return View(Event);
+        }
+
+        [HttpPost, ActionName("DeleteRegisteredEvent")]
+        public async Task<IActionResult> ConfirmDeleteRegisteredEvent(int id)
+        {
+            await _memberEventRepository.DeleteAsync(id);
+            return RedirectToAction("Events");
         }
 
         private IEnumerable<SelectListItem> GetProvinces()

@@ -78,11 +78,6 @@ namespace MyVirtualGameStore.AppDbContext
               }
 
             );
-
-            modelBuilder.Entity<MemberEvent>().HasData(
-                new MemberEvent { Event_ID = 1, Member_ID = 1},
-                new MemberEvent { Event_ID = 2, Member_ID = 2}
-            );
         }
     }
 
