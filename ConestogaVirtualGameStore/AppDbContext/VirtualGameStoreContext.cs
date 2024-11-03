@@ -15,6 +15,8 @@ namespace MyVirtualGameStore.AppDbContext
 
         public DbSet<Event> Events { get; set; }
 
+        public DbSet<MemberEvent> MembersEvents { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
