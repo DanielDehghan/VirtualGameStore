@@ -157,7 +157,40 @@ namespace ConestogaVirtualGameStore.Controllers
             }
             return View(game);
         }
+        [HttpGet]
+        public async Task<JsonResult> SearchGames(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return Json(new { success = false, results = new List<object>() });
+            }
 
+            var allGames = await _gameRepository.GetAllAsync();
+            var matchingGames = allGames
+                .Where(g => g.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                            g.Genere.Contains(query, StringComparison.OrdinalIgnoreCase))
+                .Select(g => new { g.GameId, g.Title, g.Genere })
+                .Take(5) 
+                .ToList();
+
+            return Json(new { success = true, results = matchingGames });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Genre(string genre)
+        {
+            if (string.IsNullOrWhiteSpace(genre))
+            {
+                return RedirectToAction("Index"); 
+            }
+
+            var games = await _gameRepository.GetAllAsync();
+            var matchingGames = games
+                .Where(g => g.Genere.Equals(genre, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            return View("GamesByGenre", matchingGames); 
+        }
         private IEnumerable<SelectListItem> GetGenres()
         {
             return new List<SelectListItem>
