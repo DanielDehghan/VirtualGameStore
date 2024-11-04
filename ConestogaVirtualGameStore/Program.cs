@@ -2,7 +2,8 @@ using ConestogaVirtualGameStore.Models;
 using ConestogaVirtualGameStore.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<VirtualGameStoreContext>(options => options.UseSql
 builder.Services.AddScoped<IRepository<Game>, Repository<Game>>();
 builder.Services.AddScoped<IRepository<Event>, Repository<Event>>();
 
+builder.Services.AddScoped<EmailService>();
 // Add Identity services
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<VirtualGameStoreContext>()
