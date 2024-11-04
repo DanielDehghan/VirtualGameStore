@@ -3,7 +3,6 @@ $(document).ready(function () {
     console.log("jQuery is working!");
 });
 
-
 $(document).ready(function () {
     $('#releaseDatePicker').datepicker({
         format: 'yyyy-mm-dd',   // Format of the date

@@ -1,5 +1,7 @@
 ﻿@model ConestogaVirtualGameStore.ViewModels.CreateEventViewModel
 
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
 <form asp-action="EditEvent" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="EventId" />
@@ -11,12 +13,7 @@
     <div class="form-group">
         <label asp-for="Date" class="control-label"></label>
         <div class="input-group date" id="releaseDatePicker">
-            <input type="datetime-local" asp-for="Date" class="form-control"/>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-            </div>
+            <input type="datetime-local" id="datetime" asp-for="Date" class="form-control" min="@DateTime.Now" />
         </div>
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
@@ -36,9 +33,11 @@
         <span asp-validation-for="City" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Province" class="control-label"></label>
-        <input asp-for="Province" class="form-control" />
-        <span asp-validation-for="Province" class="text-danger"></span>
+        <label asp-for="SelectedProvince" class="control-label"></label>
+        <select asp-for="SelectedProvince" class="form-control" asp-items="Model.Provinces">
+            <option value="">Select Province</option>
+        </select>
+        <span asp-validation-for="SelectedProvince" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="PostalCode" class="control-label"></label>
@@ -55,4 +54,13 @@
         <input type="submit" value="Edit Event" class="btn btn-primary" />
     </div>
 </form>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#datetime", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today"
+    });
+</script>
 

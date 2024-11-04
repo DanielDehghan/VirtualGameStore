@@ -119,6 +119,20 @@ namespace ConestogaVirtualGameStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MembersEvents",
+                columns: table => new
+                {
+                    MemberEvent_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Event_ID = table.Column<int>(type: "int", nullable: false),
+                    Member_ID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MembersEvents", x => x.MemberEvent_ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -253,8 +267,8 @@ namespace ConestogaVirtualGameStore.Migrations
                 columns: new[] { "Member_ID", "Address", "Cart_ID", "City", "Country", "Email", "FirstName", "Language_ID", "LastName", "Password", "Phone_Number", "Postal_Code", "Province", "Register_Date" },
                 values: new object[,]
                 {
-                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4785) },
-                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4851) }
+                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5774) },
+                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5846) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -323,6 +337,9 @@ namespace ConestogaVirtualGameStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Members");
+
+            migrationBuilder.DropTable(
+                name: "MembersEvents");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

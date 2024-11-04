@@ -385,7 +385,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4785)
+                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5774)
                         },
                         new
                         {
@@ -400,8 +400,27 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "M5H 2N2",
                             Province = "ON",
-                            Register_Date = new DateTime(2024, 10, 13, 20, 33, 58, 904, DateTimeKind.Local).AddTicks(4851)
+                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5846)
                         });
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.MemberEvent", b =>
+                {
+                    b.Property<int>("MemberEvent_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberEvent_ID"));
+
+                    b.Property<int>("Event_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Member_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("MemberEvent_ID");
+
+                    b.ToTable("MembersEvents");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
