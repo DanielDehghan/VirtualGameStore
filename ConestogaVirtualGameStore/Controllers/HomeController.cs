@@ -1,7 +1,7 @@
 using ConestogaVirtualGameStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
 using System;
 using System.Diagnostics;
 
