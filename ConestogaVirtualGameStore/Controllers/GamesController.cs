@@ -53,7 +53,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 var game = new Game
                 {
                     Title = model.Title,
-                    Genere = model.SelectedGenre,
+                    Genre = model.SelectedGenre,
                     ReleaseDate = model.ReleaseDate,
                     Description = model.Description,
                     Platform = model.SelectedPlatform,
@@ -83,7 +83,7 @@ namespace ConestogaVirtualGameStore.Controllers
             var model = new CreateGameViewModel
             {
                 Title = game.Title,
-                SelectedGenre = game.Genere,
+                SelectedGenre = game.Genre,
                 ReleaseDate = game.ReleaseDate,
                 Description = game.Description,
                 SelectedPlatform = game.Platform,
@@ -112,7 +112,7 @@ namespace ConestogaVirtualGameStore.Controllers
             {
                 // Update the existing game object rather than creating a new one
                 game.Title = model.Title;
-                game.Genere = model.SelectedGenre;
+                game.Genre = model.SelectedGenre;
                 game.ReleaseDate = model.ReleaseDate;
                 game.Description = model.Description;
                 game.Platform = model.SelectedPlatform;
@@ -168,8 +168,8 @@ namespace ConestogaVirtualGameStore.Controllers
             var allGames = await _gameRepository.GetAllAsync();
             var matchingGames = allGames
                 .Where(g => g.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
-                            g.Genere.Contains(query, StringComparison.OrdinalIgnoreCase))
-                .Select(g => new { g.GameId, g.Title, g.Genere })
+                            g.Genre.Contains(query, StringComparison.OrdinalIgnoreCase))
+                .Select(g => new { g.GameId, g.Title, g.Genre })
                 .Take(5) 
                 .ToList();
 
@@ -186,7 +186,7 @@ namespace ConestogaVirtualGameStore.Controllers
 
             var games = await _gameRepository.GetAllAsync();
             var matchingGames = games
-                .Where(g => g.Genere.Equals(genre, StringComparison.OrdinalIgnoreCase))
+                .Where(g => g.Genre.Equals(genre, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
             return View("GamesByGenre", matchingGames); 

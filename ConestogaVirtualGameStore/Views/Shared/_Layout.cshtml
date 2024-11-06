@@ -141,7 +141,7 @@
                     $('#searchResultsDropdown').empty();
                     if (data.success && data.results.length > 0) {
                         data.results.forEach(function (game) {
-                            $('#searchResultsDropdown').append('<a class="dropdown-item" href="/Games/GameDetail/' + game.gameId + '">' + game.title + ' (' + game.genere + ')</a>');
+                            $('#searchResultsDropdown').append('<a class="dropdown-item" href="/Games/GameDetail/' + game.gameId + '">' + game.title + ' (' + game.Genre + ')</a>');
                         });
                         $('#searchResultsDropdown').show();
                     } else {
