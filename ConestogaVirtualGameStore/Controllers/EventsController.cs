@@ -1,7 +1,7 @@
 ﻿using ConestogaVirtualGameStore.Models;
 using ConestogaVirtualGameStore.Repository;
 using ConestogaVirtualGameStore.ViewModels;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

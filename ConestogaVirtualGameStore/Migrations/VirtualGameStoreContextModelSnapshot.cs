@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
 
 #nullable disable
 
@@ -306,103 +306,6 @@ namespace ConestogaVirtualGameStore.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Member", b =>
-                {
-                    b.Property<int>("Member_ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Member_ID"));
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int?>("Cart_ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("City")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Country")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int?>("Language_ID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Phone_Number")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Postal_Code")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Province")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime>("Register_Date")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Member_ID");
-
-                    b.ToTable("Members");
-
-                    b.HasData(
-                        new
-                        {
-                            Member_ID = 1,
-                            Address = "123 Main St",
-                            City = "New York",
-                            Country = "USA",
-                            Email = "john.doe@example.com",
-                            FirstName = "John",
-                            LastName = "Doe",
-                            Password = "password123",
-                            Phone_Number = "555-1234",
-                            Postal_Code = "10001",
-                            Province = "NY",
-                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5774)
-                        },
-                        new
-                        {
-                            Member_ID = 2,
-                            Address = "456 Elm St",
-                            City = "Toronto",
-                            Country = "Canada",
-                            Email = "jane.smith@example.com",
-                            FirstName = "Jane",
-                            LastName = "Smith",
-                            Password = "password456",
-                            Phone_Number = "555-5678",
-                            Postal_Code = "M5H 2N2",
-                            Province = "ON",
-                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5846)
-                        });
-                });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.MemberEvent", b =>
                 {

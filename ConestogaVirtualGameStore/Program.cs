@@ -2,7 +2,7 @@ using ConestogaVirtualGameStore.Models;
 using ConestogaVirtualGameStore.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 

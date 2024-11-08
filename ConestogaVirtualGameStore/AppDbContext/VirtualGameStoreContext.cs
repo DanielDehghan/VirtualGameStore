@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace MyVirtualGameStore.AppDbContext
+namespace ConestogaVirtualGameStore.AppDbContext
 {
     public class VirtualGameStoreContext : IdentityDbContext<ApplicationUser>
     {
@@ -42,41 +42,75 @@ namespace MyVirtualGameStore.AppDbContext
             );
 
             modelBuilder.Entity<Member>().HasData(
-              new Member
-              {
-                  Member_ID = 1,
-                  FirstName = "John",
-                  LastName = "Doe",
-                  Email = "john.doe@example.com",
-                  Password = "password123",
-                  Address = "123 Main St",
-                  Country = "USA",
-                  City = "New York",
-                  Province = "NY",
-                  Postal_Code = "10001",
-                  Phone_Number = "555-1234",
-                  Language_ID = null, // Assuming no foreign key for Language
-                  Cart_ID = null,     // Assuming no foreign key for Cart
-                  Register_Date = DateTime.Now
-              },
-              new Member
-              {
-                  Member_ID = 2,
-                  FirstName = "Jane",
-                  LastName = "Smith",
-                  Email = "jane.smith@example.com",
-                  Password = "password456",
-                  Address = "456 Elm St",
-                  Country = "Canada",
-                  City = "Toronto",
-                  Province = "ON",
-                  Postal_Code = "M5H 2N2",
-                  Phone_Number = "555-5678",
-                  Language_ID = null,
-                  Cart_ID = null,
-                  Register_Date = DateTime.Now
-              }
-
+            new Member
+            {
+                Member_ID = 1,
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@example.com",
+                Password = "password123",  // This would ideally be hashed in real applications
+                PreferredLanguage = "English",
+                PreferredPlatform = "PC",
+                PreferredCategory = "Action",
+                ReceivePromotionalEmails = true,
+                Gender = "Male",
+                DateOfBirth = new DateTime(1990, 5, 15),
+                Apt_suit = "Apt 101",
+                StreetAddress = "123 Main St",
+                City = "Toronto",
+                Province = "ON",
+                Country = "Canada",
+                Postal_Code = "M5A 1A1",
+                DeliveryInstruction = "Leave at front door",
+                Phone_Number = "123-456-7890",
+                Register_Date = DateTime.Now
+            },
+      new Member
+      {
+          Member_ID = 2,
+          FirstName = "Jane",
+          LastName = "Smith",
+          Email = "jane.smith@example.com",
+          Password = "password456",
+          PreferredLanguage = "French",
+          PreferredPlatform = "PlayStation",
+          PreferredCategory = "RPG",
+          ReceivePromotionalEmails = false,
+          Gender = "Female",
+          DateOfBirth = new DateTime(1992, 8, 22),
+          Apt_suit = "Apt 202",
+          StreetAddress = "456 Elm St",
+          City = "Montreal",
+          Province = "QC",
+          Country = "Canada",
+          Postal_Code = "H2X 1A1",
+          DeliveryInstruction = "Call upon arrival",
+          Phone_Number = "987-654-3210",
+          Register_Date = DateTime.Now
+      },
+      new Member
+      {
+          Member_ID = 3,
+          FirstName = "Alex",
+          LastName = "Johnson",
+          Email = "alex.johnson@example.com",
+          Password = "password789",
+          PreferredLanguage = "English",
+          PreferredPlatform = "Xbox",
+          PreferredCategory = "Shooter",
+          ReceivePromotionalEmails = true,
+          Gender = "Non-binary",
+          DateOfBirth = new DateTime(1995, 11, 5),
+          Apt_suit = "Suite 300",
+          StreetAddress = "789 Maple Ave",
+          City = "Vancouver",
+          Province = "BC",
+          Country = "Canada",
+          Postal_Code = "V5K 1A1",
+          DeliveryInstruction = "Leave with concierge",
+          Phone_Number = "321-654-9870",
+          Register_Date = DateTime.Now
+      }
             );
         }
     }

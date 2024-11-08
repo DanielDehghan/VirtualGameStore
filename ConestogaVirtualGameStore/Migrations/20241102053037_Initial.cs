@@ -93,30 +93,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     table.PrimaryKey("PK_Games", x => x.GameId);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Members",
-                columns: table => new
-                {
-                    Member_ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    City = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Province = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Postal_Code = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Phone_Number = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Language_ID = table.Column<int>(type: "int", nullable: true),
-                    Cart_ID = table.Column<int>(type: "int", nullable: true),
-                    Register_Date = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Members", x => x.Member_ID);
-                });
 
             migrationBuilder.CreateTable(
                 name: "MembersEvents",
@@ -262,14 +238,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     { 6, "https://image.api.playstation.com/vulcan/ap/rnd/202312/0117/315718bce7eed62e3cf3fb02d61b81ff1782d6b6cf850fa4.png", "A narrative-driven action-adventure game that continues the story of Ellie and Joel in a post-apocalyptic world.", "Action-Adventure", "PlayStation 4", 59.99m, new DateTime(2020, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Last of Us: Part 2" }
                 });
 
-            migrationBuilder.InsertData(
-                table: "Members",
-                columns: new[] { "Member_ID", "Address", "Cart_ID", "City", "Country", "Email", "FirstName", "Language_ID", "LastName", "Password", "Phone_Number", "Postal_Code", "Province", "Register_Date" },
-                values: new object[,]
-                {
-                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5774) },
-                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5846) }
-                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -334,9 +302,6 @@ namespace ConestogaVirtualGameStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Games");
-
-            migrationBuilder.DropTable(
-                name: "Members");
 
             migrationBuilder.DropTable(
                 name: "MembersEvents");
