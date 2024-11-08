@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace MyVirtualGameStore.AppDbContext
+namespace ConestogaVirtualGameStore.AppDbContext
 {
     public class VirtualGameStoreContext : IdentityDbContext<ApplicationUser>
     {
