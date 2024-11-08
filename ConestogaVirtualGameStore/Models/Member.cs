@@ -28,10 +28,28 @@ namespace ConestogaVirtualGameStore.Models
         public string Password { get; set; }
 
         [StringLength(255)]
-        public string? Address { get; set; }
+        public string? PreferredLanguage { get; set; }
+
+        // Platform Preference
+        [StringLength(255)]
+        public string? PreferredPlatform { get; set; }
 
         [StringLength(255)]
-        public string? Country { get; set; }
+        public string? PreferredCategory { get; set; }
+
+        public bool ReceivePromotionalEmails { get; set; }
+
+        [StringLength(255)]
+        public string? Gender { get; set; }
+
+        [StringLength(255)]
+        public DateTime? DateOfBirth { get; set; }
+
+        [StringLength(255)]
+        public string? Apt_suit { get; set; }
+
+        [StringLength(255)]
+        public string? StreetAddress { get; set; }
 
         [StringLength(255)]
         public string? City { get; set; }
@@ -40,17 +58,21 @@ namespace ConestogaVirtualGameStore.Models
         public string? Province { get; set; }
 
         [StringLength(255)]
+        public string? Country { get; set; }
+
+        [StringLength(255)]
+        [Display(Name = "Postal Code")]
+        [RegularExpression("^[A-Za-z]\\d[A-Za-z][ -]?\\d[A-Za-z]\\d$", ErrorMessage = "Invalid postal code format.")]
+
         public string? Postal_Code { get; set; }
+
+        [StringLength(500)]
+        public string? DeliveryInstruction { get; set; }
 
         [StringLength(255)]
         [Phone]
+        [RegularExpression(@"^(\(\d{3}\)|\d{3})[ -]?\d{3}[ -]?\d{4}$", ErrorMessage = "Invalid phone number format.")]
         public string? Phone_Number { get; set; }
-
-        // Foreign key for Language (optional)
-        public int? Language_ID { get; set; }
-
-        // Foreign key for Cart (optional)
-        public int? Cart_ID { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime Register_Date { get; set; }
