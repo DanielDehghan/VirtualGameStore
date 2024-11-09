@@ -4,7 +4,7 @@ using ConestogaVirtualGameStore.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
 
 namespace ConestogaVirtualGameStore.Controllers
 {

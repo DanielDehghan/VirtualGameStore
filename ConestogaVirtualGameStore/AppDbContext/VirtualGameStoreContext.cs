@@ -16,6 +16,9 @@ namespace ConestogaVirtualGameStore.AppDbContext
         public DbSet<Event> Events { get; set; }
 
         public DbSet<MemberEvent> MembersEvents { get; set; }
+        public DbSet<Relationship> Relationships { get; set; }
+        public DbSet<MemberRelationship> MembersRelationships { get; set; }
+
 
         public DbSet<Wishlist> Wishlist { get; set; }
 
@@ -30,6 +33,49 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 .Property(g => g.Price)
                 .HasColumnType("decimal(18,2)");
 
+            modelBuilder.Entity<MemberRelationship>()
+                .HasOne(mr => mr.Member)
+                .WithMany(m => m.MemberRelationshipPrimary)
+                .HasForeignKey(mr => mr.Member_ID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<MemberRelationship>()
+                .HasOne(mr => mr.MemberAdded)
+                .WithMany(m => m.MemberRelationshipRelated)
+                .HasForeignKey(mr => mr.MemberAdded_ID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<MemberRelationship>()
+                .HasOne(mr => mr.Relationship)
+                .WithMany(r => r.MemberRelationship)
+                .HasForeignKey(mr => mr.Relationship_ID);
+
+            modelBuilder.Entity<Wishlist>()
+               .HasOne(w => w.Member)
+               .WithMany(m => m.Wishlists)
+               .HasForeignKey(w => w.Member_ID)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Wishlist_Games>()
+                .HasKey(wg => new { wg.Wishlist_ID, wg.GameId });
+
+            modelBuilder.Entity<Wishlist_Games>()
+                .HasOne(wg => wg.Wishlist)
+                .WithMany(w => w.Wishlist_Games)
+                .HasForeignKey(wg => wg.Wishlist_ID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Wishlist_Games>()
+                .HasOne(wg => wg.Game)
+                .WithMany(g => g.Wishlist_Games)
+                .HasForeignKey(wg => wg.GameId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Relationship>().HasData(
+                new Relationship { Relationship_ID = 1, Relationship_Type = "Friend" },
+                new Relationship { Relationship_ID = 2, Relationship_Type = "Family" }
+            );
+
             modelBuilder.Entity<Game>().HasData(
                 new Game { GameId = 1, Title = "Assassin's Creed Mirage", Genere = "Action RPG", ReleaseDate = new DateTime(2023, 10, 05), Description = "An action RPG set in a historical setting, featuring stealth and combat elements.", Platform = "PlayStation 5, Xbox Series X/S, PC", Price = 59.99m, CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/NFf86jgU4AeVYgJBEoEKBpxW.jpg" },
                 new Game { GameId = 2, Title = "Call of Duty MW3", Genere = "First-Person Shooter", ReleaseDate = new DateTime(2023, 11, 10), Description = "The latest installment in the Call of Duty series, offering intense first-person shooter action.", Platform = "PlayStation 5, Xbox Series X/S, PC", Price = 69.99m, CoverImageURL = "https://cdn2.steamgriddb.com/grid/3c8907c9dc26266603441dcb03dbe620.png" },
@@ -40,71 +86,228 @@ namespace ConestogaVirtualGameStore.AppDbContext
             );
 
             modelBuilder.Entity<Event>().HasData(
-                 new Event { EventId = 1, Name = "Conestoga Esports Meetup", Date = new DateTime(2024, 12, 15, 14, 30, 0), Address = "108 University Ave E", Country = "Canada", City = "Waterloo", Province = "Ontario", PostalCode = "N2J 2W2", Description = "A meetup event with the Conestoga Esports team and their fans" },
-                 new Event { EventId = 2, Name = "Conestoga Retro Game Sale", Date = new DateTime(2024, 12, 18, 12, 0, 0), Address = "299 Doon Valley Dr", Country = "Canada", City = "Kitchener", Province = "Ontario", PostalCode = "N2G 4M4", Description = "A retro game sale with many popular and beloved classic games" },
-                 new Event { EventId = 3, Name = "Conestoga Gaming Convention", Date = new DateTime(2024, 12, 20, 8, 0, 0), Address = "775 Main Street East", Country = "Canada", City = "Milton", Province = "Ontario", PostalCode = "L9T 3Z3", Description = "A game convention with sales, fan-favourite game actors, and sneak peak on new game releases on the Conestoga Video Game Store website" },
-                 new Event { EventId = 4, Name = "Conestoga Gaming Tournament", Date = new DateTime(2024, 12, 28, 17, 0, 0), Address = "850 Fountain Street South", Country = "Canada", City = "Cambridge", Province = "Ontario", PostalCode = "N3H 0A8", Description = "A game tournament that has competitors facing each other in various fighting and fps games to win a cash prize" }
+                new Event { EventId = 1, Name = "Conestoga Esports Meetup", Date = new DateTime(2024, 12, 15, 14, 30, 0), Address = "108 University Ave E", Country = "Canada", City = "Waterloo", Province = "Ontario", PostalCode = "N2J 2W2", Description = "A meetup event with the Conestoga Esports team and their fans" },
+                new Event { EventId = 2, Name = "Conestoga Retro Game Sale", Date = new DateTime(2024, 12, 18, 12, 0, 0), Address = "299 Doon Valley Dr", Country = "Canada", City = "Kitchener", Province = "Ontario", PostalCode = "N2G 4M4", Description = "A retro game sale with many popular and beloved classic games" },
+                new Event { EventId = 3, Name = "Conestoga Gaming Convention", Date = new DateTime(2024, 12, 20, 8, 0, 0), Address = "775 Main Street East", Country = "Canada", City = "Milton", Province = "Ontario", PostalCode = "L9T 3Z3", Description = "A game convention with sales, fan-favourite game actors, and sneak peak on new game releases on the Conestoga Video Game Store website" },
+                new Event { EventId = 4, Name = "Conestoga Gaming Tournament", Date = new DateTime(2024, 12, 28, 17, 0, 0), Address = "850 Fountain Street South", Country = "Canada", City = "Cambridge", Province = "Ontario", PostalCode = "N3H 0A8", Description = "A game tournament that has competitors facing each other in various fighting and fps games to win a cash prize" }
             );
 
             modelBuilder.Entity<Member>().HasData(
-              new Member
-              {
-                  Member_ID = 1,
-                  FirstName = "John",
-                  LastName = "Doe",
-                  Email = "john.doe@example.com",
-                  Password = "password123",
-                  Address = "123 Main St",
-                  Country = "USA",
-                  City = "New York",
-                  Province = "NY",
-                  Postal_Code = "10001",
-                  Phone_Number = "555-1234",
-                  Language_ID = null, // Assuming no foreign key for Language
-                  Cart_ID = null,     // Assuming no foreign key for Cart
-                  Register_Date = DateTime.Now
-              },
-              new Member
-              {
-                  Member_ID = 2,
-                  FirstName = "Jane",
-                  LastName = "Smith",
-                  Email = "jane.smith@example.com",
-                  Password = "password456",
-                  Address = "456 Elm St",
-                  Country = "Canada",
-                  City = "Toronto",
-                  Province = "ON",
-                  Postal_Code = "M5H 2N2",
-                  Phone_Number = "555-5678",
-                  Language_ID = null,
-                  Cart_ID = null,
-                  Register_Date = DateTime.Now
-              }
+
+                new Member
+                {
+                    Member_ID = 1,
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Email = "john.doe@example.com",
+                    Password = "password123",
+                    Address = "123 Main St",
+                    Country = "USA",
+                    City = "New York",
+                    Province = "NY",
+                    Postal_Code = "10001",
+                    Phone_Number = "555-1234",
+                    Language_ID = null, // Assuming no foreign key for Language
+                    Cart_ID = null,     // Assuming no foreign key for Cart
+                    Register_Date = DateTime.Now
+                },
+                new Member
+                {
+                    Member_ID = 2,
+                    FirstName = "Jane",
+                    LastName = "Smith",
+                    Email = "jane.smith@example.com",
+                    Password = "password456",
+                    Address = "456 Elm St",
+                    Country = "Canada",
+                    City = "Toronto",
+                    Province = "ON",
+                    Postal_Code = "M5H 2N2",
+                    Phone_Number = "555-5678",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+                new Member
+                {
+                    Member_ID = 3,
+                    FirstName = "Amelia",
+                    LastName = "Hawke",
+                    Email = "amelia.hawke@example.com",
+                    Password = "password123",
+                    Address = "123 Maple St",
+                    Country = "USA",
+                    City = "New York",
+                    Province = "NY",
+                    Postal_Code = "10001",
+                    Phone_Number = "555-1234",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+                new Member
+                {
+                    Member_ID = 4,
+                    FirstName = "Leo",
+                    LastName = "Montgomery",
+                    Email = "leo.montgomery@example.com",
+                    Password = "password234",
+                    Address = "456 Oak St",
+                    Country = "Canada",
+                    City = "Vancouver",
+                    Province = "BC",
+                    Postal_Code = "V6B 3A2",
+                    Phone_Number = "555-2345",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 5,
+                    FirstName = "Clara",
+                    LastName = "Fitzgerald",
+                    Email = "clara.fitzgerald@example.com",
+                    Password = "password345",
+                    Address = "789 Pine St",
+                    Country = "UK",
+                    City = "London",
+                    Province = "England",
+                    Postal_Code = "EC1A 1BB",
+                    Phone_Number = "555-3456",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 6,
+                    FirstName = "Ethan",
+                    LastName = "Rivers",
+                    Email = "ethan.rivers@example.com",
+                    Password = "password456",
+                    Address = "101 Birch St",
+                    Country = "USA",
+                    City = "Los Angeles",
+                    Province = "CA",
+                    Postal_Code = "90001",
+                    Phone_Number = "555-4567",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 7,
+                    FirstName = "Sofia",
+                    LastName = "Langford",
+                    Email = "sofia.langford@example.com",
+                    Password = "password567",
+                    Address = "202 Cedar St",
+                    Country = "Australia",
+                    City = "Sydney",
+                    Province = "NSW",
+                    Postal_Code = "2000",
+                    Phone_Number = "555-5678",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 8,
+                    FirstName = "Jackson",
+                    LastName = "Mercer",
+                    Email = "jackson.mercer@example.com",
+                    Password = "password678",
+                    Address = "303 Willow St",
+                    Country = "USA",
+                    City = "Chicago",
+                    Province = "IL",
+                    Postal_Code = "60601",
+                    Phone_Number = "555-6789",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 9,
+                    FirstName = "Ava",
+                    LastName = "Kensington",
+                    Email = "ava.kensington@example.com",
+                    Password = "password789",
+                    Address = "404 Elm St",
+                    Country = "Canada",
+                    City = "Montreal",
+                    Province = "QC",
+                    Postal_Code = "H3B 2A7",
+                    Phone_Number = "555-7890",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 10,
+                    FirstName = "Oliver",
+                    LastName = "Stanton",
+                    Email = "oliver.stanton@example.com",
+                    Password = "password890",
+                    Address = "505 Pine St",
+                    Country = "UK",
+                    City = "Manchester",
+                    Province = "England",
+                    Postal_Code = "M1 1AE",
+                    Phone_Number = "555-8901",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 11,
+                    FirstName = "Isabella",
+                    LastName = "Drake",
+                    Email = "isabella.drake@example.com",
+                    Password = "password901",
+                    Address = "606 Oak St",
+                    Country = "Australia",
+                    City = "Melbourne",
+                    Province = "VIC",
+                    Postal_Code = "3000",
+                    Phone_Number = "555-9012",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                },
+
+                new Member
+                {
+                    Member_ID = 12,
+                    FirstName = "Mason",
+                    LastName = "Carlisle",
+                    Email = "mason.carlisle@example.com",
+                    Password = "password012",
+                    Address = "707 Maple St",
+                    Country = "USA",
+                    City = "San Francisco",
+                    Province = "CA",
+                    Postal_Code = "94101",
+                    Phone_Number = "555-0123",
+                    Language_ID = null,
+                    Cart_ID = null,
+                    Register_Date = DateTime.Now
+                }
 
             );
-
-            modelBuilder.Entity<Wishlist>()
-               .HasOne(w => w.Member) 
-               .WithMany(m => m.Wishlists) 
-               .HasForeignKey(w => w.Member_ID) 
-               .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Wishlist_Games>()
-                .HasKey(wg => new { wg.Wishlist_ID, wg.GameId });
-
-            modelBuilder.Entity<Wishlist_Games>()
-                .HasOne(wg => wg.Wishlist) 
-                .WithMany(w => w.Wishlist_Games) 
-                .HasForeignKey(wg => wg.Wishlist_ID) 
-                .OnDelete(DeleteBehavior.Cascade); 
-
-            modelBuilder.Entity<Wishlist_Games>()
-                .HasOne(wg => wg.Game) 
-                .WithMany(g => g.Wishlist_Games) 
-                .HasForeignKey(wg => wg.GameId) 
-                .OnDelete(DeleteBehavior.Cascade); 
-
 
         }
     }
