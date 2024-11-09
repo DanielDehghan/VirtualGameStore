@@ -82,7 +82,7 @@ namespace ConestogaVirtualGameStore.ViewModels
         [BindNever]
         public IEnumerable<SelectListItem> PreferredPlatforms { get; set; }
         [BindNever]
-        public IEnumerable<SelectListItem> PrefrerredCategories { get; set; }
+        public IEnumerable<SelectListItem> PreferredCategories { get; set; }
 
     }
 }
