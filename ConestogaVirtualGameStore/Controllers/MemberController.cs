@@ -32,7 +32,7 @@ namespace ConestogaVirtualGameStore.Controllers
         {
             var model = new CreateMemberViewModel
             {
-                PrefrerredCategories = GetGenres(),
+                PreferredCategories = GetGenres(),
                 PreferredPlatforms = GetPlatforms()
             };
 
@@ -72,7 +72,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 return RedirectToAction("Games");
             }
 
-            model.PrefrerredCategories = GetGenres();
+            model.PreferredCategories = GetGenres();
             model.PreferredPlatforms = GetPlatforms();
             return View(model);
         }
@@ -105,7 +105,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 Province = member.Province,
                 Country = member.Country,
                 Postal_Code = member.Postal_Code,
-                PrefrerredCategories = GetGenres(),
+                PreferredCategories = GetGenres(),
                 PreferredPlatforms = GetPlatforms()
             };
 
@@ -148,7 +148,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 return RedirectToAction("Members");
             }
 
-            model.PrefrerredCategories = GetGenres();
+            model.PreferredCategories = GetGenres();
             model.PreferredPlatforms = GetPlatforms();
             return View(model);
         }
