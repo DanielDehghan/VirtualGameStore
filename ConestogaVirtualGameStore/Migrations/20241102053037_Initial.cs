@@ -81,7 +81,7 @@ namespace ConestogaVirtualGameStore.Migrations
                     GameId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Genre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Genere = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     Platform = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -251,7 +251,7 @@ namespace ConestogaVirtualGameStore.Migrations
 
             migrationBuilder.InsertData(
                 table: "Games",
-                columns: new[] { "GameId", "CoverImageURL", "Description", "Genre", "Platform", "Price", "ReleaseDate", "Title" },
+                columns: new[] { "GameId", "CoverImageURL", "Description", "Genere", "Platform", "Price", "ReleaseDate", "Title" },
                 values: new object[,]
                 {
                     { 1, "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/NFf86jgU4AeVYgJBEoEKBpxW.jpg", "An action RPG set in a historical setting, featuring stealth and combat elements.", "Action RPG", "PlayStation 5, Xbox Series X/S, PC", 59.99m, new DateTime(2023, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Assassin's Creed Mirage" },

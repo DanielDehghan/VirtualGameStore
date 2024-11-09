@@ -36,7 +36,7 @@ namespace ConestogaVirtualGameStore.Controllers
         {
             var model = new CreateGameViewModel
             {
-                Genres = GetGenres(),
+                Generes = GetGeneres(),
                 Platforms = GetPlatforms()
             };
 
@@ -46,14 +46,14 @@ namespace ConestogaVirtualGameStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddGame(CreateGameViewModel model)
         {
-            ModelState.Remove("Genres");
+            ModelState.Remove("Generes");
             ModelState.Remove("Platforms");
             if (ModelState.IsValid)
             {
                 var game = new Game
                 {
                     Title = model.Title,
-                    Genre = model.SelectedGenre,
+                    Genere = model.SelectedGenere,
                     ReleaseDate = model.ReleaseDate,
                     Description = model.Description,
                     Platform = model.SelectedPlatform,
@@ -65,7 +65,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 return RedirectToAction("Games");
             }
 
-            model.Genres = GetGenres();
+            model.Generes = GetGeneres();
             model.Platforms = GetPlatforms();
             return View(model);
         }
@@ -83,13 +83,13 @@ namespace ConestogaVirtualGameStore.Controllers
             var model = new CreateGameViewModel
             {
                 Title = game.Title,
-                SelectedGenre = game.Genre,
+                SelectedGenere = game.Genere,
                 ReleaseDate = game.ReleaseDate,
                 Description = game.Description,
                 SelectedPlatform = game.Platform,
                 Price = game.Price,
                 CoverImageURL = game.CoverImageURL,
-                Genres = GetGenres(),
+                Generes = GetGeneres(),
                 Platforms = GetPlatforms()
             };
 
@@ -105,14 +105,14 @@ namespace ConestogaVirtualGameStore.Controllers
                 return NotFound();
             }
 
-            ModelState.Remove("Genres");
+            ModelState.Remove("Generes");
             ModelState.Remove("Platforms");
 
             if (ModelState.IsValid)
             {
                 // Update the existing game object rather than creating a new one
                 game.Title = model.Title;
-                game.Genre = model.SelectedGenre;
+                game.Genere = model.SelectedGenere;
                 game.ReleaseDate = model.ReleaseDate;
                 game.Description = model.Description;
                 game.Platform = model.SelectedPlatform;
@@ -123,8 +123,8 @@ namespace ConestogaVirtualGameStore.Controllers
                 return RedirectToAction("Games");
             }
 
-            // Repopulate the genres and platforms if model state is invalid
-            model.Genres = GetGenres();
+            // Repopulate the Generes and platforms if model state is invalid
+            model.Generes = GetGeneres();
             model.Platforms = GetPlatforms();
 
             return View(model);
@@ -168,8 +168,8 @@ namespace ConestogaVirtualGameStore.Controllers
             var allGames = await _gameRepository.GetAllAsync();
             var matchingGames = allGames
                 .Where(g => g.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
-                            g.Genre.Contains(query, StringComparison.OrdinalIgnoreCase))
-                .Select(g => new { g.GameId, g.Title, g.Genre })
+                            g.Genere.Contains(query, StringComparison.OrdinalIgnoreCase))
+                .Select(g => new { g.GameId, g.Title, g.Genere })
                 .Take(5) 
                 .ToList();
 
@@ -177,21 +177,21 @@ namespace ConestogaVirtualGameStore.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Genre(string genre)
+        public async Task<ActionResult> Genere(string Genere)
         {
-            if (string.IsNullOrWhiteSpace(genre))
+            if (string.IsNullOrWhiteSpace(Genere))
             {
                 return RedirectToAction("Index"); 
             }
 
             var games = await _gameRepository.GetAllAsync();
             var matchingGames = games
-                .Where(g => g.Genre.Equals(genre, StringComparison.OrdinalIgnoreCase))
+                .Where(g => g.Genere.Equals(Genere, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            return View("GamesByGenre", matchingGames); 
+            return View("GamesByGenere", matchingGames); 
         }
-        private IEnumerable<SelectListItem> GetGenres()
+        private IEnumerable<SelectListItem> GetGeneres()
         {
             return new List<SelectListItem>
             {

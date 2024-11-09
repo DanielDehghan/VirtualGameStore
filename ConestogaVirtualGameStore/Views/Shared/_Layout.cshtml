@@ -21,7 +21,7 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color:white; font-size: 35px; font-weight:bold;">Conestoga Game Store</a>
                 <div class="collapse navbar-collapse">
                     <form class="form-inline my-2 my-lg-0 ml-auto" id="gameSearchForm" onsubmit="return false;">
-                        <input class="form-control mr-sm-2" id="gameSearchInput" type="search" placeholder="Search games by title or genre" aria-label="Search" onkeyup="searchGames(this.value)">
+                        <input class="form-control mr-sm-2" id="gameSearchInput" type="search" placeholder="Search games by title or Genere" aria-label="Search" onkeyup="searchGames(this.value)">
                         <div id="searchResultsDropdown" class="dropdown-menu" aria-labelledby="gameSearchInput"></div>
                     </form>
                 </div>
@@ -141,7 +141,7 @@
                     $('#searchResultsDropdown').empty();
                     if (data.success && data.results.length > 0) {
                         data.results.forEach(function (game) {
-                            $('#searchResultsDropdown').append('<a class="dropdown-item" href="/Games/GameDetail/' + game.gameId + '">' + game.title + ' (' + game.Genre + ')</a>');
+                            $('#searchResultsDropdown').append('<a class="dropdown-item" href="/Games/GameDetail/' + game.gameId + '">' + game.title + ' (' + game.Genere + ')</a>');
                         });
                         $('#searchResultsDropdown').show();
                     } else {

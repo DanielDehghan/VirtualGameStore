@@ -12,7 +12,7 @@ namespace ConestogaVirtualGameStore.Models
 
 		[Required]
 		[StringLength (50)]
-		public string Genre { get; set; }
+		public string Genere { get; set; }
 
 		[Required]
 		public DateTime ReleaseDate { get; set; }

@@ -216,7 +216,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
 
-                    b.Property<string>("Genre")
+                    b.Property<string>("Genere")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -246,7 +246,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             GameId = 1,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/NFf86jgU4AeVYgJBEoEKBpxW.jpg",
                             Description = "An action RPG set in a historical setting, featuring stealth and combat elements.",
-                            Genre = "Action RPG",
+                            Genere = "Action RPG",
                             Platform = "PlayStation 5, Xbox Series X/S, PC",
                             Price = 59.99m,
                             ReleaseDate = new DateTime(2023, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -257,7 +257,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             GameId = 2,
                             CoverImageURL = "https://cdn2.steamgriddb.com/grid/3c8907c9dc26266603441dcb03dbe620.png",
                             Description = "The latest installment in the Call of Duty series, offering intense first-person shooter action.",
-                            Genre = "First-Person Shooter",
+                            Genere = "First-Person Shooter",
                             Platform = "PlayStation 5, Xbox Series X/S, PC",
                             Price = 69.99m,
                             ReleaseDate = new DateTime(2023, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -268,7 +268,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             GameId = 3,
                             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg",
                             Description = "A futuristic open-world RPG set in the dystopian Night City, filled with cybernetic enhancements and complex narratives.",
-                            Genre = "Action RPG",
+                            Genere = "Action RPG",
                             Platform = "PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC",
                             Price = 39.99m,
                             ReleaseDate = new DateTime(2020, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -279,7 +279,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             GameId = 4,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/4xJ8XB3bi888QTLZYdl7Oi0s.png",
                             Description = "An epic sequel to the critically acclaimed God of War, featuring Norse mythology and Kratos' journey.",
-                            Genre = "Action-Adventure",
+                            Genere = "Action-Adventure",
                             Platform = "PlayStation 4, PlayStation 5",
                             Price = 69.99m,
                             ReleaseDate = new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -290,7 +290,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             GameId = 5,
                             CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/d/df/Resident_Evil_4_remake_cover_art.jpg",
                             Description = "A modern remake of the classic survival horror game, offering updated graphics and gameplay mechanics.",
-                            Genre = "Survival Horror",
+                            Genere = "Survival Horror",
                             Platform = "PlayStation 4, PlayStation 5, Xbox Series X/S, PC",
                             Price = 59.99m,
                             ReleaseDate = new DateTime(2023, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -301,7 +301,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             GameId = 6,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202312/0117/315718bce7eed62e3cf3fb02d61b81ff1782d6b6cf850fa4.png",
                             Description = "A narrative-driven action-adventure game that continues the story of Ellie and Joel in a post-apocalyptic world.",
-                            Genre = "Action-Adventure",
+                            Genere = "Action-Adventure",
                             Platform = "PlayStation 4",
                             Price = 59.99m,
                             ReleaseDate = new DateTime(2020, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
