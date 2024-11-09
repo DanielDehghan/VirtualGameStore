@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ConestogaVirtualGameStore.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -93,6 +93,36 @@ namespace ConestogaVirtualGameStore.Migrations
                     table.PrimaryKey("PK_Games", x => x.GameId);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Members",
+                columns: table => new
+                {
+                    Member_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PreferredLanguage = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    PreferredPlatform = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    PreferredCategory = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ReceivePromotionalEmails = table.Column<bool>(type: "bit", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", maxLength: 255, nullable: true),
+                    Apt_suit = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    StreetAddress = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    City = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Province = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Postal_Code = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    DeliveryInstruction = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Phone_Number = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Register_Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Members", x => x.Member_ID);
+                });
 
             migrationBuilder.CreateTable(
                 name: "MembersEvents",
@@ -238,6 +268,15 @@ namespace ConestogaVirtualGameStore.Migrations
                     { 6, "https://image.api.playstation.com/vulcan/ap/rnd/202312/0117/315718bce7eed62e3cf3fb02d61b81ff1782d6b6cf850fa4.png", "A narrative-driven action-adventure game that continues the story of Ellie and Joel in a post-apocalyptic world.", "Action-Adventure", "PlayStation 4", 59.99m, new DateTime(2020, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Last of Us: Part 2" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Members",
+                columns: new[] { "Member_ID", "Apt_suit", "City", "Country", "DateOfBirth", "DeliveryInstruction", "Email", "FirstName", "Gender", "LastName", "Password", "Phone_Number", "Postal_Code", "PreferredCategory", "PreferredLanguage", "PreferredPlatform", "Province", "ReceivePromotionalEmails", "Register_Date", "StreetAddress" },
+                values: new object[,]
+                {
+                    { 1, "Apt 101", "Toronto", "Canada", new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leave at front door", "john.doe@example.com", "John", "Male", "Doe", "password123", "123-456-7890", "M5A 1A1", "Action", "English", "PC", "ON", true, new DateTime(2024, 11, 8, 23, 44, 47, 49, DateTimeKind.Local).AddTicks(6844), "123 Main St" },
+                    { 2, "Apt 202", "Montreal", "Canada", new DateTime(1992, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Call upon arrival", "jane.smith@example.com", "Jane", "Female", "Smith", "password456", "987-654-3210", "H2X 1A1", "RPG", "French", "PlayStation", "QC", false, new DateTime(2024, 11, 8, 23, 44, 47, 49, DateTimeKind.Local).AddTicks(6886), "456 Elm St" },
+                    { 3, "Suite 300", "Vancouver", "Canada", new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leave with concierge", "alex.johnson@example.com", "Alex", "Non-binary", "Johnson", "password789", "321-654-9870", "V5K 1A1", "Shooter", "English", "Xbox", "BC", true, new DateTime(2024, 11, 8, 23, 44, 47, 49, DateTimeKind.Local).AddTicks(6889), "789 Maple Ave" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -302,6 +341,9 @@ namespace ConestogaVirtualGameStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Games");
+
+            migrationBuilder.DropTable(
+                name: "Members");
 
             migrationBuilder.DropTable(
                 name: "MembersEvents");
