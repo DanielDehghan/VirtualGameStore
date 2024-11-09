@@ -17,6 +17,11 @@ namespace ConestogaVirtualGameStore.AppDbContext
 
         public DbSet<MemberEvent> MembersEvents { get; set; }
 
+        public DbSet<Wishlist> Wishlist { get; set; }
+
+        public DbSet<Wishlist_Games> Wishlist_Games { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -78,6 +83,29 @@ namespace ConestogaVirtualGameStore.AppDbContext
               }
 
             );
+
+            modelBuilder.Entity<Wishlist>()
+               .HasOne(w => w.Member) 
+               .WithMany(m => m.Wishlists) 
+               .HasForeignKey(w => w.Member_ID) 
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Wishlist_Games>()
+                .HasKey(wg => new { wg.Wishlist_ID, wg.GameId });
+
+            modelBuilder.Entity<Wishlist_Games>()
+                .HasOne(wg => wg.Wishlist) 
+                .WithMany(w => w.Wishlist_Games) 
+                .HasForeignKey(wg => wg.Wishlist_ID) 
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<Wishlist_Games>()
+                .HasOne(wg => wg.Game) 
+                .WithMany(g => g.Wishlist_Games) 
+                .HasForeignKey(wg => wg.GameId) 
+                .OnDelete(DeleteBehavior.Cascade); 
+
+
         }
     }
 

@@ -1,0 +1,45 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.WishlistGamesViewModel;
+
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
+@{
+    ViewData["Title"] = "Select Wishlist";
+}
+
+@if (Model != null){
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <form asp-action="WishlistToBeAdded">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" name="gameId" value="@Model.Game.GameId" />
+
+                    @if (Model.Wishlists.Count == 0)
+                    {
+                        <div class="form-group">
+                            <label asp-for="NewWishlistName" class="control-label" style="color: white;">Create new wishlist</label>
+                            <input asp-for="NewWishlistName" class="form-control" placeholder="Enter wishlist name" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <label for="wishlist" class="control-label" style="color: white;">Select Wishlist</label>
+                            <select name="wishlistId" id="wishlist" class="form-control">
+                                @foreach (var wishlist in Model.Wishlists)
+                                {
+                                    <option value="@wishlist.Wishlist_ID">@wishlist.Wishlist_Name</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <input type="submit" value="Add to Wishlist" class="btn btn-primary mt-3" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+}
