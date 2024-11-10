@@ -4,7 +4,7 @@ namespace ConestogaVirtualGameStore.Models
 {
 	public class Game
 	{
-		public int GameId { get; set; }
+        public int GameId { get; set; }
 
 		[Required]
 		[StringLength(100)]
