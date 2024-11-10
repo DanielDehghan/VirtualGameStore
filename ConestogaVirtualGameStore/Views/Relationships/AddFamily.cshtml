@@ -15,6 +15,11 @@
                         <div class="card h-100 game-card">
                             <div class="card-body" style="background-color: #780000;">
                                 <h5 class="card-title">@member.FirstName @member.LastName</h5>
+                                <p class="card-text">
+                                    <strong>Preferred Language:</strong> @(!string.IsNullOrEmpty(member.PreferredLanguage) ? member.PreferredLanguage : "Not set yet")<br />
+                                    <strong>Preferred Platform:</strong> @(!string.IsNullOrEmpty(member.PreferredPlatform) ? member.PreferredPlatform : "Not set yet")<br />
+                                    <strong>Preferred Category:</strong> @(!string.IsNullOrEmpty(member.PreferredCategory) ? member.PreferredCategory : "Not set yet")
+                                </p>
                                 <form asp-action="AddFamily" method="post">
                                     <input type="hidden" name="memberAddedId" value="@member.Member_ID" />
                                     <button type="submit" class="btn btn-sm btn-success">

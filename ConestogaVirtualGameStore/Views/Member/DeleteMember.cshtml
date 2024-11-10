@@ -1,0 +1,14 @@
+﻿@model ConestogaVirtualGameStore.Models.Member
+
+<div class="container">
+    <h2>Delete Member</h2>
+    <div class="alert alert-warning">
+        Are you sure you want to delete the member <strong>@Model.FirstName @Model.LastName</strong>?
+    </div>
+
+    <form asp-action="DeleteMember" method="post">
+        <input type="hidden" asp-for="Member_ID" />
+        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
+        <a asp-action="Members" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

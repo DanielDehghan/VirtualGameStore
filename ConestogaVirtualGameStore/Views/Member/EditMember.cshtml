@@ -1,0 +1,143 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.CreateMemberViewModel;
+
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
+<form asp-action="EditMember" method="post">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" placeholder="Enter first name" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" placeholder="Enter last name" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Phone_Number" class="control-label"></label>
+            <input asp-for="Phone_Number" class="form-control" placeholder="Enter phone number" />
+            <span asp-validation-for="Phone_Number" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Gender" class="control-label"></label>
+            <select asp-for="Gender" class="form-control">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PreferredLanguage" class="control-label"></label>
+            <select asp-for="PreferredLanguage" class="form-control" asp-items="Model.PreferredLanguages">
+                <option value="">Select Preferred Language</option>
+            </select>
+            <span asp-validation-for="PreferredLanguage" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PreferredPlatform" class="control-label"></label>
+            <select asp-for="PreferredPlatform" class="form-control" asp-items="Model.PreferredPlatforms">
+                <option value="">Select Preferred Platform</option>
+            </select>
+            <span asp-validation-for="PreferredPlatform" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="PreferredCategory" class="control-label"></label>
+            <select asp-for="PreferredCategory" class="form-control" asp-items="Model.PreferredCategories">
+                <option value="">Select Preferred Category</option>
+            </select>
+            <span asp-validation-for="PreferredCategory" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="DateOfBirth" class="control-label"></label>
+            <div class="input-group date" id="dateOfBirthPicker">
+                <input type="date" asp-for="DateOfBirth" class="form-control" id="dateofbirth" value="" placeholder="Select date of birth" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Apt_suit" class="control-label"></label>
+            <input asp-for="Apt_suit" class="form-control" placeholder="Enter apartment/suite" />
+            <span asp-validation-for="Apt_suit" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="StreetAddress" class="control-label"></label>
+            <input asp-for="StreetAddress" class="form-control" placeholder="Enter street address" />
+            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label asp-for="City" class="control-label"></label>
+            <input asp-for="City" class="form-control" placeholder="Enter city" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Province" class="control-label"></label>
+            <input asp-for="Province" class="form-control" placeholder="Enter province" />
+            <span asp-validation-for="Province" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Country" class="control-label"></label>
+            <select asp-for="Country" class="form-control" asp-items="Model.Countries">
+                <option value="">Select Country</option>
+            </select>
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Postal_Code" class="control-label"></label>
+        <input asp-for="Postal_Code" class="form-control" placeholder="Enter postal code" />
+        <span asp-validation-for="Postal_Code" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Edit Member" class="btn btn-primary btn-block" />
+        <a asp-action="Members" class="btn btn-secondary">Cancel</a>
+
+    </div>
+</form>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#releasedate", {
+        enableTime: false,
+        dateFormat: "Y-m-d",
+    });
+</script>

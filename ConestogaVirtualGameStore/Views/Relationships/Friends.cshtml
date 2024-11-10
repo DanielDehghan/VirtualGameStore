@@ -19,6 +19,11 @@
                         <div class="card h-100 game-card">
                             <div class="card-body" style="background-color: #780000;">
                                 <h5 class="card-title">@memberRelationship.MemberAdded.FirstName @memberRelationship.MemberAdded.LastName</h5>
+                                <p class="card-text">
+                                    <strong>Preferred Language:</strong> @(!string.IsNullOrEmpty(memberRelationship.MemberAdded.PreferredLanguage) ? memberRelationship.MemberAdded.PreferredLanguage : "Not set yet")<br />
+                                    <strong>Preferred Platform:</strong> @(!string.IsNullOrEmpty(memberRelationship.MemberAdded.PreferredPlatform) ? memberRelationship.MemberAdded.PreferredPlatform : "Not set yet")<br />
+                                    <strong>Preferred Category:</strong> @(!string.IsNullOrEmpty(memberRelationship.MemberAdded.PreferredCategory) ? memberRelationship.MemberAdded.PreferredCategory : "Not set yet")
+                                </p>
                                 <a asp-action="DeleteFriend" asp-route-id="@memberRelationship.MemberRelationshipId" class="btn btn-sm btn-danger">
                                     <i class="bi bi-person-x-fill"></i> Remove from Friends
                                 </a>
