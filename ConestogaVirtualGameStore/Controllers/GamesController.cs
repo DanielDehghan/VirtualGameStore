@@ -7,15 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using ConestogaVirtualGameStore.AppDbContext;
+using System.Collections;
 
 namespace ConestogaVirtualGameStore.Controllers
 {
     public class GamesController : Controller
     {
         private readonly IRepository<Game> _gameRepository;
+        private readonly VirtualGameStoreContext _context;
 
-        public GamesController(IRepository<Game> gameRepository)
+        public GamesController(VirtualGameStoreContext cvgs, IRepository<Game> gameRepository)
         {
+            _context = cvgs;
             _gameRepository = gameRepository;
         }
 
@@ -155,7 +159,18 @@ namespace ConestogaVirtualGameStore.Controllers
             {
                 return NotFound();
             }
-            return View(game);
+
+            // Get currently selected game recommendations based on the games genre
+            var gameRecommendations = GetGameRecommendations(game.Title, game.Genere);
+
+            var gameDetails = new GameDetailViewModel
+            {
+                Title = game.Title,
+                Game = game,
+                GameRecommendations = gameRecommendations
+            };
+
+            return View(gameDetails);
         }
         [HttpGet]
         public async Task<JsonResult> SearchGames(string query)
@@ -191,6 +206,17 @@ namespace ConestogaVirtualGameStore.Controllers
 
             return View("GamesByGenre", matchingGames);
         }
+
+        private IEnumerable<Game> GetGameRecommendations(string title, string genre) 
+        {
+            var gameRecommendations = _context.Games
+                .Where(g => g.Genere.Equals(genre) && g.Title != title)
+                .Take(4)
+                .ToList();
+
+            return gameRecommendations;
+        }
+
         private IEnumerable<SelectListItem> GetGenres()
         {
             return new List<SelectListItem>
