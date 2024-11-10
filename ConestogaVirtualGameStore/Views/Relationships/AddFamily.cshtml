@@ -1,0 +1,40 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.RelationshipViewModel
+
+@{
+    ViewData["Title"] = "Add Family";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        @if (Model != null)
+        {
+            foreach (var member in Model.Members)
+            {
+                <div class="col-md-3 mb-3" style="color:#212545">
+                    <a class="card-link" style="color:floralwhite; text-decoration: none;">
+                        <div class="card h-100 game-card">
+                            <div class="card-body" style="background-color: #780000;">
+                                <h5 class="card-title">@member.FirstName @member.LastName</h5>
+                                <p class="card-text">
+                                    <strong>Preferred Language:</strong> @(!string.IsNullOrEmpty(member.PreferredLanguage) ? member.PreferredLanguage : "Not set yet")<br />
+                                    <strong>Preferred Platform:</strong> @(!string.IsNullOrEmpty(member.PreferredPlatform) ? member.PreferredPlatform : "Not set yet")<br />
+                                    <strong>Preferred Category:</strong> @(!string.IsNullOrEmpty(member.PreferredCategory) ? member.PreferredCategory : "Not set yet")
+                                </p>
+                                <form asp-action="AddFamily" method="post">
+                                    <input type="hidden" name="memberAddedId" value="@member.Member_ID" />
+                                    <button type="submit" class="btn btn-sm btn-success">
+                                        <i class="bi bi-person-plus-fill"></i> Add as Family
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+
+    <div>
+        <a href="@Url.Action("Family", "Relationships")" class="btn btn-primary mt-3">Back to Family</a>
+    </div>
+</div>

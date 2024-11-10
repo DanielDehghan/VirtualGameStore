@@ -1,0 +1,19 @@
+﻿@model MemberRelationship
+
+<style>
+    #text {
+        color: white;
+    }
+</style>
+
+<div id="text">
+    <h2>Remove from Family list</h2>
+
+    <h3> Are you sure you want to remove @Model.MemberAdded.FirstName @Model.MemberAdded.LastName from your Family List?</h3>
+</div>
+
+<form asp-action="DeleteFamily">
+    <input type="hidden" name="memberRelationshipId" value="@Model.MemberRelationshipId" />
+    <input type="submit" value="Confirm Delete Family" class="btn btn-danger" />
+    <a href="@Url.Action("Family")" class="btn btn-secondary">Cancel</a>
+</form>

@@ -75,5 +75,11 @@ namespace ConestogaVirtualGameStore.Models
 
         [DataType(DataType.Date)]
         public DateTime Register_Date { get; set; }
+
+        public ICollection<MemberRelationship> MemberRelationshipPrimary { get; set; }
+
+        public ICollection<MemberRelationship> MemberRelationshipRelated { get; set; }
+
+        public ICollection<Wishlist> Wishlists { get; set; }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Wishlist>;
+
+@{
+    ViewData["Title"] = "Wishlists";
+}
+
+@if (Model != null)
+{
+    @foreach (var Wishlist in Model)
+    {
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header">
+                            <a asp-action="WishlistDetail" asp-route-id="@Wishlist.Wishlist_ID">
+                                @Wishlist.Wishlist_Name
+                            </a>
+                        </h5>
+                        <div class="card-body">
+                            <a asp-action="EditWishlist" asp-route-id="@Wishlist.Wishlist_ID" class="btn btn-primary">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a asp-action="DeleteWishlist" asp-route-id="@Wishlist.Wishlist_ID" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Remove
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="container mt-3">
+    <a asp-action="AddWishlist" class="btn btn-success">
+        <i class="fas fa-plus"></i> Add New Wishlist
+    </a>
+</div>
+}

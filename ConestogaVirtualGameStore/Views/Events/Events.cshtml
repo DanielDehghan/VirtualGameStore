@@ -4,14 +4,25 @@
     ViewData["Title"] = "Events";
 }
 
+<style>
+    #EventsTitle {
+        color: white;
+    }
+    h5, p {
+        color: white;
+    }
+</style>
+
+
 @if (Model != null)
 {
+    <h1 id="EventsTitle">Events</h1>
     @foreach (var Event in Model)
     {
-        <div class="container mt-5" id="EventCard">
-            <div class="card">
-                <h5 class="card-header">@Event.Name</h5>
-                <div class="card-body">
+        <div class="container mt-5" style="color:#212545;" id="EventCard">
+            <div class="card" style="background-color: #780000;">
+                <h5 class="card-header" style="border-right: 0; border: 1px solid white;">@Event.Name</h5>
+                <div class="card-body" style="background-color: #780000; border: 1px solid white;">
                     <h5 class="card-title">@Event.Date</h5>
                     <p class="card-text">@Event.Address, @Event.City, @Event.Province, @Event.Country, @Event.PostalCode</p>
                     <p class="card-text">@Event.Description</p>
