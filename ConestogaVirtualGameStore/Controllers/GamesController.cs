@@ -40,7 +40,7 @@ namespace ConestogaVirtualGameStore.Controllers
         {
             var model = new CreateGameViewModel
             {
-                Generes = GetGenres(),
+                Genres = GetGenres(),
                 Platforms = GetPlatforms()
             };
 
@@ -50,7 +50,7 @@ namespace ConestogaVirtualGameStore.Controllers
         [HttpPost]
         public async Task<IActionResult> AddGame(CreateGameViewModel model)
         {
-            ModelState.Remove("Generes");
+            ModelState.Remove("Genres");
             ModelState.Remove("Platforms");
             if (ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 return RedirectToAction("Games");
             }
 
-            model.Generes = GetGenres();
+            model.Genres = GetGenres();
             model.Platforms = GetPlatforms();
             return View(model);
         }
@@ -93,7 +93,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 SelectedPlatform = game.Platform,
                 Price = game.Price,
                 CoverImageURL = game.CoverImageURL,
-                Generes = GetGenres(),
+                Genres = GetGenres(),
                 Platforms = GetPlatforms()
             };
 
@@ -109,7 +109,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 return NotFound();
             }
 
-            ModelState.Remove("Generes");
+            ModelState.Remove("Genres");
             ModelState.Remove("Platforms");
 
             if (ModelState.IsValid)
@@ -127,8 +127,8 @@ namespace ConestogaVirtualGameStore.Controllers
                 return RedirectToAction("Games");
             }
 
-            // Repopulate the Generes and platforms if model state is invalid
-            model.Generes = GetGenres();
+            // Repopulate the Genres and platforms if model state is invalid
+            model.Genres = GetGenres();
             model.Platforms = GetPlatforms();
 
             return View(model);

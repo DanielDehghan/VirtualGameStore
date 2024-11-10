@@ -40,7 +40,7 @@ namespace ConestogaVirtualGameStore.ViewModels
         [BindNever]
         public IEnumerable<SelectListItem> Platforms { get; set; }
         [BindNever]
-        public IEnumerable<SelectListItem> Generes { get; set; }
+        public IEnumerable<SelectListItem> Genres { get; set; }
 
     }
 }
