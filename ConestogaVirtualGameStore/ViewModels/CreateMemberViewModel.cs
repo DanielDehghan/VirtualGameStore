@@ -44,7 +44,7 @@ namespace ConestogaVirtualGameStore.ViewModels
             [StringLength(255)]
             public string? Gender { get; set; }
 
-            [StringLength(255)]
+            [DataType(DataType.Date)]
             public DateTime? DateOfBirth { get; set; }
 
             [StringLength(255)]
@@ -83,6 +83,15 @@ namespace ConestogaVirtualGameStore.ViewModels
         public IEnumerable<SelectListItem> PreferredPlatforms { get; set; }
         [BindNever]
         public IEnumerable<SelectListItem> PreferredCategories { get; set; }
+        [BindNever]
+
+        public IEnumerable<SelectListItem> PreferredLanguages { get; set; }
+
+        [BindNever]
+
+        public IEnumerable<SelectListItem> Countries{ get; set; }
+
+
 
     }
 }
