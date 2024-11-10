@@ -1,33 +1,76 @@
-﻿@model Game
+﻿@model ConestogaVirtualGameStore.ViewModels.GameDetailViewModel
 
 @{
     ViewData["Title"] = Model.Title; // Set the page title to the game title
 }
 
 <style>
-    #text {
+    #text, #gameRecommendations {
         color: white;
+    }
+    #text
+    {
+        text-align: center;
     }
 </style>
 
-<div class="game-detail-container" id="text">
-    <h1>@Model.Title</h1>
-    <div class="game-image">
-        <img src="@Model.CoverImageURL" alt="@Model.Title" />
-    </div>
-    <div class="game-info">
-        <p><strong>Genre:</strong> @Model.Genere</p>
-        <p><strong>Release Date:</strong> @Model.ReleaseDate.ToString("MMMM dd, yyyy")</p>
-        <p><strong>Description:</strong> @Model.Description</p>
-        <p><strong>Platform:</strong> @Model.Platform</p>
-        <p><strong>Price:</strong> $@Model.Price</p>
-    </div>
-    <div>
-        <a href="@Url.Action("WishlistToBeAdded", "Wishlists", new { gameId = Model.GameId })" class="btn btn-success">
-            <i class="fas fa-plus"></i> Add to Wishlist
-        </a>
-    </div>
-    <div class="back-button">
-        <a href="@Url.Action("Index", "Games")" class="btn btn-primary">Back to Games List</a>
+<div class="card" style="background-color: #2c2c2c;">
+    <div class="col-md-12 mb-3" id="text">
+        <div class="card-body" style="background-color: #2c2c2c; border: 1px solid white;">
+            <h1>@Model.Title</h1>
+            <div class="game-image">
+                <img style="width: 500px; height: 600px;" src="@Model.Game.CoverImageURL" alt="@Model.Title" />
+            </div>
+            <p><strong>Genre:</strong> @Model.Game.Genere</p>
+            <p><strong>Release Date:</strong> @Model.Game.ReleaseDate.ToString("MMMM dd, yyyy")</p>
+            <p><strong>Description:</strong> @Model.Game.Description</p>
+            <p><strong>Platform:</strong> @Model.Game.Platform</p>
+            <p><strong>Price:</strong> $@Model.Game.Price</p>
+            <div>
+                <a href="#" class="btn btn-success me-2">
+                    <i class="fas fa-plus"></i> Add to Cart
+                </a>
+                <a href="@Url.Action("WishlistToBeAdded", "Wishlists", new { gameId = Model.Game.GameId })" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Add to Wishlist
+                </a>
+            </div>
+            <a href="@Url.Action("Index", "Games")" class="btn btn-primary mt-3">Back to Games List</a>
+        </div>
+
+        <div class="card-body" style="background-color: #2c2c2c; border: 1px solid white;">
+            <div id="gameRecommendations">
+                <h3>Game Recommendations</h3>
+                <div class="container mt-5" id="GameCard">
+                    <div class="row">
+                        @if (Model != null)
+                            @foreach (var game in Model.GameRecommendations)
+                            {
+                                <div class="col-md-3 mb-3" style="color:#212545">
+                                    <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })" class="card-link" style="color:floralwhite; text-decoration: none;">
+                                        <div class="card h-100 game-card">
+                                            <img src="@game.CoverImageURL" class="card-img-top" alt="@game.Title" style="height: 400px; object-fit: cover;" />
+                                            <div class="card-body" style="background-color: #780000;">
+                                                <h5 class="card-title">@game.Title</h5>
+                                                <p class="card-text">
+                                                    @if (game.Description.Length > 100)
+                                                    {
+                                                        @(game.Description.Substring(0, 100) + "...")
+                                                        <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })"> See More </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        @game.Description
+                                                        <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })"> See More </a>
+                                                    }
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

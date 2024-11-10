@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
 
 #nullable disable
 
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241102053037_Initial")]
+    [Migration("20241108093632_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -255,7 +255,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 2,
-                            CoverImageURL = "https://cdn2.steamgriddb.com/grid/3c8907c9dc26266603441dcb03dbe620.png",
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202308/1722/15f4ab1e0fe6a37609b164362a653c0e5bcee98a861d0f10.png",
                             Description = "The latest installment in the Call of Duty series, offering intense first-person shooter action.",
                             Genere = "First-Person Shooter",
                             Platform = "PlayStation 5, Xbox Series X/S, PC",
@@ -266,7 +266,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 3,
-                            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg",
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202008/0416/6Bo40lnWU0BhgrOUm7Cb6by3.png",
                             Description = "A futuristic open-world RPG set in the dystopian Night City, filled with cybernetic enhancements and complex narratives.",
                             Genere = "Action RPG",
                             Platform = "PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC",
@@ -288,7 +288,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 5,
-                            CoverImageURL = "https://upload.wikimedia.org/wikipedia/en/d/df/Resident_Evil_4_remake_cover_art.jpg",
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202207/2509/85p2Dwh5iDhUzRKe40QeNYh3.png",
                             Description = "A modern remake of the classic survival horror game, offering updated graphics and gameplay mechanics.",
                             Genere = "Survival Horror",
                             Platform = "PlayStation 4, PlayStation 5, Xbox Series X/S, PC",
@@ -306,6 +306,160 @@ namespace ConestogaVirtualGameStore.Migrations
                             Price = 59.99m,
                             ReleaseDate = new DateTime(2020, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Last of Us: Part 2"
+                        },
+                        new
+                        {
+                            GameId = 7,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/phvVT0qZfcRms5qDAk0SI3CM.png",
+                            Description = "In a dark fantasy world created by Hidetaka Miyazaki (Dark Souls) and George R. R. Martin (A Song of Ice and Fire), the player is a Tarnished who is called back to the Lands Between to restore the Elden Ring and become the Elden Lord.",
+                            Genere = "Action RPG",
+                            Platform = "PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Elden Ring"
+                        },
+                        new
+                        {
+                            GameId = 8,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202205/2800/W5uSEsW7yefCNTHatS03v5q7.png",
+                            Description = "Task Force 141 faces its greatest threat yet - a newly aligned menace with deep, yet unknown, connections.",
+                            Genere = "First-Person Shooter",
+                            Platform = "PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC",
+                            Price = 59.99m,
+                            ReleaseDate = new DateTime(2022, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Call of Duty: Modern Warfare II"
+                        },
+                        new
+                        {
+                            GameId = 9,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202009/2419/BWMVfyxONkIAlAJVQd96qPuN.png",
+                            Description = "In the post-apocalyptic Boston, Massachusetts area, you play as the Sole Survivor of Vault 111, recently revived from centuries of forced cryostasis, determined to find your kidnapped son.",
+                            Genere = "Action RPG",
+                            Platform = "PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC",
+                            Price = 59.99m,
+                            ReleaseDate = new DateTime(2015, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Fallout 4"
+                        },
+                        new
+                        {
+                            GameId = 10,
+                            CoverImageURL = "https://image.api.playstation.com/cdn/UP0002/CUSA08829_00/xmKUnAOenEAKspB3FlOg80aQZfEoCYcE.png",
+                            Description = "Captain Price and the SAS partner with the CIA and the Urzikstani Liberation Force to retrieve stolen chemical weapons. The fight takes you from London to the Middle East and beyond, as this joint task force battles to stop a global war.",
+                            Genere = "First-Person Shooter",
+                            Platform = "PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC",
+                            Price = 59.99m,
+                            ReleaseDate = new DateTime(2019, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Call of Duty: Modern Warfare"
+                        },
+                        new
+                        {
+                            GameId = 11,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/1c7b75d8ed9271516546560d219ad0b22ee0a263b4537bd8.png",
+                            Description = "Spider-Men, Peter Parker and Miles Morales, return for an exciting new adventure in the critically acclaimed Marvel's Spider-Man franchise.",
+                            Genere = "Action-Adventure",
+                            Platform = "PlayStation 5",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2023, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Spider-Man 2"
+                        },
+                        new
+                        {
+                            GameId = 12,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202405/2921/2819b5df32c19b4b9e972dc3281b474937bb2570312b38a2.png",
+                            Description = "As the Gulf War seizes the world's attention, a covert and enigmatic group has penetrated the upper echelons of the CIA, labeling those who oppose them as betrayers. Black Ops veteran Frank Woods and his squad, once celebrated as heroes by their agency and nation, now find themselves banished and pursued by the very military entity that forged them. They are now outcasts in their own land, hunted by the machinery of war that they once served.",
+                            Genere = "First-Person Shooter",
+                            Platform = "PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Call of Duty: Black Ops 6"
+                        },
+                        new
+                        {
+                            GameId = 13,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202401/2910/d48262b72a5a2daa3ca3aed6c8f42c44f3fdaf2902265a13.png",
+                            Description = "Until Dawn is a branching narrative survival horror game in which any choice of action by the player may cause other consequences later in the story. It was rebuilt from the ground up with stunning visuals in Unreal Engine 5.",
+                            Genere = "Survival Horror",
+                            Platform = "PlayStation 5, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2024, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Until Dawn"
+                        },
+                        new
+                        {
+                            GameId = 14,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202210/2000/IgwsFz9BiBrFvyV7pIWpoVgd.png",
+                            Description = "Having received a letter from his deceased wife, James heads to where they shared so many memories, in the hope of seeing her one more time: Silent Hill. There, by the lake, he finds a woman eerily similar to her.",
+                            Genere = "Survival Horror",
+                            Platform = "PlayStation 5, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Silent Hill 2 Remake"
+                        },
+                        new
+                        {
+                            GameId = 15,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/img/rnd/202010/2217/p3pYq0QxntZQREXRVdAzmn1w.png",
+                            Description = "After wiping out the gods of Mount Olympus, Kratos moves on to the frigid lands of Scandinavia, where he and his son must embark on an odyssey across a dangerous world of gods and monsters.",
+                            Genere = "Action-Adventure",
+                            Platform = "PlayStation 5, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2018, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "God of War"
+                        },
+                        new
+                        {
+                            GameId = 16,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202305/2420/83ef93949d474052cc87b86617a5498505d4b50390280394.jpg",
+                            Description = "13 years after bestselling writer Alan Wake went missing, a string of ritualistic murders occur in the town of Bright Falls, Washington. Saga Anderson, an FBI agent, is sent to Bright Falls to investigate the murders.",
+                            Genere = "Survival Horror",
+                            Platform = "Xbox Series X/S, PlayStation 5, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2023, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Alan Wake II"
+                        },
+                        new
+                        {
+                            GameId = 17,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202405/3123/1abfc0f37be11993bd5e67fcb1a9e2c0d656142ace2f232e.png",
+                            Description = "After millions have been slaughtered by the actions of the High Heavens and Burning Hells alike. In the power vacuum, a legendary name resurfaces - Lilith, daughter of Mephisto, the whispered progenitor of humanity.",
+                            Genere = "Action RPG",
+                            Platform = "Xbox Series X/S, PlayStation 5, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2023, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Diablo IV"
+                        },
+                        new
+                        {
+                            GameId = 18,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202209/2121/UlfMBx2yUHge8Vlz7eszqw13.png",
+                            Description = "A team of soldiers and militarists are recruited into an elite counter terrorism unit. Their objective is to fight terrorism across the globe. A threat has emerged that targets the Western world and its interests around the world.",
+                            Genere = "First-Person Shooter",
+                            Platform = "Xbox Series X/S, PlayStation 5, PC",
+                            Price = 50.00m,
+                            ReleaseDate = new DateTime(2023, 12, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Rainbow Six: Siege"
+                        },
+                        new
+                        {
+                            GameId = 19,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/img/cfn/113078vQ_SpN-Wt1Ejgw5dPLXKnMvMfvZuekrerzhAOXaNrwZuCL6R6YEP4lUSGhMDthl6iyr4LbA_w565pBSa1xbUcHXtH8.png",
+                            Description = "You are Jesse Faden, a young woman with a troubled past. You become the new Director of the Bureau of Control - Our frontline in researching and fighting against supernatural enemies like the Hiss threatening our very existence.",
+                            Genere = "Action-Adventure",
+                            Platform = "Xbox Series X/S, PlayStation 5, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2019, 8, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Control"
+                        },
+                        new
+                        {
+                            GameId = 20,
+                            CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202101/0812/FkzwjnJknkrFlozkTdeQBMub.png",
+                            Description = "Ethan Winters' world suddenly comes crashing down when Chris Redfield's appearance sets off a chain of events that ultimately leads him to a mysterious village.",
+                            Genere = "Survival Horror",
+                            Platform = "Xbox Series X/S, PlayStation 5, PC",
+                            Price = 69.99m,
+                            ReleaseDate = new DateTime(2021, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Resident Evil Village"
                         });
                 });
 
@@ -388,7 +542,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5774)
+                            Register_Date = new DateTime(2024, 11, 8, 4, 36, 32, 461, DateTimeKind.Local).AddTicks(6146)
                         },
                         new
                         {
@@ -403,7 +557,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "M5H 2N2",
                             Province = "ON",
-                            Register_Date = new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5846)
+                            Register_Date = new DateTime(2024, 11, 8, 4, 36, 32, 461, DateTimeKind.Local).AddTicks(6216)
                         });
                 });
 

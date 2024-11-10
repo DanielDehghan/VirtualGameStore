@@ -4,22 +4,37 @@
     ViewData["Title"] = "Registered Events";
 }
 
+<style>
+    h1 {
+        color: white;
+    }
+    h2, h5, p {
+        color: white;
+    }
+</style>
+
 @if (Model != null)
 {
-    @foreach (var Event in Model)
+    <h1 id="EventsTitle">Registered Events</h1>
+    @if (Model.Count() > 0)
     {
-        <div class="container mt-5" id="EventCard">
-            <div class="card">
-                <h5 class="card-header">@Event.Name</h5>
-                <div class="card-body">
-                    <h5 class="card-title">@Event.Date</h5>
-                    <p class="card-text">@Event.Address, @Event.City, @Event.Province, @Event.Country, @Event.PostalCode</p>
-                    <p class="card-text">@Event.Description</p>
-                    <a asp-action="DeleteRegisteredEvent" asp-route-id="@Event.EventId" class="btn btn-danger">
-                        <i class="fas fa-plus"></i> Remove Registered Event
-                    </a>
+        @foreach (var Event in Model)
+        {
+            <div class="container mt-5" style="color:#212545;" id="EventCard">
+                <div class="card" style="background-color: #780000;">
+                    <h5 class="card-header" style="border-right: 0; border: 1px solid white;">@Event.Name</h5>
+                    <div class="card-body" style="background-color: #780000; border: 1px solid white;">
+                        <h5 class="card-title">@Event.Date</h5>
+                        <p class="card-text">@Event.Address, @Event.City, @Event.Province, @Event.Country, @Event.PostalCode</p>
+                        <p class="card-text">@Event.Description</p>
+                        <a asp-action="DeleteRegisteredEvent" asp-route-id="@Event.EventId" class="btn btn-danger">
+                            <i class="fas fa-plus"></i> Remove Registered Event
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+    } else {
+        <h2 id="noEvents">You are not currently registered to any events, please use the <a href="@Url.Action("Events", "Events")">Events</a> tab to register</h2>
     }
 }
