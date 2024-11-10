@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyVirtualGameStore.AppDbContext;
+using ConestogaVirtualGameStore.AppDbContext;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

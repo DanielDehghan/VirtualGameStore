@@ -1,0 +1,19 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.CreateWishlistViewModel
+
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
+<form asp-action="EditWishlist" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="Member_ID" type="hidden" />
+    <div class="form-group">
+        <label asp-for="Wishlist_Name" class="control-label">Name</label>
+        <input asp-for="Wishlist_Name" class="form-control" />
+        <span asp-validation-for="Wishlist_Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Edit Wishlist Name" class="btn btn-primary mt-3" />
+    </div>
+</form>
+
+

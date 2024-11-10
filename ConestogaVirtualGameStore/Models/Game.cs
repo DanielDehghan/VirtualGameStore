@@ -29,8 +29,9 @@ namespace ConestogaVirtualGameStore.Models
 		[Required]
 		[StringLength(255)]
 		public string CoverImageURL { get; set; }
-		//public ICollection<Order> Orders { get; set; }
-		//public ICollection<GameReview> Reviews { get; set; }
+        //public ICollection<Order> Orders { get; set; }
+        //public ICollection<GameReview> Reviews { get; set; }
+        public ICollection<Wishlist_Games> Wishlist_Games { get; set; }
 
-	}
+    }
 }
