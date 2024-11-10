@@ -22,6 +22,11 @@
         <p><strong>Platform:</strong> @Model.Platform</p>
         <p><strong>Price:</strong> $@Model.Price</p>
     </div>
+    <div>
+        <a href="@Url.Action("WishlistToBeAdded", "Wishlists", new { gameId = Model.GameId })" class="btn btn-success">
+            <i class="fas fa-plus"></i> Add to Wishlist
+        </a>
+    </div>
     <div class="back-button">
         <a href="@Url.Action("Index", "Games")" class="btn btn-primary">Back to Games List</a>
     </div>
