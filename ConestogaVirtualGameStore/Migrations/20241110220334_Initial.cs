@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ConestogaVirtualGameStore.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -371,19 +371,18 @@ namespace ConestogaVirtualGameStore.Migrations
                 columns: new[] { "Member_ID", "Address", "Cart_ID", "City", "Country", "Email", "FirstName", "Language_ID", "LastName", "Password", "Phone_Number", "Postal_Code", "Province", "Register_Date" },
                 values: new object[,]
                 {
-<<<<<<<< HEAD:ConestogaVirtualGameStore/Migrations/20241110002936_initial.cs
-                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5151) },
-                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5189) },
-                    { 3, "123 Maple St", null, "New York", "USA", "amelia.hawke@example.com", "Amelia", null, "Hawke", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5192) },
-                    { 4, "456 Oak St", null, "Vancouver", "Canada", "leo.montgomery@example.com", "Leo", null, "Montgomery", "password234", "555-2345", "V6B 3A2", "BC", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5195) },
-                    { 5, "789 Pine St", null, "London", "UK", "clara.fitzgerald@example.com", "Clara", null, "Fitzgerald", "password345", "555-3456", "EC1A 1BB", "England", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5198) },
-                    { 6, "101 Birch St", null, "Los Angeles", "USA", "ethan.rivers@example.com", "Ethan", null, "Rivers", "password456", "555-4567", "90001", "CA", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5200) },
-                    { 7, "202 Cedar St", null, "Sydney", "Australia", "sofia.langford@example.com", "Sofia", null, "Langford", "password567", "555-5678", "2000", "NSW", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5203) },
-                    { 8, "303 Willow St", null, "Chicago", "USA", "jackson.mercer@example.com", "Jackson", null, "Mercer", "password678", "555-6789", "60601", "IL", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5205) },
-                    { 9, "404 Elm St", null, "Montreal", "Canada", "ava.kensington@example.com", "Ava", null, "Kensington", "password789", "555-7890", "H3B 2A7", "QC", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5208) },
-                    { 10, "505 Pine St", null, "Manchester", "UK", "oliver.stanton@example.com", "Oliver", null, "Stanton", "password890", "555-8901", "M1 1AE", "England", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5211) },
-                    { 11, "606 Oak St", null, "Melbourne", "Australia", "isabella.drake@example.com", "Isabella", null, "Drake", "password901", "555-9012", "3000", "VIC", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5213) },
-                    { 12, "707 Maple St", null, "San Francisco", "USA", "mason.carlisle@example.com", "Mason", null, "Carlisle", "password012", "555-0123", "94101", "CA", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5216) }
+                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7708) },
+                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7748) },
+                    { 3, "123 Maple St", null, "New York", "USA", "amelia.hawke@example.com", "Amelia", null, "Hawke", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7751) },
+                    { 4, "456 Oak St", null, "Vancouver", "Canada", "leo.montgomery@example.com", "Leo", null, "Montgomery", "password234", "555-2345", "V6B 3A2", "BC", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7753) },
+                    { 5, "789 Pine St", null, "London", "UK", "clara.fitzgerald@example.com", "Clara", null, "Fitzgerald", "password345", "555-3456", "EC1A 1BB", "England", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7756) },
+                    { 6, "101 Birch St", null, "Los Angeles", "USA", "ethan.rivers@example.com", "Ethan", null, "Rivers", "password456", "555-4567", "90001", "CA", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7758) },
+                    { 7, "202 Cedar St", null, "Sydney", "Australia", "sofia.langford@example.com", "Sofia", null, "Langford", "password567", "555-5678", "2000", "NSW", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7760) },
+                    { 8, "303 Willow St", null, "Chicago", "USA", "jackson.mercer@example.com", "Jackson", null, "Mercer", "password678", "555-6789", "60601", "IL", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7763) },
+                    { 9, "404 Elm St", null, "Montreal", "Canada", "ava.kensington@example.com", "Ava", null, "Kensington", "password789", "555-7890", "H3B 2A7", "QC", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7766) },
+                    { 10, "505 Pine St", null, "Manchester", "UK", "oliver.stanton@example.com", "Oliver", null, "Stanton", "password890", "555-8901", "M1 1AE", "England", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7768) },
+                    { 11, "606 Oak St", null, "Melbourne", "Australia", "isabella.drake@example.com", "Isabella", null, "Drake", "password901", "555-9012", "3000", "VIC", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7770) },
+                    { 12, "707 Maple St", null, "San Francisco", "USA", "mason.carlisle@example.com", "Mason", null, "Carlisle", "password012", "555-0123", "94101", "CA", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7773) }
                 });
 
             migrationBuilder.InsertData(
@@ -393,10 +392,6 @@ namespace ConestogaVirtualGameStore.Migrations
                 {
                     { 1, "Friend" },
                     { 2, "Family" }
-========
-                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 8, 4, 36, 32, 461, DateTimeKind.Local).AddTicks(6146) },
-                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 8, 4, 36, 32, 461, DateTimeKind.Local).AddTicks(6216) }
->>>>>>>> main:ConestogaVirtualGameStore/Migrations/20241108093632_Initial.cs
                 });
 
             migrationBuilder.CreateIndex(

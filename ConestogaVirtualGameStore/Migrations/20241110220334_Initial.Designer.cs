@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241109231248_SeedData")]
-    partial class SeedData
+    [Migration("20241110220334_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -542,7 +542,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3398)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7708)
                         },
                         new
                         {
@@ -557,7 +557,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "M5H 2N2",
                             Province = "ON",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3461)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7748)
                         },
                         new
                         {
@@ -572,7 +572,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-1234",
                             Postal_Code = "10001",
                             Province = "NY",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3464)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7751)
                         },
                         new
                         {
@@ -587,7 +587,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-2345",
                             Postal_Code = "V6B 3A2",
                             Province = "BC",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3466)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7753)
                         },
                         new
                         {
@@ -602,7 +602,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-3456",
                             Postal_Code = "EC1A 1BB",
                             Province = "England",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3469)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7756)
                         },
                         new
                         {
@@ -617,7 +617,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-4567",
                             Postal_Code = "90001",
                             Province = "CA",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3472)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7758)
                         },
                         new
                         {
@@ -632,7 +632,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-5678",
                             Postal_Code = "2000",
                             Province = "NSW",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3474)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7760)
                         },
                         new
                         {
@@ -647,7 +647,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-6789",
                             Postal_Code = "60601",
                             Province = "IL",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3477)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7763)
                         },
                         new
                         {
@@ -662,7 +662,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-7890",
                             Postal_Code = "H3B 2A7",
                             Province = "QC",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3480)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7766)
                         },
                         new
                         {
@@ -677,7 +677,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-8901",
                             Postal_Code = "M1 1AE",
                             Province = "England",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3483)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7768)
                         },
                         new
                         {
@@ -692,7 +692,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-9012",
                             Postal_Code = "3000",
                             Province = "VIC",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3552)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7770)
                         },
                         new
                         {
@@ -707,7 +707,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             Phone_Number = "555-0123",
                             Postal_Code = "94101",
                             Province = "CA",
-                            Register_Date = new DateTime(2024, 11, 9, 18, 12, 48, 248, DateTimeKind.Local).AddTicks(3556)
+                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7773)
                         });
                 });
 

@@ -40,7 +40,7 @@ namespace ConestogaVirtualGameStore.Controllers
         {
             var model = new CreateGameViewModel
             {
-                Generes = GetGeneres(),
+                Generes = GetGenres(),
                 Platforms = GetPlatforms()
             };
 
@@ -69,7 +69,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 return RedirectToAction("Games");
             }
 
-            model.Generes = GetGeneres();
+            model.Generes = GetGenres();
             model.Platforms = GetPlatforms();
             return View(model);
         }
@@ -93,7 +93,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 SelectedPlatform = game.Platform,
                 Price = game.Price,
                 CoverImageURL = game.CoverImageURL,
-                Generes = GetGeneres(),
+                Generes = GetGenres(),
                 Platforms = GetPlatforms()
             };
 
@@ -128,7 +128,7 @@ namespace ConestogaVirtualGameStore.Controllers
             }
 
             // Repopulate the Generes and platforms if model state is invalid
-            model.Generes = GetGeneres();
+            model.Generes = GetGenres();
             model.Platforms = GetPlatforms();
 
             return View(model);
