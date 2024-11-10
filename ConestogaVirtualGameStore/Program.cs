@@ -14,6 +14,7 @@ builder.Services.AddDbContext<VirtualGameStoreContext>(options => options.UseSql
 
 builder.Services.AddScoped<IRepository<Game>, Repository<Game>>();
 builder.Services.AddScoped<IRepository<Event>, Repository<Event>>();
+builder.Services.AddScoped<IRepository<Member>, Repository<Member>>();
 builder.Services.AddScoped<IRepository<MemberEvent>, Repository<MemberEvent>>();
 builder.Services.AddScoped<IRepository<Wishlist>, Repository<Wishlist>>();
 builder.Services.AddScoped<IRepository<Wishlist_Games>, Repository<Wishlist_Games>>();

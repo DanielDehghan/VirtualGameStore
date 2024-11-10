@@ -185,7 +185,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 .Where(g => g.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
                             g.Genere.Contains(query, StringComparison.OrdinalIgnoreCase))
                 .Select(g => new { g.GameId, g.Title, g.Genere })
-                .Take(5) 
+                .Take(5)
                 .ToList();
 
             return Json(new { success = true, results = matchingGames });
@@ -196,7 +196,7 @@ namespace ConestogaVirtualGameStore.Controllers
         {
             if (string.IsNullOrWhiteSpace(genre))
             {
-                return RedirectToAction("Index"); 
+                return RedirectToAction("Index");
             }
 
             var games = await _gameRepository.GetAllAsync();
@@ -204,7 +204,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 .Where(g => g.Genere.Equals(genre, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            return View("GamesByGenre", matchingGames); 
+            return View("GamesByGenre", matchingGames);
         }
 
         private IEnumerable<Game> GetGameRecommendations(string title, string genre) 
@@ -225,7 +225,9 @@ namespace ConestogaVirtualGameStore.Controllers
                 new SelectListItem { Value = "Adventure", Text = "Adventure" },
                 new SelectListItem { Value = "RPG", Text = "RPG" },
                 new SelectListItem { Value = "Strategy", Text = "Strategy" },
-                new SelectListItem { Value = "Sports", Text = "Sports" }
+                new SelectListItem { Value = "Sports", Text = "Sports" },
+                                new SelectListItem { Value = "Horror", Text = "Horror" }
+
             };
         }
 
