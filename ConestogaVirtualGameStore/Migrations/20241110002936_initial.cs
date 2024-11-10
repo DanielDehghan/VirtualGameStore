@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ConestogaVirtualGameStore.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -133,6 +133,19 @@ namespace ConestogaVirtualGameStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Relationships",
+                columns: table => new
+                {
+                    Relationship_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Relationship_Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Relationships", x => x.Relationship_ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -238,6 +251,83 @@ namespace ConestogaVirtualGameStore.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Wishlist",
+                columns: table => new
+                {
+                    Wishlist_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Wishlist_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Member_ID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wishlist", x => x.Wishlist_ID);
+                    table.ForeignKey(
+                        name: "FK_Wishlist_Members_Member_ID",
+                        column: x => x.Member_ID,
+                        principalTable: "Members",
+                        principalColumn: "Member_ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MembersRelationships",
+                columns: table => new
+                {
+                    MemberRelationshipId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Member_ID = table.Column<int>(type: "int", nullable: false),
+                    Relationship_ID = table.Column<int>(type: "int", nullable: false),
+                    MemberAdded_ID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MembersRelationships", x => x.MemberRelationshipId);
+                    table.ForeignKey(
+                        name: "FK_MembersRelationships_Members_MemberAdded_ID",
+                        column: x => x.MemberAdded_ID,
+                        principalTable: "Members",
+                        principalColumn: "Member_ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MembersRelationships_Members_Member_ID",
+                        column: x => x.Member_ID,
+                        principalTable: "Members",
+                        principalColumn: "Member_ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_MembersRelationships_Relationships_Relationship_ID",
+                        column: x => x.Relationship_ID,
+                        principalTable: "Relationships",
+                        principalColumn: "Relationship_ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Wishlist_Games",
+                columns: table => new
+                {
+                    Wishlist_ID = table.Column<int>(type: "int", nullable: false),
+                    GameId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wishlist_Games", x => new { x.Wishlist_ID, x.GameId });
+                    table.ForeignKey(
+                        name: "FK_Wishlist_Games_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Wishlist_Games_Wishlist_Wishlist_ID",
+                        column: x => x.Wishlist_ID,
+                        principalTable: "Wishlist",
+                        principalColumn: "Wishlist_ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Events",
                 columns: new[] { "EventId", "Address", "City", "Country", "Date", "Description", "Name", "PostalCode", "Province" },
@@ -267,8 +357,27 @@ namespace ConestogaVirtualGameStore.Migrations
                 columns: new[] { "Member_ID", "Address", "Cart_ID", "City", "Country", "Email", "FirstName", "Language_ID", "LastName", "Password", "Phone_Number", "Postal_Code", "Province", "Register_Date" },
                 values: new object[,]
                 {
-                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5774) },
-                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 2, 1, 30, 37, 228, DateTimeKind.Local).AddTicks(5846) }
+                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5151) },
+                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5189) },
+                    { 3, "123 Maple St", null, "New York", "USA", "amelia.hawke@example.com", "Amelia", null, "Hawke", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5192) },
+                    { 4, "456 Oak St", null, "Vancouver", "Canada", "leo.montgomery@example.com", "Leo", null, "Montgomery", "password234", "555-2345", "V6B 3A2", "BC", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5195) },
+                    { 5, "789 Pine St", null, "London", "UK", "clara.fitzgerald@example.com", "Clara", null, "Fitzgerald", "password345", "555-3456", "EC1A 1BB", "England", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5198) },
+                    { 6, "101 Birch St", null, "Los Angeles", "USA", "ethan.rivers@example.com", "Ethan", null, "Rivers", "password456", "555-4567", "90001", "CA", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5200) },
+                    { 7, "202 Cedar St", null, "Sydney", "Australia", "sofia.langford@example.com", "Sofia", null, "Langford", "password567", "555-5678", "2000", "NSW", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5203) },
+                    { 8, "303 Willow St", null, "Chicago", "USA", "jackson.mercer@example.com", "Jackson", null, "Mercer", "password678", "555-6789", "60601", "IL", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5205) },
+                    { 9, "404 Elm St", null, "Montreal", "Canada", "ava.kensington@example.com", "Ava", null, "Kensington", "password789", "555-7890", "H3B 2A7", "QC", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5208) },
+                    { 10, "505 Pine St", null, "Manchester", "UK", "oliver.stanton@example.com", "Oliver", null, "Stanton", "password890", "555-8901", "M1 1AE", "England", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5211) },
+                    { 11, "606 Oak St", null, "Melbourne", "Australia", "isabella.drake@example.com", "Isabella", null, "Drake", "password901", "555-9012", "3000", "VIC", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5213) },
+                    { 12, "707 Maple St", null, "San Francisco", "USA", "mason.carlisle@example.com", "Mason", null, "Carlisle", "password012", "555-0123", "94101", "CA", new DateTime(2024, 11, 9, 19, 29, 36, 723, DateTimeKind.Local).AddTicks(5216) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Relationships",
+                columns: new[] { "Relationship_ID", "Relationship_Type" },
+                values: new object[,]
+                {
+                    { 1, "Friend" },
+                    { 2, "Family" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -309,6 +418,31 @@ namespace ConestogaVirtualGameStore.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MembersRelationships_Member_ID",
+                table: "MembersRelationships",
+                column: "Member_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MembersRelationships_MemberAdded_ID",
+                table: "MembersRelationships",
+                column: "MemberAdded_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MembersRelationships_Relationship_ID",
+                table: "MembersRelationships",
+                column: "Relationship_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wishlist_Member_ID",
+                table: "Wishlist",
+                column: "Member_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wishlist_Games_GameId",
+                table: "Wishlist_Games",
+                column: "GameId");
         }
 
         /// <inheritdoc />
@@ -333,19 +467,31 @@ namespace ConestogaVirtualGameStore.Migrations
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "Games");
-
-            migrationBuilder.DropTable(
-                name: "Members");
-
-            migrationBuilder.DropTable(
                 name: "MembersEvents");
+
+            migrationBuilder.DropTable(
+                name: "MembersRelationships");
+
+            migrationBuilder.DropTable(
+                name: "Wishlist_Games");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Relationships");
+
+            migrationBuilder.DropTable(
+                name: "Games");
+
+            migrationBuilder.DropTable(
+                name: "Wishlist");
+
+            migrationBuilder.DropTable(
+                name: "Members");
         }
     }
 }
