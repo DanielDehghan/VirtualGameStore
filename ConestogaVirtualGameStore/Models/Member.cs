@@ -41,8 +41,7 @@ namespace ConestogaVirtualGameStore.Models
 
         [StringLength(255)]
         public string? Gender { get; set; }
-
-        [StringLength(255)]
+        [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
 
         [StringLength(255)]
