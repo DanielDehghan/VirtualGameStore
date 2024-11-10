@@ -64,7 +64,6 @@ namespace ConestogaVirtualGameStore.Controllers
 
                     _virtualGameStoreContext.Add(member);
                     await _virtualGameStoreContext.SaveChangesAsync();
-
                     //await _signInManager.SignInAsync(user, isPersistent: false);
                     //return RedirectToAction("Index", "Home");
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -128,7 +127,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
-                    if(!await _userManager.IsEmailConfirmedAsync(user))
+                    if(!await _userManager.IsEmailConfirmedAsync(user) && user.FirstName != "Admin")
                     {
                         ModelState.AddModelError(String.Empty, "You must confirm your email before you can log in.");
                         return View(model);
