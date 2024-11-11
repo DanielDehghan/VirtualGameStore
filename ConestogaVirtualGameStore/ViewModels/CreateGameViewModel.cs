@@ -14,8 +14,8 @@ namespace ConestogaVirtualGameStore.ViewModels
         [StringLength(100)]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Genre is required")]
-        public string SelectedGenre { get; set; }
+        [Required(ErrorMessage = "Genere is required")]
+        public string SelectedGenere { get; set; }
 
         [Required(ErrorMessage = "Release Date is required")]
         [DataType(DataType.Date)]
