@@ -103,14 +103,20 @@ namespace ConestogaVirtualGameStore.Migrations
                     LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    PreferredLanguage = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    PreferredPlatform = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    PreferredCategory = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ReceivePromotionalEmails = table.Column<bool>(type: "bit", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Apt_suit = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    StreetAddress = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     City = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Province = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Postal_Code = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    DeliveryInstruction = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Phone_Number = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Language_ID = table.Column<int>(type: "int", nullable: true),
-                    Cart_ID = table.Column<int>(type: "int", nullable: true),
                     Register_Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -368,21 +374,22 @@ namespace ConestogaVirtualGameStore.Migrations
 
             migrationBuilder.InsertData(
                 table: "Members",
-                columns: new[] { "Member_ID", "Address", "Cart_ID", "City", "Country", "Email", "FirstName", "Language_ID", "LastName", "Password", "Phone_Number", "Postal_Code", "Province", "Register_Date" },
+                columns: new[] { "Member_ID", "Apt_suit", "City", "Country", "DateOfBirth", "DeliveryInstruction", "Email", "FirstName", "Gender", "LastName", "Password", "Phone_Number", "Postal_Code", "PreferredCategory", "PreferredLanguage", "PreferredPlatform", "Province", "ReceivePromotionalEmails", "Register_Date", "StreetAddress" },
                 values: new object[,]
                 {
-                    { 1, "123 Main St", null, "New York", "USA", "john.doe@example.com", "John", null, "Doe", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7708) },
-                    { 2, "456 Elm St", null, "Toronto", "Canada", "jane.smith@example.com", "Jane", null, "Smith", "password456", "555-5678", "M5H 2N2", "ON", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7748) },
-                    { 3, "123 Maple St", null, "New York", "USA", "amelia.hawke@example.com", "Amelia", null, "Hawke", "password123", "555-1234", "10001", "NY", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7751) },
-                    { 4, "456 Oak St", null, "Vancouver", "Canada", "leo.montgomery@example.com", "Leo", null, "Montgomery", "password234", "555-2345", "V6B 3A2", "BC", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7753) },
-                    { 5, "789 Pine St", null, "London", "UK", "clara.fitzgerald@example.com", "Clara", null, "Fitzgerald", "password345", "555-3456", "EC1A 1BB", "England", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7756) },
-                    { 6, "101 Birch St", null, "Los Angeles", "USA", "ethan.rivers@example.com", "Ethan", null, "Rivers", "password456", "555-4567", "90001", "CA", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7758) },
-                    { 7, "202 Cedar St", null, "Sydney", "Australia", "sofia.langford@example.com", "Sofia", null, "Langford", "password567", "555-5678", "2000", "NSW", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7760) },
-                    { 8, "303 Willow St", null, "Chicago", "USA", "jackson.mercer@example.com", "Jackson", null, "Mercer", "password678", "555-6789", "60601", "IL", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7763) },
-                    { 9, "404 Elm St", null, "Montreal", "Canada", "ava.kensington@example.com", "Ava", null, "Kensington", "password789", "555-7890", "H3B 2A7", "QC", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7766) },
-                    { 10, "505 Pine St", null, "Manchester", "UK", "oliver.stanton@example.com", "Oliver", null, "Stanton", "password890", "555-8901", "M1 1AE", "England", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7768) },
-                    { 11, "606 Oak St", null, "Melbourne", "Australia", "isabella.drake@example.com", "Isabella", null, "Drake", "password901", "555-9012", "3000", "VIC", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7770) },
-                    { 12, "707 Maple St", null, "San Francisco", "USA", "mason.carlisle@example.com", "Mason", null, "Carlisle", "password012", "555-0123", "94101", "CA", new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7773) }
+                    { 1, "Apt 101", "Toronto", "Canada", new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leave at front door", "john.doe@example.com", "John", "Male", "Doe", "password123", "123-456-7890", "M5A 1A1", "Action", "English", "PC", "ON", true, new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(523), "123 Main St" },
+                    { 2, "Apt 202", "Montreal", "Canada", new DateTime(1992, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Call upon arrival", "jane.smith@example.com", "Jane", "Female", "Smith", "password456", "987-654-3210", "H2X 1A1", "RPG", "French", "PlayStation", "QC", false, new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(562), "456 Elm St" },
+                    { 3, "Suite 300", "Vancouver", "Canada", new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leave with concierge", "alex.johnson@example.com", "Alex", "Non-binary", "Johnson", "password789", "321-654-9870", "V5K 1A1", "Shooter", "English", "Xbox", "BC", true, new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(566), "789 Maple Ave" },
+                    { 4, null, "Calgary", "Canada", new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "david.lee@example.com", "David", "Male", "Lee", "Dav!d1234", "403-555-0100", "T2P 1J9", "Action", "Chinese", "PC", "AB", false, new DateTime(2023, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(569), "101 Cedar Blvd" },
+                    { 5, "5C", "Edmonton", "Canada", new DateTime(2000, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leave with concierge", "evelyn.brown@example.com", "Evelyn", "Female", "Brown", "P@ssw0rd!", "780-555-0112", "T5J 1G9", "Strategy", "German", "Xbox", "AB", true, new DateTime(2024, 10, 26, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(574), "303 Birch Lane" },
+                    { 6, null, "Ottawa", "Canada", new DateTime(1988, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "frank.nguyen@example.com", "Frank", "Male", "Nguyen", "Fr@nk4321", "613-555-0185", "K1P 1A5", "Action", "Danish", "PC", "ON", false, new DateTime(2024, 2, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(579), "567 Elm St" },
+                    { 7, null, "Hamilton", "Canada", new DateTime(1993, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hand to resident", "gina.walker@example.com", "Gina", "Female", "Walker", "Gin@123!", "905-555-0133", "L8P 3B5", "RPG", "Italian", "Playstation", "ON", true, new DateTime(2024, 7, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(582), "234 Spruce Ave" },
+                    { 8, "7F", "Windsor", "Canada", new DateTime(1975, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "henry.perez@example.com", "Henry", "Male", "Perez", "HenrY!678", "519-555-0154", "N9A 6Z8", "Horror", "Spanish", "PC", "ON", false, new DateTime(2022, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(586), "128 Cypress Ct" },
+                    { 9, null, "Toronto", "Canada", new DateTime(1996, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ivy.robinson@example.com", "Ivy", "Female", "Robinson", "IvY2024!", "416-555-0213", "M5G 2M1", "Sports", "English", "Xbox", "ON", true, new DateTime(2024, 6, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(589), "104 Willow Dr" },
+                    { 10, "2A", "Montreal", "Canada", new DateTime(1993, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leave in mailbox", "jack.martinez@example.com", "Jack", "Male", "Martinez", "J@ckMart123", "514-555-0183", "H3B 4P2", "Horror", "French", "PlayStation", "QC", false, new DateTime(2024, 9, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(593), "789 Walnut St" },
+                    { 11, null, "Calgary", "Canada", new DateTime(1998, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deliver to back door", "karen.taylor@example.com", "Karen", "Female", "Taylor", "K@r3nT@yl0r", "403-555-0157", "T2P 2R8", "Adventure", "English", "Switch", "AB", true, new DateTime(2024, 1, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(596), "562 Maple Grove" },
+                    { 12, null, "Ottawa", "Canada", new DateTime(1989, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "leo.gonzales@example.com", "Leo", "Male", "Gonzales", "Le0G0nz@!", "613-555-0114", "K2P 1X4", "Strategy", "Spanish", "PC", "ON", false, new DateTime(2024, 4, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(600), "90 Forest Hill" },
+                    { 13, "4D", "Vancouver", "Canada", new DateTime(1992, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "mia.liu@example.com", "Mia", "Female", "Liu", "Mi@LiuPass1", "604-555-0179", "V6B 1N9", "Sports", "Chinese", "PlayStation", "BC", true, new DateTime(2024, 10, 16, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(603), "456 King St" }
                 });
 
             migrationBuilder.InsertData(

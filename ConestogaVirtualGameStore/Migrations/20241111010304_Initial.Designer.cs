@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241110220334_Initial")]
+    [Migration("20241111010304_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -471,12 +471,9 @@ namespace ConestogaVirtualGameStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Member_ID"));
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Apt_suit")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<int?>("Cart_ID")
-                        .HasColumnType("int");
 
                     b.Property<string>("City")
                         .HasMaxLength(255)
@@ -485,6 +482,13 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.Property<string>("Country")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeliveryInstruction")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -496,8 +500,9 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("Language_ID")
-                        .HasColumnType("int");
+                    b.Property<string>("Gender")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -517,12 +522,31 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("PreferredCategory")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PreferredLanguage")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PreferredPlatform")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("Province")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("ReceivePromotionalEmails")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("Register_Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("StreetAddress")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Member_ID");
 
@@ -532,182 +556,289 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             Member_ID = 1,
-                            Address = "123 Main St",
-                            City = "New York",
-                            Country = "USA",
+                            Apt_suit = "Apt 101",
+                            City = "Toronto",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryInstruction = "Leave at front door",
                             Email = "john.doe@example.com",
                             FirstName = "John",
+                            Gender = "Male",
                             LastName = "Doe",
                             Password = "password123",
-                            Phone_Number = "555-1234",
-                            Postal_Code = "10001",
-                            Province = "NY",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7708)
+                            Phone_Number = "123-456-7890",
+                            Postal_Code = "M5A 1A1",
+                            PreferredCategory = "Action",
+                            PreferredLanguage = "English",
+                            PreferredPlatform = "PC",
+                            Province = "ON",
+                            ReceivePromotionalEmails = true,
+                            Register_Date = new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(523),
+                            StreetAddress = "123 Main St"
                         },
                         new
                         {
                             Member_ID = 2,
-                            Address = "456 Elm St",
-                            City = "Toronto",
+                            Apt_suit = "Apt 202",
+                            City = "Montreal",
                             Country = "Canada",
+                            DateOfBirth = new DateTime(1992, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryInstruction = "Call upon arrival",
                             Email = "jane.smith@example.com",
                             FirstName = "Jane",
+                            Gender = "Female",
                             LastName = "Smith",
                             Password = "password456",
-                            Phone_Number = "555-5678",
-                            Postal_Code = "M5H 2N2",
-                            Province = "ON",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7748)
+                            Phone_Number = "987-654-3210",
+                            Postal_Code = "H2X 1A1",
+                            PreferredCategory = "RPG",
+                            PreferredLanguage = "French",
+                            PreferredPlatform = "PlayStation",
+                            Province = "QC",
+                            ReceivePromotionalEmails = false,
+                            Register_Date = new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(562),
+                            StreetAddress = "456 Elm St"
                         },
                         new
                         {
                             Member_ID = 3,
-                            Address = "123 Maple St",
-                            City = "New York",
-                            Country = "USA",
-                            Email = "amelia.hawke@example.com",
-                            FirstName = "Amelia",
-                            LastName = "Hawke",
-                            Password = "password123",
-                            Phone_Number = "555-1234",
-                            Postal_Code = "10001",
-                            Province = "NY",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7751)
+                            Apt_suit = "Suite 300",
+                            City = "Vancouver",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryInstruction = "Leave with concierge",
+                            Email = "alex.johnson@example.com",
+                            FirstName = "Alex",
+                            Gender = "Non-binary",
+                            LastName = "Johnson",
+                            Password = "password789",
+                            Phone_Number = "321-654-9870",
+                            Postal_Code = "V5K 1A1",
+                            PreferredCategory = "Shooter",
+                            PreferredLanguage = "English",
+                            PreferredPlatform = "Xbox",
+                            Province = "BC",
+                            ReceivePromotionalEmails = true,
+                            Register_Date = new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(566),
+                            StreetAddress = "789 Maple Ave"
                         },
                         new
                         {
                             Member_ID = 4,
-                            Address = "456 Oak St",
-                            City = "Vancouver",
+                            City = "Calgary",
                             Country = "Canada",
-                            Email = "leo.montgomery@example.com",
-                            FirstName = "Leo",
-                            LastName = "Montgomery",
-                            Password = "password234",
-                            Phone_Number = "555-2345",
-                            Postal_Code = "V6B 3A2",
-                            Province = "BC",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7753)
+                            DateOfBirth = new DateTime(1995, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "david.lee@example.com",
+                            FirstName = "David",
+                            Gender = "Male",
+                            LastName = "Lee",
+                            Password = "Dav!d1234",
+                            Phone_Number = "403-555-0100",
+                            Postal_Code = "T2P 1J9",
+                            PreferredCategory = "Action",
+                            PreferredLanguage = "Chinese",
+                            PreferredPlatform = "PC",
+                            Province = "AB",
+                            ReceivePromotionalEmails = false,
+                            Register_Date = new DateTime(2023, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(569),
+                            StreetAddress = "101 Cedar Blvd"
                         },
                         new
                         {
                             Member_ID = 5,
-                            Address = "789 Pine St",
-                            City = "London",
-                            Country = "UK",
-                            Email = "clara.fitzgerald@example.com",
-                            FirstName = "Clara",
-                            LastName = "Fitzgerald",
-                            Password = "password345",
-                            Phone_Number = "555-3456",
-                            Postal_Code = "EC1A 1BB",
-                            Province = "England",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7756)
+                            Apt_suit = "5C",
+                            City = "Edmonton",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(2000, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryInstruction = "Leave with concierge",
+                            Email = "evelyn.brown@example.com",
+                            FirstName = "Evelyn",
+                            Gender = "Female",
+                            LastName = "Brown",
+                            Password = "P@ssw0rd!",
+                            Phone_Number = "780-555-0112",
+                            Postal_Code = "T5J 1G9",
+                            PreferredCategory = "Strategy",
+                            PreferredLanguage = "German",
+                            PreferredPlatform = "Xbox",
+                            Province = "AB",
+                            ReceivePromotionalEmails = true,
+                            Register_Date = new DateTime(2024, 10, 26, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(574),
+                            StreetAddress = "303 Birch Lane"
                         },
                         new
                         {
                             Member_ID = 6,
-                            Address = "101 Birch St",
-                            City = "Los Angeles",
-                            Country = "USA",
-                            Email = "ethan.rivers@example.com",
-                            FirstName = "Ethan",
-                            LastName = "Rivers",
-                            Password = "password456",
-                            Phone_Number = "555-4567",
-                            Postal_Code = "90001",
-                            Province = "CA",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7758)
+                            City = "Ottawa",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1988, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "frank.nguyen@example.com",
+                            FirstName = "Frank",
+                            Gender = "Male",
+                            LastName = "Nguyen",
+                            Password = "Fr@nk4321",
+                            Phone_Number = "613-555-0185",
+                            Postal_Code = "K1P 1A5",
+                            PreferredCategory = "Action",
+                            PreferredLanguage = "Danish",
+                            PreferredPlatform = "PC",
+                            Province = "ON",
+                            ReceivePromotionalEmails = false,
+                            Register_Date = new DateTime(2024, 2, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(579),
+                            StreetAddress = "567 Elm St"
                         },
                         new
                         {
                             Member_ID = 7,
-                            Address = "202 Cedar St",
-                            City = "Sydney",
-                            Country = "Australia",
-                            Email = "sofia.langford@example.com",
-                            FirstName = "Sofia",
-                            LastName = "Langford",
-                            Password = "password567",
-                            Phone_Number = "555-5678",
-                            Postal_Code = "2000",
-                            Province = "NSW",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7760)
+                            City = "Hamilton",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1993, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryInstruction = "Hand to resident",
+                            Email = "gina.walker@example.com",
+                            FirstName = "Gina",
+                            Gender = "Female",
+                            LastName = "Walker",
+                            Password = "Gin@123!",
+                            Phone_Number = "905-555-0133",
+                            Postal_Code = "L8P 3B5",
+                            PreferredCategory = "RPG",
+                            PreferredLanguage = "Italian",
+                            PreferredPlatform = "Playstation",
+                            Province = "ON",
+                            ReceivePromotionalEmails = true,
+                            Register_Date = new DateTime(2024, 7, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(582),
+                            StreetAddress = "234 Spruce Ave"
                         },
                         new
                         {
                             Member_ID = 8,
-                            Address = "303 Willow St",
-                            City = "Chicago",
-                            Country = "USA",
-                            Email = "jackson.mercer@example.com",
-                            FirstName = "Jackson",
-                            LastName = "Mercer",
-                            Password = "password678",
-                            Phone_Number = "555-6789",
-                            Postal_Code = "60601",
-                            Province = "IL",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7763)
+                            Apt_suit = "7F",
+                            City = "Windsor",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1975, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "henry.perez@example.com",
+                            FirstName = "Henry",
+                            Gender = "Male",
+                            LastName = "Perez",
+                            Password = "HenrY!678",
+                            Phone_Number = "519-555-0154",
+                            Postal_Code = "N9A 6Z8",
+                            PreferredCategory = "Horror",
+                            PreferredLanguage = "Spanish",
+                            PreferredPlatform = "PC",
+                            Province = "ON",
+                            ReceivePromotionalEmails = false,
+                            Register_Date = new DateTime(2022, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(586),
+                            StreetAddress = "128 Cypress Ct"
                         },
                         new
                         {
                             Member_ID = 9,
-                            Address = "404 Elm St",
-                            City = "Montreal",
+                            City = "Toronto",
                             Country = "Canada",
-                            Email = "ava.kensington@example.com",
-                            FirstName = "Ava",
-                            LastName = "Kensington",
-                            Password = "password789",
-                            Phone_Number = "555-7890",
-                            Postal_Code = "H3B 2A7",
-                            Province = "QC",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7766)
+                            DateOfBirth = new DateTime(1996, 4, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "ivy.robinson@example.com",
+                            FirstName = "Ivy",
+                            Gender = "Female",
+                            LastName = "Robinson",
+                            Password = "IvY2024!",
+                            Phone_Number = "416-555-0213",
+                            Postal_Code = "M5G 2M1",
+                            PreferredCategory = "Sports",
+                            PreferredLanguage = "English",
+                            PreferredPlatform = "Xbox",
+                            Province = "ON",
+                            ReceivePromotionalEmails = true,
+                            Register_Date = new DateTime(2024, 6, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(589),
+                            StreetAddress = "104 Willow Dr"
                         },
                         new
                         {
                             Member_ID = 10,
-                            Address = "505 Pine St",
-                            City = "Manchester",
-                            Country = "UK",
-                            Email = "oliver.stanton@example.com",
-                            FirstName = "Oliver",
-                            LastName = "Stanton",
-                            Password = "password890",
-                            Phone_Number = "555-8901",
-                            Postal_Code = "M1 1AE",
-                            Province = "England",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7768)
+                            Apt_suit = "2A",
+                            City = "Montreal",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1993, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryInstruction = "Leave in mailbox",
+                            Email = "jack.martinez@example.com",
+                            FirstName = "Jack",
+                            Gender = "Male",
+                            LastName = "Martinez",
+                            Password = "J@ckMart123",
+                            Phone_Number = "514-555-0183",
+                            Postal_Code = "H3B 4P2",
+                            PreferredCategory = "Horror",
+                            PreferredLanguage = "French",
+                            PreferredPlatform = "PlayStation",
+                            Province = "QC",
+                            ReceivePromotionalEmails = false,
+                            Register_Date = new DateTime(2024, 9, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(593),
+                            StreetAddress = "789 Walnut St"
                         },
                         new
                         {
                             Member_ID = 11,
-                            Address = "606 Oak St",
-                            City = "Melbourne",
-                            Country = "Australia",
-                            Email = "isabella.drake@example.com",
-                            FirstName = "Isabella",
-                            LastName = "Drake",
-                            Password = "password901",
-                            Phone_Number = "555-9012",
-                            Postal_Code = "3000",
-                            Province = "VIC",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7770)
+                            City = "Calgary",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1998, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryInstruction = "Deliver to back door",
+                            Email = "karen.taylor@example.com",
+                            FirstName = "Karen",
+                            Gender = "Female",
+                            LastName = "Taylor",
+                            Password = "K@r3nT@yl0r",
+                            Phone_Number = "403-555-0157",
+                            Postal_Code = "T2P 2R8",
+                            PreferredCategory = "Adventure",
+                            PreferredLanguage = "English",
+                            PreferredPlatform = "Switch",
+                            Province = "AB",
+                            ReceivePromotionalEmails = true,
+                            Register_Date = new DateTime(2024, 1, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(596),
+                            StreetAddress = "562 Maple Grove"
                         },
                         new
                         {
                             Member_ID = 12,
-                            Address = "707 Maple St",
-                            City = "San Francisco",
-                            Country = "USA",
-                            Email = "mason.carlisle@example.com",
-                            FirstName = "Mason",
-                            LastName = "Carlisle",
-                            Password = "password012",
-                            Phone_Number = "555-0123",
-                            Postal_Code = "94101",
-                            Province = "CA",
-                            Register_Date = new DateTime(2024, 11, 10, 17, 3, 34, 21, DateTimeKind.Local).AddTicks(7773)
+                            City = "Ottawa",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1989, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "leo.gonzales@example.com",
+                            FirstName = "Leo",
+                            Gender = "Male",
+                            LastName = "Gonzales",
+                            Password = "Le0G0nz@!",
+                            Phone_Number = "613-555-0114",
+                            Postal_Code = "K2P 1X4",
+                            PreferredCategory = "Strategy",
+                            PreferredLanguage = "Spanish",
+                            PreferredPlatform = "PC",
+                            Province = "ON",
+                            ReceivePromotionalEmails = false,
+                            Register_Date = new DateTime(2024, 4, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(600),
+                            StreetAddress = "90 Forest Hill"
+                        },
+                        new
+                        {
+                            Member_ID = 13,
+                            Apt_suit = "4D",
+                            City = "Vancouver",
+                            Country = "Canada",
+                            DateOfBirth = new DateTime(1992, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "mia.liu@example.com",
+                            FirstName = "Mia",
+                            Gender = "Female",
+                            LastName = "Liu",
+                            Password = "Mi@LiuPass1",
+                            Phone_Number = "604-555-0179",
+                            Postal_Code = "V6B 1N9",
+                            PreferredCategory = "Sports",
+                            PreferredLanguage = "Chinese",
+                            PreferredPlatform = "PlayStation",
+                            Province = "BC",
+                            ReceivePromotionalEmails = true,
+                            Register_Date = new DateTime(2024, 10, 16, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(603),
+                            StreetAddress = "456 King St"
                         });
                 });
 
