@@ -24,7 +24,7 @@ namespace ConestogaVirtualGameStore.AppDbContext
 
         public DbSet<Wishlist_Games> Wishlist_Games { get; set; }
 
-
+        // Sets and creates each model's data and settings in the database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
