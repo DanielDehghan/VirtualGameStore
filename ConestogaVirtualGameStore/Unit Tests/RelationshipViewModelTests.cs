@@ -19,15 +19,20 @@ namespace ConestogaVirtualGameStore.Tests.ViewModels
                 LastName = "Doe",
                 Email = "john.doe@example.com",
                 Password = "Password123!",
-                Address = "123 Test Street",
-                Country = "Canada",
+                PreferredLanguage = "English",
+                PreferredPlatform = "PC",
+                PreferredCategory = "RPG",
+                ReceivePromotionalEmails = true,
+                Gender = "Male",
+                DateOfBirth = new DateTime(1990, 1, 1),
+                Apt_suit = "100",
+                StreetAddress = "123 Test Street",
                 City = "Toronto",
                 Province = "ON",
+                Country = "Canada",
                 Postal_Code = "A1A 1A1",
                 Phone_Number = "123-456-7890",
                 Register_Date = DateTime.UtcNow,
-                Language_ID = 1,
-                Cart_ID = 1,
                 MemberRelationshipPrimary = new List<MemberRelationship>(),
                 MemberRelationshipRelated = new List<MemberRelationship>(),
                 Wishlists = new List<Wishlist>()
@@ -51,7 +56,7 @@ namespace ConestogaVirtualGameStore.Tests.ViewModels
                     MemberRelationship = new List<MemberRelationship>
                     {
                         new MemberRelationship { Member_ID = 1, Relationship_ID = 1 },
-                        new MemberRelationship { Member_ID = 1, Relationship_ID = 1 }
+                        new MemberRelationship { Member_ID = 2, Relationship_ID = 1 }
                     }
                 }
             };
@@ -187,6 +192,8 @@ namespace ConestogaVirtualGameStore.Tests.ViewModels
             firstMember.Should().NotBeNull();
             firstMember.FirstName.Should().Be("John");
             firstMember.Email.Should().Be("john.doe@example.com");
+            firstMember.PreferredPlatform.Should().Be("PC");
+            firstMember.PreferredCategory.Should().Be("RPG");
             firstMember.Register_Date.Should().BeBefore(DateTime.UtcNow.AddSeconds(1));
         }
 
