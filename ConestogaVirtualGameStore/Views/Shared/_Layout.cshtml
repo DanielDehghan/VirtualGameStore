@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ConestogaVirtualGameStore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -22,7 +21,7 @@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color:white; font-size: 35px; font-weight:bold;">Conestoga Game Store</a>
                 <div class="collapse navbar-collapse">
                     <form class="form-inline my-2 my-lg-0 ml-auto" id="gameSearchForm" onsubmit="return false;">
-                        <input class="form-control mr-sm-2" id="gameSearchInput" type="search" placeholder="Search games by title or Genere" aria-label="Search" onkeyup="searchGames(this.value)">
+                        <input class="form-control mr-sm-2" id="gameSearchInput" type="search" placeholder="Search games by title or genre" aria-label="Search" onkeyup="searchGames(this.value)">
                         <div id="searchResultsDropdown" class="dropdown-menu" aria-labelledby="gameSearchInput"></div>
                     </form>
                 </div>
@@ -44,7 +43,7 @@
                             @if (User.IsInRole("Member"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="Events">Events</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="Index">Events</a>
                                 </li>
                             }
                         }
@@ -54,32 +53,34 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Games" asp-action="Games">Manage Games</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="ManageEvents">Manage Events</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Events" asp-action="Events">Manage Events</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Member" asp-action="Members">Manage Members</a>
                             </li>
-                        }else{
+                        }
+                        else
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
                         }
+
+
                     </ul>
                 </div>
+
+
+
                 <div class="collapse navbar-collapse justify-content-end">
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            try
-                            {
-                                var user = await UserManager.GetUserAsync(User); // Get the current user
-                                <li class="nav-item">
-                                    <a class="nav-link text-white">Hello, @user.FirstName</a>
-                                </li>
-                            } catch (NullReferenceException)
-                            {
-                                Console.WriteLine("You will need to log out of this account as it no longer exist");
-                            }
+                            var user = await UserManager.GetUserAsync(User); // Get the current user
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white">Hello, @user.FirstName</a>
+                            </li>
                             <li class="nav-item">
                                 <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="nav-item">
                                     <button type="submit" class="btn btn-outline-light rounded-pill">Logout</button>
@@ -102,32 +103,37 @@
                     <div class="d-flex align-items-center me-3">
                         <a href="@Url.Action("Cart", "Shopping")" class="nav-link">
                             <i class="fas fa-shopping-cart fa-lg"></i>
-                            <span class="badge bg-danger">3</span> 
+                            <span class="badge bg-danger">3</span>
                         </a>
                     </div>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Profile
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Personal Info</a></li>
-                                <li><a class="dropdown-item" href="#">Prefrences</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Events" asp-action="RegisteredEvents">Registered Events</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Wishlists" asp-action="Wishlists">Wishlist</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Friends">Friends</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Family">Family</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Support</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Profile
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" asp-controller="Member" asp-action="PersonalInfo">Personal Info</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Member" asp-action="Preferences">Preferences</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Events" asp-action="RegisteredEvents">Registered Events</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Wishlists" asp-action="Wishlists">Wishlist</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Friends">Friends</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Family">Family</a></li>
+                                    <li><a class="dropdown-item" href="#">Orders</a></li>
+                                    <li><a class="dropdown-item" href="#">Shipping Info</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Support</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 }
             </div>
         </nav>
@@ -147,7 +153,7 @@
                     $('#searchResultsDropdown').empty();
                     if (data.success && data.results.length > 0) {
                         data.results.forEach(function (game) {
-                            $('#searchResultsDropdown').append('<a class="dropdown-item" href="/Games/GameDetail/' + game.gameId + '">' + game.title + ' (' + game.Genere + ')</a>');
+                            $('#searchResultsDropdown').append('<a class="dropdown-item" href="/Games/GameDetail/' + game.gameId + '">' + game.title + ' (' + game.genere + ')</a>');
                         });
                         $('#searchResultsDropdown').show();
                     } else {
