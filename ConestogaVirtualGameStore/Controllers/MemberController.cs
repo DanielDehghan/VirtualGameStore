@@ -46,6 +46,9 @@ namespace ConestogaVirtualGameStore.Controllers
             ModelState.Remove("Country ");
             ModelState.Remove("Postal_Code");
             ModelState.Remove("DeliveryInstruction");
+            ModelState.Remove("MemberRelationshipPrimary");
+            ModelState.Remove("MemberRelationshipRelated");
+            ModelState.Remove("Wishlists");
 
             if (ModelState.IsValid)
             {
@@ -84,6 +87,9 @@ namespace ConestogaVirtualGameStore.Controllers
             ModelState.Remove("Countries");
             ModelState.Remove("Register_Date ");
             ModelState.Remove("Password");
+            ModelState.Remove("MemberRelationshipPrimary");
+            ModelState.Remove("MemberRelationshipRelated");
+            ModelState.Remove("Wishlists");
 
             if (ModelState.IsValid)
             {
