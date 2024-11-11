@@ -1,0 +1,33 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.CreateMemberViewModel
+
+<h2 class="text-white">Preferences</h2>
+
+<div class="container p-4" style="background-color: #780000; border-radius: 8px;">
+    <form asp-action="UpdatePreferences" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="PreferredLanguage" class="control-label"></label>
+                <select asp-for="PreferredLanguage" class="form-control" asp-items="Model.PreferredLanguages">
+                    <option value="">Select Preferred Language</option>
+                </select>
+                <span asp-validation-for="PreferredLanguage" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="PreferredPlatform" class="control-label"></label>
+                <select asp-for="PreferredPlatform" class="form-control" asp-items="Model.PreferredPlatforms">
+                    <option value="">Select Preferred Platform</option>
+                </select>
+                <span asp-validation-for="PreferredPlatform" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="PreferredCategory" class="control-label"></label>
+                <select asp-for="PreferredCategory" class="form-control" asp-items="Model.PreferredCategories">
+                    <option value="">Select Preferred Category</option>
+                </select>
+                <span asp-validation-for="PreferredCategory" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-secondary mt-3">Save Preferences</button>
+    </form>
+</div>
