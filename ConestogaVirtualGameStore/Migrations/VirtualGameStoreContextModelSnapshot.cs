@@ -570,7 +570,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(523),
+                            Register_Date = new DateTime(2024, 11, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6461),
                             StreetAddress = "123 Main St"
                         },
                         new
@@ -593,7 +593,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(562),
+                            Register_Date = new DateTime(2024, 11, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6507),
                             StreetAddress = "456 Elm St"
                         },
                         new
@@ -616,7 +616,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(566),
+                            Register_Date = new DateTime(2024, 11, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6512),
                             StreetAddress = "789 Maple Ave"
                         },
                         new
@@ -637,7 +637,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "AB",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2023, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(569),
+                            Register_Date = new DateTime(2023, 11, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6516),
                             StreetAddress = "101 Cedar Blvd"
                         },
                         new
@@ -660,7 +660,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 10, 26, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(574),
+                            Register_Date = new DateTime(2024, 10, 27, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6522),
                             StreetAddress = "303 Birch Lane"
                         },
                         new
@@ -681,7 +681,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 2, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(579),
+                            Register_Date = new DateTime(2024, 2, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6528),
                             StreetAddress = "567 Elm St"
                         },
                         new
@@ -703,7 +703,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Playstation",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 7, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(582),
+                            Register_Date = new DateTime(2024, 7, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6536),
                             StreetAddress = "234 Spruce Ave"
                         },
                         new
@@ -725,7 +725,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2022, 11, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(586),
+                            Register_Date = new DateTime(2022, 11, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6541),
                             StreetAddress = "128 Cypress Ct"
                         },
                         new
@@ -746,7 +746,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 6, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(589),
+                            Register_Date = new DateTime(2024, 6, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6545),
                             StreetAddress = "104 Willow Dr"
                         },
                         new
@@ -769,7 +769,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 9, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(593),
+                            Register_Date = new DateTime(2024, 9, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6550),
                             StreetAddress = "789 Walnut St"
                         },
                         new
@@ -791,7 +791,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Switch",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 1, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(596),
+                            Register_Date = new DateTime(2024, 1, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6554),
                             StreetAddress = "562 Maple Grove"
                         },
                         new
@@ -812,7 +812,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 4, 10, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(600),
+                            Register_Date = new DateTime(2024, 4, 11, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6558),
                             StreetAddress = "90 Forest Hill"
                         },
                         new
@@ -834,7 +834,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 10, 16, 20, 3, 4, 705, DateTimeKind.Local).AddTicks(603),
+                            Register_Date = new DateTime(2024, 10, 17, 18, 4, 26, 947, DateTimeKind.Local).AddTicks(6562),
                             StreetAddress = "456 King St"
                         });
                 });

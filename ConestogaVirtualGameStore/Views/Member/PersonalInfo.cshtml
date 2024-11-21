@@ -1,132 +1,159 @@
-﻿
-@model ConestogaVirtualGameStore.Models.Member
+﻿@model ConestogaVirtualGameStore.Models.Member
 
-<h2 class="text-white">Personal Info</h2>
-
+<h2 class="text-white">Personal Information</h2>
 <div class="container p-4" style="background-color: #780000; border-radius: 8px;">
-    <form asp-action="Update" method="post">
+    <form asp-action="UpdatePersonalInfo" method="post">
         <div class="mb-3">
-            <label asp-for="FirstName" class="form-label text-white"></label>
+            <label asp-for="FirstName" class="form-label text-white">First Name</label>
             <input asp-for="FirstName" class="form-control" />
             <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="LastName" class="form-label text-white"></label>
+            <label asp-for="LastName" class="form-label text-white">Last Name</label>
             <input asp-for="LastName" class="form-control" />
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Email" class="form-label text-white"></label>
+            <label asp-for="Email" class="form-label text-white">Email</label>
             <input asp-for="Email" class="form-control" readonly />
         </div>
         <div class="mb-3">
             <label asp-for="Phone_Number" class="form-label text-white">Phone Number</label>
             <input asp-for="Phone_Number" class="form-control" />
-            <span asp-validation-for="Phone_Number" class="text-dark"></span>
+            <span asp-validation-for="Phone_Number" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DateOfBirth" class="form-label text-white">Date of Birth</label>
+            <input asp-for="DateOfBirth" class="form-control" type="date" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Gender" class="form-label text-white">Gender</label>
+            <select asp-for="Gender" class="form-control" asp-items="@(new SelectList(new[] { "Male", "Female" }))">
+                <option value="">Select Gender</option> 
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
         </div>
 
-        <h3 class="text-white mt-4">Address</h3>
-        @if (string.IsNullOrEmpty(Model.StreetAddress))
-        {
-            <div class="mb-3">
-                <label asp-for="StreetAddress" class="form-label text-white"></label>
-                <input asp-for="StreetAddress" class="form-control" />
-                <span asp-validation-for="StreetAddress" class="text-dark"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Apt_suit" class="form-label text-white"></label>
-                <input asp-for="Apt_suit" class="form-control" />
-                <span asp-validation-for="Apt_suit" class="text-dark"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="City" class="form-label text-white"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Province" class="form-label text-white"></label>
-                <select asp-for="Province" class="form-select">
-                    <option value="">Select a province</option>
-                    <option value="AB">Alberta</option>
-                    <option value="BC">British Columbia</option>
-                    <option value="MB">Manitoba</option>
-                    <option value="NB">New Brunswick</option>
-                    <option value="NL">Newfoundland and Labrador</option>
-                    <option value="NS">Nova Scotia</option>
-                    <option value="ON">Ontario</option>
-                    <option value="PE">Prince Edward Island</option>
-                    <option value="QC">Quebec</option>
-                    <option value="SK">Saskatchewan</option>
-                    <option value="YT">Yukon</option>
-                </select>
-                <span asp-validation-for="Province" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Country" class="form-label text-white"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-dark"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Postal_Code" class="form-label text-white"></label>
-                <input asp-for="Postal_Code" class="form-control" />
-                <span asp-validation-for="Postal_Code" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-secondary">Add Address</button>
-        }
-        else
-        {
-            <div class="mb-3">
-                <label asp-for="StreetAddress" class="form-label text-white"></label>
-                <input asp-for="StreetAddress" class="form-control" />
-                <span asp-validation-for="StreetAddress" class="text-dark"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Apt_suit" class="form-label text-white"></label>
-                <input asp-for="Apt_suit" class="form-control" />
-                <span asp-validation-for="Apt_suit" class="text-dark"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="City" class="form-label text-white"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Province" class="form-label text-white"></label>
-                <select asp-for="Province" class="form-select">
-                    <option value="">Select a province</option>
-                    <option value="AB">Alberta</option>
-                    <option value="BC">British Columbia</option>
-                    <option value="MB">Manitoba</option>
-                    <option value="NB">New Brunswick</option>
-                    <option value="NL">Newfoundland and Labrador</option>
-                    <option value="NS">Nova Scotia</option>
-                    <option value="ON">Ontario</option>
-                    <option value="PE">Prince Edward Island</option>
-                    <option value="QC">Quebec</option>
-                    <option value="SK">Saskatchewan</option>
-                    <option value="YT">Yukon</option>
-                </select>
-                <span asp-validation-for="Province" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Country" class="form-label text-white"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-dark"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Postal_Code" class="form-label text-white"></label>
-                <input asp-for="Postal_Code" class="form-control" />
-                <span asp-validation-for="Postal_Code" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-secondary me-2">Update Address</button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAddressModal">
-                Delete Address
-            </button>
-        }
+        <button type="submit" class="btn btn-secondary">Save Personal Info</button>
     </form>
 </div>
+
+@if (string.IsNullOrWhiteSpace(Model.StreetAddress))
+{
+    <h2 class="text-white mt-5">Address Information</h2>
+    <div class="container p-4" style="background-color: #780000; border-radius: 8px;">
+        <form asp-action="UpdateAddressInfo" method="post">
+            <div class="mb-3">
+                <label asp-for="Apt_suit" class="form-label text-white">Apt/Suite</label>
+                <input asp-for="Apt_suit" class="form-control" />
+                <span asp-validation-for="Apt_suit" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="StreetAddress" class="form-label text-white">Street Address</label>
+                <input asp-for="StreetAddress" class="form-control" />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="City" class="form-label text-white">City</label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Province" class="form-label text-white">Province</label>
+                <select asp-for="Province" class="form-select">
+                    <option value="">Select a province</option>
+                    <option value="AB">Alberta</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="NL">Newfoundland and Labrador</option>
+                    <option value="NS">Nova Scotia</option>
+                    <option value="ON">Ontario</option>
+                    <option value="PE">Prince Edward Island</option>
+                    <option value="QC">Quebec</option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="YT">Yukon</option>
+                </select>
+                <span asp-validation-for="Province" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Country" class="form-label text-white">Country</label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Postal_Code" class="form-label text-white">Postal Code</label>
+                <input asp-for="Postal_Code" class="form-control" />
+                <span asp-validation-for="Postal_Code" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DeliveryInstruction" class="form-label text-white">Delivery Instructions</label>
+                <textarea asp-for="DeliveryInstruction" class="form-control"></textarea>
+                <span asp-validation-for="DeliveryInstruction" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-secondary me-2">Add Address</button>
+        </form>
+    </div>
+}
+else
+{
+    <h2 class="text-white mt-5">Address Information</h2>
+    <div class="container p-4" style="background-color: #780000; border-radius: 8px;">
+        <form asp-action="UpdateAddressInfo" method="post">
+            <div class="mb-3">
+                <label asp-for="Apt_suit" class="form-label text-white">Apt/Suite</label>
+                <input asp-for="Apt_suit" class="form-control" />
+                <span asp-validation-for="Apt_suit" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="StreetAddress" class="form-label text-white">Street Address</label>
+                <input asp-for="StreetAddress" class="form-control" />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="City" class="form-label text-white">City</label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Province" class="form-label text-white">Province</label>
+                <select asp-for="Province" class="form-select">
+                    <option value="">Select a province</option>
+                    <option value="AB">Alberta</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="NL">Newfoundland and Labrador</option>
+                    <option value="NS">Nova Scotia</option>
+                    <option value="ON">Ontario</option>
+                    <option value="PE">Prince Edward Island</option>
+                    <option value="QC">Quebec</option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="YT">Yukon</option>
+                </select>
+                <span asp-validation-for="Province" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Country" class="form-label text-white">Country</label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Postal_Code" class="form-label text-white">Postal Code</label>
+                <input asp-for="Postal_Code" class="form-control" />
+                <span asp-validation-for="Postal_Code" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DeliveryInstruction" class="form-label text-white">Delivery Instructions</label>
+                <textarea asp-for="DeliveryInstruction" class="form-control"></textarea>
+                <span asp-validation-for="DeliveryInstruction" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-secondary me-2">Save Address</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAddressModal">Delete Address</button>
+        </form>
+    </div>
+}
 
 <div class="modal fade" id="deleteAddressModal" tabindex="-1" aria-labelledby="deleteAddressModalLabel" aria-hidden="true">
     <div class="modal-dialog">
