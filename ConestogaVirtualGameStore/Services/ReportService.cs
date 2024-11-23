@@ -27,7 +27,8 @@ namespace ConestogaVirtualGameStore.Services
                 2 => await _context.Games.ToListAsync<object>(),
                 3 => await _context.Members.Select(m => new { m.Member_ID, m.FirstName, m.LastName, m.Email }).ToListAsync<object>(),
                 4 => await _context.Members.ToListAsync<object>(),
-                5 => await _context.Wishlist.Select(w => new {w.Wishlist_ID, w.Wishlist_Name, w.Member_ID}).ToListAsync<object>(),
+                5 => await _context.Events.ToListAsync<object>(),   
+                6 => await _context.Wishlist.Select(w => new {w.Wishlist_ID, w.Wishlist_Name, w.Member_ID}).ToListAsync<object>(),
                 _ => null
 
             };
