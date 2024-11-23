@@ -20,8 +20,9 @@ namespace ConestogaVirtualGameStore.Controllers
                 new Report{Id = 2, Name = "Game Detail"},
                 new Report{Id = 3, Name = "Member List"},
                 new Report{Id = 4, Name = "Member Detail"},
-                new Report{Id = 5, Name = "Wish List"},
-                new Report{Id = 5, Name = "Sales"}
+                new Report{Id = 5, Name = "Event List"},
+                new Report{Id = 6, Name = "Wish List"},
+                new Report{Id = 7, Name = "Sales"}
             };
 
             return View(reports);
