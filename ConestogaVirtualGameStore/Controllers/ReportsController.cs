@@ -30,16 +30,33 @@ namespace ConestogaVirtualGameStore.Controllers
 
         public async Task<IActionResult> DownloadReport(int id, string format)
         {
-            var reportData = await _reportService.GenerateReportAsync(id, format);
+            var reports = new List<Report>
+    {
+        new Report{Id = 1, Name = "Game List"},
+        new Report{Id = 2, Name = "Game Detail"},
+        new Report{Id = 3, Name = "Member List"},
+        new Report{Id = 4, Name = "Member Detail"},
+        new Report{Id = 5, Name = "Event List"},
+        new Report{Id = 6, Name = "Wish List"},
+        new Report{Id = 7, Name = "Sales"}
+    };
 
+            var report = reports.FirstOrDefault(r => r.Id == id);
+            if (report == null)
+            {
+                return NotFound("Report not found.");
+            }
+
+            var reportData = await _reportService.GenerateReportAsync(id, format);
             if (reportData == null)
             {
-                return NotFound();
+                return NotFound("Unable to generate the report.");
             }
 
             string mimeType = format.ToLower() == "excel" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : "application/pdf";
             string fileExtension = format.ToLower() == "excel" ? "xlsx" : "pdf";
-            string fileName = $"Report_{id}.{fileExtension}";
+            string sanitizedReportName = report.Name.Replace(" ", "_"); 
+            string fileName = $"{sanitizedReportName}_{id}.{fileExtension}";
 
             return File(reportData, mimeType, fileName);
         }
