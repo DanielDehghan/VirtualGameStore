@@ -21,8 +21,13 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; 
+    min-height: 100vh;
     background-color: #212529;
+    background-image: url('https://img.freepik.com/premium-photo/3d-rendering-abstract-black-hexagonal-background_177659-61.jpg?semt=ais_hybrid');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 main {
