@@ -35,7 +35,7 @@ namespace ConestogaVirtualGameStore.Services
 
             };
 
-            if (data == null) return null;
+            if (data == null || !data.Any()) return null;
 
             return format.ToLower() switch
             {
@@ -154,7 +154,7 @@ namespace ConestogaVirtualGameStore.Services
 
             if(data == null || !data.Any())
             {
-                throw new ArgumentException("No events found with registrations.", nameof(data));
+                return new List<Object>();
             }
 
             return data;
