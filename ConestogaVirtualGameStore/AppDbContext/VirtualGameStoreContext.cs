@@ -71,6 +71,20 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 .HasForeignKey(wg => wg.GameId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.MemberEvents)
+                .WithOne(me => me.Event)
+                .HasForeignKey(me => me.Event_ID)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<MemberEvent>()
+                .HasOne(me => me.Member)
+                .WithMany()
+                .HasForeignKey(me => me.Member_ID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+
             modelBuilder.Entity<Relationship>().HasData(
                 new Relationship { Relationship_ID = 1, Relationship_Type = "Friend" },
                 new Relationship { Relationship_ID = 2, Relationship_Type = "Family" }
