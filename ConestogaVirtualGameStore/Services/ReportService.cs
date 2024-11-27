@@ -29,6 +29,8 @@ namespace ConestogaVirtualGameStore.Services
                 4 => await _context.Members.Select(m => new { m.FirstName, m.LastName, m.Email,m.Phone_Number, m.Gender,m.DateOfBirth, m.PreferredLanguage, m.PreferredPlatform, m.PreferredCategory, m.Apt_suit, m.StreetAddress, m.City, m.Province, m.Country, m.Postal_Code, m.Register_Date }).ToListAsync<Object>(),
                 5 => await _context.Events.Select(e => new {e.Name, e.Date,e.Description, e.Address, e.City, e.Province, e.Country, e.PostalCode}).ToListAsync<Object>(),
                 6 => await _context.Wishlist.Select(w => new {w.Wishlist_Name, w.Member_ID, w.Member.LastName}).ToListAsync<object>(),
+                7 => await GetMostPopularGamesAsync(),
+                8 => await GetMostPopularEVentAsync(),
                 _ => null
 
             };
@@ -124,6 +126,38 @@ namespace ConestogaVirtualGameStore.Services
             document.Close();
 
             return stream.ToArray(); 
+        }
+
+        private async Task<List<Object>> GetMostPopularGamesAsync()
+        {
+            return await _context.Wishlist_Games.GroupBy(wg => wg.GameId).Select(group => new
+            {
+                GameTitle = group.First().Game.Title,
+                WishlistCount = group.Count()
+
+            }).OrderByDescending(g => g.WishlistCount)
+            .ToListAsync<Object> ();
+
+        }
+
+        private async Task<List<Object>> GetMostPopularEVentAsync()
+        {
+            var data= await _context.MembersEvents
+                    .GroupBy(me => me.Event_ID)  
+                    .Select(group => new
+                    {
+                        EventName = _context.Events.FirstOrDefault(e => e.EventId == group.Key).Name,  
+                        RegistrationCount = group.Count()  
+                    })
+                    .OrderByDescending(e => e.RegistrationCount)
+                    .ToListAsync<Object>();
+
+            if(data == null || !data.Any())
+            {
+                throw new ArgumentException("No events found with registrations.", nameof(data));
+            }
+
+            return data;
         }
 
 
