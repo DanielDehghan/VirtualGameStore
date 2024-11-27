@@ -24,7 +24,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 new Report{Id = 6, Name = "Wish List"},
                 new Report{Id = 7, Name = "Most Popular Games in Wishlists"},
                 new Report { Id = 8, Name = "Most Popular Events by Registrations" },
-                new Report{Id = 7, Name = "Sales"}
+                new Report{Id = 9, Name = "Sales"}
             };
 
             return View(reports);
