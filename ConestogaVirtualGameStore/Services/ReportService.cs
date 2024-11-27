@@ -23,12 +23,12 @@ namespace ConestogaVirtualGameStore.Services
         {
             List<Object> data = reportId switch
             {
-                1 => await _context.Games.Select(g => new { g.GameId, g.Title, g.ReleaseDate }).ToListAsync<Object>(),
-                2 => await _context.Games.ToListAsync<object>(),
-                3 => await _context.Members.Select(m => new { m.Member_ID, m.FirstName, m.LastName, m.Email }).ToListAsync<object>(),
-                4 => await _context.Members.ToListAsync<object>(),
-                5 => await _context.Events.ToListAsync<object>(),   
-                6 => await _context.Wishlist.Select(w => new {w.Wishlist_ID, w.Wishlist_Name, w.Member_ID}).ToListAsync<object>(),
+                1 => await _context.Games.Select(g => new {g.Title, g.ReleaseDate }).ToListAsync<Object>(),
+                2 => await _context.Games.Select(g => new { g.Title, g.Genere, g.ReleaseDate, g.Platform, g.Price, g.Description }).ToListAsync<Object>(),
+                3 => await _context.Members.Select(m => new { m.FirstName, m.LastName, m.Email }).ToListAsync<object>(),
+                4 => await _context.Members.Select(m => new { m.FirstName, m.LastName, m.Email,m.Phone_Number, m.Gender,m.DateOfBirth, m.PreferredLanguage, m.PreferredPlatform, m.PreferredCategory, m.Apt_suit, m.StreetAddress, m.City, m.Province, m.Country, m.Postal_Code, m.Register_Date }).ToListAsync<Object>(),
+                5 => await _context.Events.Select(e => new {e.Name, e.Date,e.Description, e.Address, e.City, e.Province, e.Country, e.PostalCode}).ToListAsync<Object>(),
+                6 => await _context.Wishlist.Select(w => new {w.Wishlist_Name, w.Member_ID, w.Member.LastName}).ToListAsync<object>(),
                 _ => null
 
             };
