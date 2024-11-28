@@ -23,6 +23,7 @@ builder.Services.AddScoped<IRepository<Wishlist_Games>, Repository<Wishlist_Game
 builder.Services.AddScoped<IRepository<Member>, Repository<Member>>();
 builder.Services.AddScoped<IRepository<Relationship>, Repository<Relationship>>();
 builder.Services.AddScoped<IRepository<MemberRelationship>, Repository<MemberRelationship>>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
 builder.Services.AddScoped<EmailService>();
 // Add Identity services

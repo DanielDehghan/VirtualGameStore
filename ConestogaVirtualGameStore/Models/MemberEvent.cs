@@ -13,5 +13,9 @@ namespace ConestogaVirtualGameStore.Models
         public int Event_ID { get; set; }
    
         public int Member_ID { get; set; }
+
+        public Event Event { get; set; }    
+        public Member Member { get; set; }
+
     }
 }

@@ -39,5 +39,7 @@ namespace ConestogaVirtualGameStore.Models
 
         [StringLength(1000)]
         public string? Description { get; set; }
+
+        public ICollection<MemberEvent> MemberEvents { get; set; }
     }
 }
