@@ -73,6 +73,14 @@ namespace ConestogaVirtualGameStore.Models
         [RegularExpression(@"^(\(\d{3}\)|\d{3})[ -]?\d{3}[ -]?\d{4}$", ErrorMessage = "Invalid phone number format.")]
         public string? Phone_Number { get; set; }
 
+        // Foreign key for Language (optional)
+        public int? Language_ID { get; set; }
+
+        // Foreign key for Cart (optional)
+        public int? Cart_ID { get; set; }
+
+        public IEnumerable<Cart> Cart { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime Register_Date { get; set; }
 
@@ -81,5 +89,9 @@ namespace ConestogaVirtualGameStore.Models
         public ICollection<MemberRelationship> MemberRelationshipRelated { get; set; }
 
         public ICollection<Wishlist> Wishlists { get; set; }
+
+        public ICollection<CreditCards> CreditCards { get; set; }
+
+        public ICollection<Orders> Orders { get; set; }
     }
 }

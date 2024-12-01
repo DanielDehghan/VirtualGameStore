@@ -18,6 +18,10 @@ builder.Services.AddScoped<IRepository<Member>, Repository<Member>>();
 builder.Services.AddScoped<IRepository<MemberEvent>, Repository<MemberEvent>>();
 builder.Services.AddScoped<IRepository<Wishlist>, Repository<Wishlist>>();
 builder.Services.AddScoped<IRepository<Wishlist_Games>, Repository<Wishlist_Games>>();
+builder.Services.AddScoped<IRepository<Cart>, Repository<Cart>>();
+builder.Services.AddScoped<IRepository<CartGames>, Repository<CartGames>>();
+builder.Services.AddScoped<IRepository<CreditCards>, Repository<CreditCards>>();
+builder.Services.AddScoped<IRepository<Orders>, Repository<Orders>>();
 
 
 builder.Services.AddScoped<IRepository<Member>, Repository<Member>>();

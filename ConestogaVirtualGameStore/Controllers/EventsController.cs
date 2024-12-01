@@ -40,6 +40,7 @@ namespace ConestogaVirtualGameStore.Controllers
             // Get all events that the current member has not registered for
             var availableEvents = await _context.Events
                 .Where(e => !registeredEventIds.Contains(e.EventId))
+                .OrderBy(e => e.Name)
                 .ToListAsync();
 
             return View(availableEvents);
@@ -189,6 +190,7 @@ namespace ConestogaVirtualGameStore.Controllers
             // Get all events that the current member has not registered for
             var registeredEvents = await _context.Events
                 .Where(e => registeredEventIds.Contains(e.EventId))
+                .OrderBy(e => e.Name)
                 .ToListAsync();
 
             return View(registeredEvents);

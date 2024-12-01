@@ -1,0 +1,36 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.CheckOutViewModel;
+
+<style>
+	h1, h2, h3 {
+		color: white;
+	}
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <form asp-action="CheckOutItems">
+                <input asp-for="Member_ID" type="hidden" />
+                <h1>Your Total is: $@Model.Total</h1>
+                @if (Model.CreditCards.Count > 0)
+                {
+                    <label for="" class="control-label" style="color: white;">Please Select a Credit Card for Payment</label>
+                    <select name="" id="" class="form-control">
+                        @foreach (var creditCard in Model.CreditCards)
+                        {
+                            <option value="@creditCard.CreditCard_ID">Credit Card Ending in: @creditCard.CreditCardNumber.Substring(@creditCard.CreditCardNumber.Length - 4)</option>
+                        }
+                    </select>
+
+                    <div class="form-group">
+                        <input type="submit" value="Check Out" class="btn btn-success mt-3" />
+                    </div>
+                }
+                else
+                {
+                    <h2>You do not have any registered credit cards, please use the <a href="@Url.Action("CreditCards", "CreditCards")">Credit Cards</a> tab to register one</h2>
+                }
+            </form>
+        </div>
+    </div>
+</div>

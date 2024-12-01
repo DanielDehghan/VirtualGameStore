@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Wishlist>;
+﻿@model IEnumerable<CreditCards>;
 
 @{
-    ViewData["Title"] = "Wishlists";
+    ViewData["Title"] = "Credit Cards";
 }
 
 <style>
@@ -12,22 +12,20 @@
 
 @if (Model != null)
 {
-    @foreach (var Wishlist in Model)
+    @foreach (var CreditCards in Model)
     {
         <div class="container mt-5" style="color:#212545;">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card" style="background-color: #780000;">
                         <h5 class="card-header" style="border-right: 0; border: 1px solid white;">
-                            <a asp-action="WishlistDetail" asp-route-id="@Wishlist.Wishlist_ID" style="color: deepskyblue">
-                                @Wishlist.Wishlist_Name
-                            </a>
+                            Credit Card Ending in: @CreditCards.CreditCardNumber.Substring(CreditCards.CreditCardNumber.Length - 4)
                         </h5>
                         <div class="card-body" style="background-color: #780000; border: 1px solid white;">
-                            <a asp-action="EditWishlist" asp-route-id="@Wishlist.Wishlist_ID" class="btn btn-primary">
+                            <a asp-action="EditCreditCard" asp-route-id="@CreditCards.CreditCard_ID" class="btn btn-primary">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <a asp-action="DeleteWishlist" asp-route-id="@Wishlist.Wishlist_ID" class="btn btn-danger">
+                            <a asp-action="DeleteCreditCard" asp-route-id="@CreditCards.CreditCard_ID" class="btn btn-danger">
                                 <i class="fas fa-trash"></i> Remove
                             </a>
                         </div>
@@ -37,8 +35,8 @@
         </div>
     }
     <div class="container mt-3">
-    <a asp-action="AddWishlist" class="btn btn-success">
-        <i class="fas fa-plus"></i> Add New Wishlist
-    </a>
-</div>
+        <a asp-action="AddCreditCard" class="btn btn-success">
+            <i class="fas fa-plus"></i> Add New Credit Card
+        </a>
+    </div>
 }

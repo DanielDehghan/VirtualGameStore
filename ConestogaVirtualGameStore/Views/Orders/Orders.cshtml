@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Orders>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<style>
+    #OrdersTitle {
+        color: white;
+    }
+
+    h5, p {
+        color: white;
+    }
+</style>
+
+
+@if (Model != null)
+{
+    <h1 id="OrdersTitle">Orders</h1>
+    @if (Model.Count() > 0)
+    {
+        @foreach (var orders in Model)
+        {
+            <div class="container mt-5" style="color:#212545;" id="EventCard">
+                <div class="card" style="background-color: #780000;">
+                    <h5 class="card-header" style="border-right: 0; border: 1px solid white;">Order #@orders.Order_ID</h5>
+                    <div class="card-body" style="background-color: #780000; border: 1px solid white;">
+                        <h5 class="card-title" style="font-weight: bold">Games Ordered</h5>
+                        @for (int i = 0; i < orders.Games.Count(); i++)
+                        {
+                            <p class="card-text">@orders.Games.ToList()[i].Title</p>
+                        }
+                        <h5 class="card-title" style="font-weight: bold">Status</h5>
+                        @if (orders.Status == "Processing")
+                        {
+                            <p style="color: yellow">@orders.Status</p>
+                        }
+                        else {
+                            <p style="color: springgreen">@orders.Status</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h2 id="noEvents" style="color:white;">You currently do not have any orders, please use the <a href="@Url.Action("Cart", "Cart")">Cart</a> tab to buy games</h2>
+    }
+}

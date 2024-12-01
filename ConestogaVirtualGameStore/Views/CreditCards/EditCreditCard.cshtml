@@ -1,0 +1,40 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.CreateCreditCardViewModel;
+
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
+<h2 class="text-white">Credit Card</h2>
+<div class="container p-4" style="background-color: #780000; border-radius: 8px;">
+    <form asp-action="EditCreditCard" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <input asp-for="Member_ID" type="hidden" />
+        <div class="mb-3">
+            <label asp-for="CreditCardNumber" class="form-label text-white">Credit Card Number</label>
+            <input asp-for="CreditCardNumber" class="form-control" />
+            <span asp-validation-for="CreditCardNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CreditCardExpiryDate" class="form-label text-white">Credit Card Expiry Date</label>
+            <input type="datetime-local" id="date" asp-for="CreditCardExpiryDate" class="form-control" />
+            <span asp-validation-for="CreditCardExpiryDate" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CreditCardOwnerName" class="form-label text-white">Card Holder Name</label>
+            <input asp-for="CreditCardOwnerName" class="form-control" />
+            <span asp-validation-for="CreditCardOwnerName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CreditCardVerificationValue" class="form-label text-white">CVV</label>
+            <input asp-for="CreditCardVerificationValue" class="form-control" />
+            <span asp-validation-for="CreditCardVerificationValue" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success btn-block mt-3">Edit Credit Card</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#date", {
+        enableTime: false,
+        dateFormat: "Y-m"
+    });
+</script>

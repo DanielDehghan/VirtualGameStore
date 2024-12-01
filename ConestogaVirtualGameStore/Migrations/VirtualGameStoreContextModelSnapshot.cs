@@ -95,6 +95,90 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Cart", b =>
+                {
+                    b.Property<int>("Cart_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Cart_ID"));
+
+                    b.Property<DateTime>("Date_Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Member_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Cart_ID");
+
+                    b.HasIndex("Member_ID");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.CartGames", b =>
+                {
+                    b.Property<int>("Cart_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Game_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CartGames_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartGames_ID"));
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Cart_ID", "Game_ID");
+
+                    b.HasIndex("Game_ID");
+
+                    b.ToTable("CartGames");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.CreditCards", b =>
+                {
+                    b.Property<int>("CreditCard_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CreditCard_ID"));
+
+                    b.Property<DateTime?>("CreditCardExpiryDate")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreditCardNumber")
+                        .IsRequired()
+                        .HasMaxLength(19)
+                        .HasColumnType("nvarchar(19)");
+
+                    b.Property<string>("CreditCardOwnerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreditCardVerificationValue")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<int>("Member_ID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CreditCard_ID");
+
+                    b.HasIndex("Member_ID");
+
+                    b.ToTable("CreditCards");
+                });
+
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Event", b =>
                 {
                     b.Property<int>("EventId")
@@ -218,12 +302,18 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("OrdersOrder_ID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Platform")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Purchased_Member_ID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
@@ -234,6 +324,8 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("GameId");
+
+                    b.HasIndex("OrdersOrder_ID");
 
                     b.ToTable("Games");
 
@@ -472,6 +564,9 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<int?>("Cart_ID")
+                        .HasColumnType("int");
+
                     b.Property<string>("City")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -500,6 +595,9 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.Property<string>("Gender")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("Language_ID")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -570,7 +668,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6682),
+                            Register_Date = new DateTime(2024, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(2962),
                             StreetAddress = "123 Main St"
                         },
                         new
@@ -593,7 +691,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 11, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6786),
+                            Register_Date = new DateTime(2024, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3049),
                             StreetAddress = "456 Elm St"
                         },
                         new
@@ -616,7 +714,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6801),
+                            Register_Date = new DateTime(2024, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3059),
                             StreetAddress = "789 Maple Ave"
                         },
                         new
@@ -637,7 +735,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "AB",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2023, 11, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6814),
+                            Register_Date = new DateTime(2023, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3065),
                             StreetAddress = "101 Cedar Blvd"
                         },
                         new
@@ -660,7 +758,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 12, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6836),
+                            Register_Date = new DateTime(2024, 11, 14, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3080),
                             StreetAddress = "303 Birch Lane"
                         },
                         new
@@ -681,7 +779,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 2, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6852),
+                            Register_Date = new DateTime(2024, 2, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3089),
                             StreetAddress = "567 Elm St"
                         },
                         new
@@ -703,7 +801,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Playstation",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 7, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6869),
+                            Register_Date = new DateTime(2024, 7, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3098),
                             StreetAddress = "234 Spruce Ave"
                         },
                         new
@@ -725,7 +823,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2022, 11, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6883),
+                            Register_Date = new DateTime(2022, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3105),
                             StreetAddress = "128 Cypress Ct"
                         },
                         new
@@ -746,7 +844,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 6, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6897),
+                            Register_Date = new DateTime(2024, 6, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3116),
                             StreetAddress = "104 Willow Dr"
                         },
                         new
@@ -769,7 +867,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 9, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6912),
+                            Register_Date = new DateTime(2024, 9, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3164),
                             StreetAddress = "789 Walnut St"
                         },
                         new
@@ -791,7 +889,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Switch",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 1, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6924),
+                            Register_Date = new DateTime(2024, 1, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3171),
                             StreetAddress = "562 Maple Grove"
                         },
                         new
@@ -812,7 +910,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 4, 27, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6936),
+                            Register_Date = new DateTime(2024, 4, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3178),
                             StreetAddress = "90 Forest Hill"
                         },
                         new
@@ -834,7 +932,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 2, 14, 52, 58, 39, DateTimeKind.Local).AddTicks(6948),
+                            Register_Date = new DateTime(2024, 11, 4, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3184),
                             StreetAddress = "456 King St"
                         });
                 });
@@ -888,6 +986,31 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasIndex("Relationship_ID");
 
                     b.ToTable("MembersRelationships");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Orders", b =>
+                {
+                    b.Property<int>("Order_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Order_ID"));
+
+                    b.Property<int>("Member_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Order_ID");
+
+                    b.HasIndex("Member_ID");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Relationship", b =>
@@ -1090,6 +1213,54 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Cart", b =>
+                {
+                    b.HasOne("ConestogaVirtualGameStore.Models.Member", "Member")
+                        .WithMany("Cart")
+                        .HasForeignKey("Member_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.CartGames", b =>
+                {
+                    b.HasOne("ConestogaVirtualGameStore.Models.Cart", "Cart")
+                        .WithMany("Cart_Games")
+                        .HasForeignKey("Cart_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConestogaVirtualGameStore.Models.Game", "Game")
+                        .WithMany("Cart_Games")
+                        .HasForeignKey("Game_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.CreditCards", b =>
+                {
+                    b.HasOne("ConestogaVirtualGameStore.Models.Member", "Member")
+                        .WithMany("CreditCards")
+                        .HasForeignKey("Member_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Game", b =>
+                {
+                    b.HasOne("ConestogaVirtualGameStore.Models.Orders", null)
+                        .WithMany("Games")
+                        .HasForeignKey("OrdersOrder_ID");
+                });
+
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.MemberEvent", b =>
                 {
                     b.HasOne("ConestogaVirtualGameStore.Models.Event", "Event")
@@ -1134,6 +1305,17 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.Navigation("MemberAdded");
 
                     b.Navigation("Relationship");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Orders", b =>
+                {
+                    b.HasOne("ConestogaVirtualGameStore.Models.Member", "Member")
+                        .WithMany("Orders")
+                        .HasForeignKey("Member_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Wishlist", b =>
@@ -1217,6 +1399,11 @@ namespace ConestogaVirtualGameStore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Cart", b =>
+                {
+                    b.Navigation("Cart_Games");
+                });
+
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Event", b =>
                 {
                     b.Navigation("MemberEvents");
@@ -1224,16 +1411,29 @@ namespace ConestogaVirtualGameStore.Migrations
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Game", b =>
                 {
+                    b.Navigation("Cart_Games");
+
                     b.Navigation("Wishlist_Games");
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Member", b =>
                 {
+                    b.Navigation("Cart");
+
+                    b.Navigation("CreditCards");
+
                     b.Navigation("MemberRelationshipPrimary");
 
                     b.Navigation("MemberRelationshipRelated");
 
+                    b.Navigation("Orders");
+
                     b.Navigation("Wishlists");
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Orders", b =>
+                {
+                    b.Navigation("Games");
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Relationship", b =>

@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using ConestogaVirtualGameStore.AppDbContext;
 using System.Collections;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using MimeKit;
 
 namespace ConestogaVirtualGameStore.Controllers
 {
@@ -16,11 +21,13 @@ namespace ConestogaVirtualGameStore.Controllers
     {
         private readonly IRepository<Game> _gameRepository;
         private readonly VirtualGameStoreContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public GamesController(VirtualGameStoreContext cvgs, IRepository<Game> gameRepository)
+        public GamesController(VirtualGameStoreContext cvgs, IRepository<Game> gameRepository, UserManager<ApplicationUser> userManager)
         {
             _context = cvgs;
             _gameRepository = gameRepository;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -163,15 +170,49 @@ namespace ConestogaVirtualGameStore.Controllers
             // Get currently selected game recommendations based on the games genre
             var gameRecommendations = GetGameRecommendations(game.Title, game.Genere);
 
+            int currentMemberId = await GetCurrentMemberId();
+
+            var findCurrentGameIfBought = await _context.Orders
+                .Where(o => o.Member_ID == currentMemberId && o.Status == "Processed" && o.Games.Contains(game))
+                .FirstOrDefaultAsync();
+
+            bool isBought;
+
+            if (findCurrentGameIfBought == null) {
+                isBought = false;
+            }
+            else
+            {
+                isBought = true;
+            }
+            
             var gameDetails = new GameDetailViewModel
             {
                 Title = game.Title,
                 Game = game,
-                GameRecommendations = gameRecommendations
+                GameRecommendations = gameRecommendations,
+                IsBought = isBought
             };
 
             return View(gameDetails);
         }
+
+        public async Task<IActionResult> DownloadGame(int gameId)
+        {
+            var game = await _gameRepository.GetByIdAsync(gameId);
+
+            string mimeType = "text/plain";
+            string fileExtension = "txt";
+            string name = game.Title;
+            string fileName = $"{name}.{fileExtension}";
+
+            string fileData = $"Genre: {game.Genere}\nRelease Date: {game.ReleaseDate}\nDescription: {game.Description}\nPlatforms: {game.Platform}\nPrice: {game.Price}";
+
+            byte[] data = Encoding.UTF8.GetBytes(fileData);
+
+            return File(data, mimeType, fileName);
+        }
+
         [HttpGet]
         public async Task<JsonResult> SearchGames(string query)
         {
@@ -217,6 +258,23 @@ namespace ConestogaVirtualGameStore.Controllers
             return gameRecommendations;
         }
 
+        private async Task<int> GetCurrentMemberId()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                var currentMemberId = await _context.Members
+                    .Where(m => m.Email == user.Email)
+                    .Select(m => m.Member_ID)
+                    .FirstOrDefaultAsync();
+
+                return currentMemberId;
+            }
+
+            return -1;
+        }
+
         private IEnumerable<SelectListItem> GetGenres()
         {
             return new List<SelectListItem>
@@ -226,8 +284,7 @@ namespace ConestogaVirtualGameStore.Controllers
                 new SelectListItem { Value = "RPG", Text = "RPG" },
                 new SelectListItem { Value = "Strategy", Text = "Strategy" },
                 new SelectListItem { Value = "Sports", Text = "Sports" },
-                                new SelectListItem { Value = "Horror", Text = "Horror" }
-
+                new SelectListItem { Value = "Horror", Text = "Horror" }
             };
         }
 

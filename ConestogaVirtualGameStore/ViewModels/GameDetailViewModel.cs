@@ -7,5 +7,7 @@ namespace ConestogaVirtualGameStore.ViewModels
         public string Title { get; set; }
         public Game Game { get; set; }
         public IEnumerable<Game> GameRecommendations { get; set; }
+
+        public bool IsBought { get; set; }
     }
 }

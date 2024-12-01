@@ -58,9 +58,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Member" asp-action="Members">Manage Members</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Orders" asp-action="ManageOrders">Manage Orders</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Reports" asp-action="Reports">Reports</a>
-                            </li>
                             </li>
                         }
                         else
@@ -111,9 +114,9 @@
                 @if (User.IsInRole("Member"))
                 {
                     <div class="d-flex align-items-center me-3">
-                        <a href="@Url.Action("Cart", "Shopping")" class="nav-link">
+                        <a href="@Url.Action("Cart", "Cart")" class="nav-link">
                             <i class="fas fa-shopping-cart fa-lg"></i>
-                            <span class="badge bg-danger">3</span>
+                            <span class="badge bg-danger" style="display: inline-block" id="cartQuantity"></span>
                         </a>
                     </div>
 
@@ -129,12 +132,12 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" asp-controller="Member" asp-action="PersonalInfo">Personal Info</a></li>
                                     <li><a class="dropdown-item" asp-controller="Member" asp-action="Preferences">Preferences</a></li>
+                                    <li><a class="dropdown-item" asp-controller="CreditCards" asp-action="CreditCards">Credit Cards</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Events" asp-action="RegisteredEvents">Registered Events</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Wishlists" asp-action="Wishlists">Wishlist</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Friends">Friends</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Family">Family</a></li>
-                                    <li><a class="dropdown-item" href="#">Orders</a></li>
-                                    <li><a class="dropdown-item" href="#">Shipping Info</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Orders" asp-action="Orders">Orders</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Support</a></li>
                                 </ul>
@@ -172,6 +175,15 @@
                 }
             });
         }
+
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetCartQuantity", "Cart")',
+                success: function (data) {
+                    $('#cartQuantity').append(data.results);
+                }
+            });
+        });
 
         $(document).on('click', function (e) {
             if (!$(e.target).closest('#gameSearchForm').length) {

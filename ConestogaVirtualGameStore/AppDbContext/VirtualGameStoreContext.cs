@@ -24,7 +24,14 @@ namespace ConestogaVirtualGameStore.AppDbContext
 
         public DbSet<Wishlist_Games> Wishlist_Games { get; set; }
 
-        // Sets and creates each model's data and settings in the database
+        public DbSet<Cart> Carts { get; set; }
+
+        public DbSet<CartGames> CartGames { get; set; }
+
+        public DbSet<CreditCards> CreditCards { get; set; }
+
+        public DbSet<Orders> Orders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -71,6 +78,38 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 .HasForeignKey(wg => wg.GameId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Cart>()
+                .HasOne(c => c.Member)
+                .WithMany(m => m.Cart)
+                .HasForeignKey(c => c.Member_ID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CartGames>()
+                .HasKey(cg => new { cg.Cart_ID, cg.Game_ID });
+
+            modelBuilder.Entity<CartGames>()
+                .HasOne(cg => cg.Cart)
+                .WithMany(c => c.Cart_Games)
+                .HasForeignKey(cg => cg.Cart_ID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CartGames>()
+                .HasOne(cg => cg.Game)
+                .WithMany(g => g.Cart_Games)
+                .HasForeignKey(cg => cg.Game_ID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CreditCards>()
+                .HasOne(cc => cc.Member)
+                .WithMany(m => m.CreditCards)
+                .HasForeignKey(cc => cc.Member_ID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Orders>()
+                .HasOne(o => o.Member)
+                .WithMany(m => m.Orders)
+                .HasForeignKey(o => o.Member_ID)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Event>()
                 .HasMany(e => e.MemberEvents)
                 .WithOne(me => me.Event)
