@@ -10,7 +10,7 @@ namespace ConestogaVirtualGameStore.Unit_Tests
     public class CartGamesModelTests
     {
         [Fact]
-        public void CartGames_With_All_Fields()
+        public void Cart_Games_With_All_Fields()
         {
             // Arrange
             var cartGames = new CartGames
@@ -32,7 +32,7 @@ namespace ConestogaVirtualGameStore.Unit_Tests
         }
 
         [Fact]
-        public void CartGames_Without_Cart()
+        public void Cart_Games_Without_Cart()
         {
             // Arrange
             var cartGames = new CartGames
@@ -53,7 +53,7 @@ namespace ConestogaVirtualGameStore.Unit_Tests
         }
 
         [Fact]
-        public void CartGames_Without_Game()
+        public void Cart_Games_Without_Game()
         {
             // Arrange
             var cartGames = new CartGames
@@ -74,7 +74,7 @@ namespace ConestogaVirtualGameStore.Unit_Tests
         }
 
         [Fact]
-        public void CartGames_With_Invalid_Quantity()
+        public void Cart_Games_With_Invalid_Quantity()
         {
             // Arrange
             var cartGames = new CartGames
@@ -96,7 +96,7 @@ namespace ConestogaVirtualGameStore.Unit_Tests
         }
 
         [Fact]
-        public void CartGames_With_Invalid_Total()
+        public void Cart_Games_With_Invalid_Total()
         {
             // Arrange
             var cartGames = new CartGames
@@ -118,7 +118,7 @@ namespace ConestogaVirtualGameStore.Unit_Tests
         }
 
         [Fact]
-        public void CartGames_With_Zero_Quantity()
+        public void Cart_Games_With_Zero_Quantity()
         {
             // Arrange
             var cartGames = new CartGames
