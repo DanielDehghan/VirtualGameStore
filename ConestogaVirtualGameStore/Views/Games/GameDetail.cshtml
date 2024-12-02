@@ -4,6 +4,9 @@
     ViewData["Title"] = Model.Title; // Set the page title to the game title
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
     #text, #gameRecommendations {
         color: white;
@@ -12,12 +15,26 @@
     {
         text-align: center;
     }
+    .checked {
+        color: orange;
+    }
+
+    #reviewTitle {
+        color: white;
+    }
+
+    h5, p {
+        color: white;
+    }
 </style>
 
 <div class="card" style="background-color: #2c2c2c;">
     <div class="col-md-12 mb-3" id="text">
         <div class="card-body" style="background-color: #2c2c2c; border: 1px solid white;">
             <h1>@Model.Title</h1>
+            <div id="overallRating">
+                <h5>Average Rating: @Model.AverageRating/5</h5>
+            </div>
             <div class="game-image">
                 <img style="width: 500px; height: 600px;" src="@Model.Game.CoverImageURL" alt="@Model.Title" />
             </div>
@@ -43,7 +60,8 @@
                     </a>
                 }
             </div>
-            <a href="@Url.Action("Index", "Games")" class="btn btn-primary mt-3">Back to Games List</a>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mt-3">Back to Main Page</a>
+            <a href="@Url.Action("Index", "Games")" class="btn btn-primary mt-3">Go to Games List</a>
         </div>
 
         <div class="card-body" style="background-color: #2c2c2c; border: 1px solid white;">
@@ -77,6 +95,48 @@
                                     </a>
                                 </div>
                             }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body" style="background-color: #2c2c2c; border: 1px solid white;">
+            <div id="gameReviews">
+                <h3>Game Reviews</h3>
+                <div class="container mt-5" id="GameCard">
+                    <div class="row">
+                        @if (User.IsInRole("Member") && Model.IsBought == true && Model.HasBeenReviewed == false)
+                        {
+                            <a href="@Url.Action("AddGameReview", "Games", new { gameId = Model.Game.GameId })" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Add Game Review
+                            </a>
+                        }
+                        @if (User.IsInRole("Member") && Model.IsBought == true && Model.HasBeenReviewed == true)
+                        {
+                        }
+                        @if (Model.GameReviews != null)
+                        {
+                            @foreach (var gameReview in Model.GameReviews)
+                            {
+                                @if (gameReview.Status == "Processed")
+                                {
+                                    <div class="container mt-5" style="color:#212545;" id="reviewCard">
+                                    <div class="card" style="background-color: #780000;">
+                                            <h5 class="card-header" style="border-right: 0; border: 1px solid white; text-align: left;">@gameReview.Member.FirstName @gameReview.Member.LastName: @gameReview.ReviewTitle <br /> @gameReview.ReviewRating/5</h5>
+                                        <div class="card-body" style="background-color: #780000; border: 1px solid white;">
+                                            <p class="card-text" style="text-align: left">@gameReview.ReviewDescription</p>
+                                            @if (gameReview.Member_ID == Model.Member_ID)
+                                            {
+                                                <a asp-action="DeleteReview" asp-route-id="@gameReview.Review_ID" asp-route-gameId-="@gameReview.Game_ID" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> Delete Review
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            }
+                        }
                     </div>
                 </div>
             </div>

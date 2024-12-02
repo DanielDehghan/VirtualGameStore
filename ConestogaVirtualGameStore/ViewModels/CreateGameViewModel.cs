@@ -33,6 +33,9 @@ namespace ConestogaVirtualGameStore.ViewModels
         [Range(0.01, 999.99, ErrorMessage = "Price must be between 0.01 and 999.99")]
         public decimal Price { get; set; }
 
+        [Range(0, 5)]
+        public decimal AverageRating { get; set; }
+
         [Required(ErrorMessage = "Cover Image URL is required")]
         [Url(ErrorMessage = "Invalid URL format")]
         public string CoverImageURL { get; set; }

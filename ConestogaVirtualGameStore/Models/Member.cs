@@ -93,5 +93,7 @@ namespace ConestogaVirtualGameStore.Models
         public ICollection<CreditCards> CreditCards { get; set; }
 
         public ICollection<Orders> Orders { get; set; }
+
+        public ICollection<Review> Reviews { get; set; }
     }
 }

@@ -32,6 +32,8 @@ namespace ConestogaVirtualGameStore.AppDbContext
 
         public DbSet<Orders> Orders { get; set; }
 
+        public DbSet<Review> Reviews { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -131,7 +133,11 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 .HasForeignKey(me => me.Member_ID)
                 .OnDelete(DeleteBehavior.Cascade);
 
-
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Member)
+                .WithMany(m => m.Reviews)
+                .HasForeignKey(cc => cc.Member_ID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Relationship>().HasData(
                 new Relationship { Relationship_ID = 1, Relationship_Type = "Friend" },
@@ -460,8 +466,30 @@ namespace ConestogaVirtualGameStore.AppDbContext
 
             );
 
-            modelBuilder.Entity<Wishlist>().HasData(
+            modelBuilder.Entity<Review>().HasData(
+                new Review { Review_ID = 1, Game_ID = 1, Member_ID = 1, ReviewTitle = "This game is great!", ReviewDescription = "One of the best games I have ever played! would recommend!", ReviewRating = "5", Status = "Processed" },
+                new Review { Review_ID = 2, Game_ID = 2, Member_ID = 2, ReviewTitle = "Its alright", ReviewDescription = "I liked the previous games more", ReviewRating = "2", Status = "Processed" },
+                new Review { Review_ID = 3, Game_ID = 3, Member_ID = 2, ReviewTitle = "Very good!!", ReviewDescription = "I hope the next game is as good as this one!", ReviewRating = "4", Status = "Processed" },
+                new Review { Review_ID = 4, Game_ID = 4, Member_ID = 3, ReviewTitle = "Great game!", ReviewDescription = "They put a lot of effort into this game, this is a must buy", ReviewRating = "5", Status = "Processed" },
+                new Review { Review_ID = 5, Game_ID = 5, Member_ID = 4, ReviewTitle = "Not my favourite", ReviewDescription = "Please add the previous games on this site", ReviewRating = "1", Status = "Processed" },
+                new Review { Review_ID = 6, Game_ID = 6, Member_ID = 2, ReviewTitle = "Its alright", ReviewDescription = "I liked the previous games more", ReviewRating = "2", Status = "Processed" },
+                new Review { Review_ID = 7, Game_ID = 7, Member_ID = 5, ReviewTitle = "Not my favourite", ReviewDescription = "Please add the previous games on this site", ReviewRating = "1", Status = "Processed" },
+                new Review { Review_ID = 8, Game_ID = 8, Member_ID = 6, ReviewTitle = "Very good!!", ReviewDescription = "I hope the next game is as good as this one!", ReviewRating = "4", Status = "Processed" },
+                new Review { Review_ID = 9, Game_ID = 9, Member_ID = 7, ReviewTitle = "Great game!", ReviewDescription = "They put a lot of effort into this game, this is a must buy", ReviewRating = "5", Status = "Processed" },
+                new Review { Review_ID = 10, Game_ID = 10, Member_ID = 1, ReviewTitle = "This game is great!", ReviewDescription = "One of the best games I have ever played! would recommend!", ReviewRating = "5", Status = "Processed" },
+                new Review { Review_ID = 11, Game_ID = 11, Member_ID = 8, ReviewTitle = "Not my favourite", ReviewDescription = "Please add the previous games on this site", ReviewRating = "1", Status = "Processed" },
+                new Review { Review_ID = 12, Game_ID = 12, Member_ID = 8, ReviewTitle = "Very good!!", ReviewDescription = "I hope the next game is as good as this one!", ReviewRating = "4", Status = "Processed" },
+                new Review { Review_ID = 13, Game_ID = 13, Member_ID = 9, ReviewTitle = "Great game!", ReviewDescription = "They put a lot of effort into this game, this is a must buy", ReviewRating = "5", Status = "Processed" },
+                new Review { Review_ID = 14, Game_ID = 14, Member_ID = 10, ReviewTitle = "Very good!!", ReviewDescription = "I hope the next game is as good as this one!", ReviewRating = "4", Status = "Processed" },
+                new Review { Review_ID = 15, Game_ID = 15, Member_ID = 11, ReviewTitle = "Not my favourite", ReviewDescription = "Please add the previous games on this site", ReviewRating = "1", Status = "Processed" },
+                new Review { Review_ID = 16, Game_ID = 16, Member_ID = 1, ReviewTitle = "This game is great!", ReviewDescription = "One of the best games I have ever played! would recommend!", ReviewRating = "5", Status = "Processed" },
+                new Review { Review_ID = 17, Game_ID = 17, Member_ID = 8, ReviewTitle = "Great game!", ReviewDescription = "They put a lot of effort into this game, this is a must buy", ReviewRating = "5", Status = "Processed" },
+                new Review { Review_ID = 18, Game_ID = 18, Member_ID = 5, ReviewTitle = "Not my favourite", ReviewDescription = "Please add the previous games on this site", ReviewRating = "1", Status = "Processed" },
+                new Review { Review_ID = 19, Game_ID = 19, Member_ID = 2, ReviewTitle = "Its alright", ReviewDescription = "I liked the previous games more", ReviewRating = "2", Status = "Processed" },
+                new Review { Review_ID = 20, Game_ID = 20, Member_ID = 6, ReviewTitle = "Very good!!", ReviewDescription = "I hope the next game is as good as this one!", ReviewRating = "4", Status = "Processed" }
+                );
 
+            modelBuilder.Entity<Wishlist>().HasData(
                 new Wishlist { Wishlist_ID = 1, Wishlist_Name = "Wishlist 1", Member_ID = 1 },
                 new Wishlist { Wishlist_ID = 2, Wishlist_Name = "Wishlist 2", Member_ID = 1 },
                 new Wishlist { Wishlist_ID = 3, Wishlist_Name = "Wishlist 3", Member_ID = 2 },
@@ -518,9 +546,6 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 new Wishlist_Games { Wishlist_ID = 16, GameId = 15 },
                 new Wishlist_Games { Wishlist_ID = 16, GameId = 16 }
            );
-
-            
-
         }
     }
 

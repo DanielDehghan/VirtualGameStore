@@ -60,16 +60,13 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Member" asp-action="Members">Manage Members</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Reviews" asp-action="ManageReviews">Manage Reviews</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Orders" asp-action="ManageOrders">Manage Orders</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Reports" asp-action="Reports">Reports</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
                         }
 
@@ -138,8 +135,6 @@
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Friends">Friends</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="Family">Family</a></li>
                                     <li><a class="dropdown-item" asp-controller="Orders" asp-action="Orders">Orders</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Support</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -208,7 +203,7 @@
 </body>
 <footer id="Footer" class=" footer text-white">
     <div class="container">
-        &copy; 2024 - Conestoga Virtual Game Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2024 - Conestoga Virtual Game Store
     </div>
 </footer>
 </html>

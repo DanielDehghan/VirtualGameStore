@@ -2,7 +2,33 @@
 @{
     ViewData["Title"] = "Home";
 }
-
+<div class="container">
+    <div class="left-sidebar">
+        <div class="genre-section genres">
+            <h3>Genres</h3>
+            <ul>
+                @foreach (var genre in ViewBag.Genres as List<SelectListItem>)
+                {
+                    <li>
+                        <a href="@Url.Action("Genre", "Games", new { Genere = genre.Value })">
+                            @genre.Text
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="new-games-slider">
+            @foreach (var game in ViewBag.NewGames as List<Game>)
+            {
+                <a href="@Url.Action("GameDetail", "Games", new { id = game.GameId })" class="game-container">
+                <div class="new-game-item">
+                    <img src="@game.CoverImageURL" alt="@game.Title" />
+                    <p class="game-title">@game.Title</p>
+                </div>
+                </a>
+            }
+        </div>
+    </div>
 <div class="slider">
     @foreach (var game in Model)
     {
@@ -15,6 +41,33 @@
             </div>
         </a>
     }
+</div>
+    <div class="right-sidebar">
+        <div class="events-section">
+            <h3>Upcoming Events</h3>
+            <div class="event-slider">
+                @foreach (var eventItem in ViewBag.Events as List<Event>)
+                {
+                    @if (User.IsInRole("Member"))
+                    {
+                        <a asp-action="Events" asp-controller="Events" style="text-decoration: none;">
+                        <div class="event-slide" style="cursor: pointer;" onclick="showEventModal(@eventItem.EventId)">
+                            <h4>@eventItem.Name</h4>
+                            <p>@eventItem.Date.ToString("MMM dd, yyyy")</p>
+                        </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="event-slide">
+                            <h4>@eventItem.Name</h4>
+                            <p>@eventItem.Date.ToString("MMM dd, yyyy")</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
@@ -29,6 +82,30 @@
                 autoplay: true,  // Enable automatic sliding
                 autoplaySpeed: 3000,  // Slide every 3 seconds
             });
+
+            $('.new-games-slider').slick({
+                vertical: true,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
+                arrows: false,
+            });
+
+
+            $('.event-slider').slick({
+                vertical: true,
+                slidesToShow: 10,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: false,
+            });
         });
+
+        function showEventModal(eventId) {
+            $('#eventModal-' + eventId).modal('show');
+        }
+
     </script>
 }

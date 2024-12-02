@@ -1,0 +1,32 @@
+﻿@model ConestogaVirtualGameStore.ViewModels.CreateGameReviewViewModel
+
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+
+<h2 class="text-white">Game Review</h2>
+<div class="container p-4" style="background-color: #780000; border-radius: 8px;">
+    <form asp-action="AddGameReview" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <input asp-for="Member_ID" type="hidden" />
+        <input type="hidden" asp-for="Game_ID" />
+        <div class="mb-3">
+            <label asp-for="ReviewTitle" class="form-label text-white">Review Title</label>
+            <input asp-for="ReviewTitle" class="form-control" />
+            <span asp-validation-for="ReviewTitle" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="SelectedRating" class="form-label text-white">Review Rating</label>
+            <div class="input-group">
+                <select asp-for="SelectedRating" class="form-control" asp-items="Model.Ratings">
+                    <option value="">Select Rating</option>
+                </select>
+            </div>
+            <span asp-validation-for="SelectedRating" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ReviewDescription" class="form-label text-white">Review Description</label>
+            <textarea asp-for="ReviewDescription" class="form-control"> </textarea>
+            <span asp-validation-for="ReviewDescription" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success btn-block mt-3">Add Game Review</button>
+    </form>
+</div>
