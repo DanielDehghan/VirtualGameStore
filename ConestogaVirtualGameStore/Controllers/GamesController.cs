@@ -233,19 +233,19 @@ namespace ConestogaVirtualGameStore.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Genere(string Genere)
+        public async Task<ActionResult> Genre(string Genere)
         {
             if (string.IsNullOrWhiteSpace(Genere))
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             var games = await _gameRepository.GetAllAsync();
             var matchingGames = games
-                .Where(g => g.Genere.Equals(Genere, StringComparison.OrdinalIgnoreCase))
+                .Where(g => g.Genere != null & g.Genere.Contains(Genere, StringComparison.OrdinalIgnoreCase))   
                 .ToList();
 
-            return View("GamesByGenre", matchingGames);
+            return View("Index", matchingGames);
         }
 
         private IEnumerable<Game> GetGameRecommendations(string title, string genre) 
