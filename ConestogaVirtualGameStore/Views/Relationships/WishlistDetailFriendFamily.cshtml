@@ -14,6 +14,7 @@
     <h2>@Model.Wishlist.Wishlist_Name</h2>
 </div>
 
+
 <div class="container mt-5" id="GameCard">
     <div class="row">
         @if (Model != null)
@@ -25,23 +26,14 @@
                             <img src="@game.CoverImageURL" class="card-img-top" alt="@game.Title" style="height: 400px; object-fit: cover;" />
                             <div class="card-body" style="background-color: #780000;">
                                 <h5 class="card-title">@game.Title</h5>
-                                <a asp-action="RemoveGameFromWishlist" asp-route-wishlistId="@Model.Wishlist.Wishlist_ID"
-                                   asp-route-gameId="@game.GameId" class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i> Remove from List
-                                </a>
                             </div>
                         </div>
                     </a>
                 </div>
             }
     </div>
-    <div>
-        <a href="@Url.Action("Index", "Games")" class="btn btn-success mt-3">
-            <i class="fas fa-plus"></i> Add Game to Wishlist
-        </a>
-    </div>
 
     <div>
-        <a href="@Url.Action("Wishlists", "Wishlists")" class="btn btn-primary mt-3">Back to Wishlists</a>
+        <a href="javascript:history.back();" class="btn btn-primary mt-3">Go Back</a>
     </div>
 </div>
