@@ -15,7 +15,7 @@
             @foreach (var memberRelationship in Model)
             {
                 <div class="col-md-3 mb-3" style="color:#212545">
-                    <a class="card-link" style="color:floralwhite; text-decoration: none;">
+                    <a asp-action="FamilyMember" asp-route-familyId="@memberRelationship.MemberAdded_ID"  class="card-link" style="color:floralwhite; text-decoration: none;">
                         <div class="card h-100 game-card">
                             <div class="card-body" style="background-color: #780000;">
                                 <h5 class="card-title">@memberRelationship.MemberAdded.FirstName @memberRelationship.MemberAdded.LastName</h5>
@@ -24,7 +24,7 @@
                                     <strong>Preferred Platform:</strong> @(!string.IsNullOrEmpty(memberRelationship.MemberAdded.PreferredPlatform) ? memberRelationship.MemberAdded.PreferredPlatform : "Not set yet")<br />
                                     <strong>Preferred Category:</strong> @(!string.IsNullOrEmpty(memberRelationship.MemberAdded.PreferredCategory) ? memberRelationship.MemberAdded.PreferredCategory : "Not set yet")
                                 </p>
-                                <a asp-action="DeleteFamily" asp-route-id="@memberRelationship.MemberRelationshipId" class="btn btn-sm btn-danger">
+                                <a asp-action="DeleteFamily" asp-route-id="@memberRelationship.MemberRelationshipId" class="btn btn-sm btn-danger mt-3">
                                     <i class="bi bi-person-x-fill"></i> Remove from Family
                                 </a>
                             </div>

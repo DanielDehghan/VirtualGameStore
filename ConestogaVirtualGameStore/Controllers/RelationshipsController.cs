@@ -5,6 +5,7 @@ using ConestogaVirtualGameStore.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace ConestogaVirtualGameStore.Controllers
 {
@@ -47,6 +48,64 @@ namespace ConestogaVirtualGameStore.Controllers
                 .ToListAsync();
 
             return View(family);
+        }
+
+        public async Task<IActionResult> Friend(int friendId)
+        {
+            var friend = _context.Members
+              .FirstOrDefault(f => f.Member_ID == friendId);
+
+            var wishlists = await _context.Wishlist
+                .Where(w => w.Member_ID == friendId)
+                .ToListAsync();
+
+            var model = new WishlistFriendFamilyViewModel
+            {
+                Member = friend,
+                Wishlists = wishlists
+            };
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> FamilyMember(int familyId)
+        {
+            var family = _context.Members
+              .FirstOrDefault(f => f.Member_ID == familyId);
+
+            var wishlists = await _context.Wishlist
+                .Where(w => w.Member_ID == familyId)
+                .ToListAsync();
+
+            var model = new WishlistFriendFamilyViewModel
+            {
+                Member = family,
+                Wishlists = wishlists
+            };
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> WishlistDetailFriendFamily(int id)
+        {
+            var wishlist = await _context.Wishlist
+                .Where(w => w.Wishlist_ID == id)
+                .Include(w => w.Wishlist_Games)
+                    .ThenInclude(wg => wg.Game)
+                .FirstOrDefaultAsync();
+
+            if (wishlist == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new WishlistGamesViewModel
+            {
+                Wishlist = wishlist,
+                GamesWishlist = wishlist.Wishlist_Games.Select(wg => wg.Game).ToList()
+            };
+            return View(viewModel);
         }
 
         public async Task<IActionResult> AddFriend()

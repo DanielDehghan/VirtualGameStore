@@ -99,6 +99,10 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 .HasForeignKey(cg => cg.Game_ID)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<CartGames>()
+                .Property(cg => cg.Total)
+                .HasPrecision(8, 2);
+
             modelBuilder.Entity<CreditCards>()
                 .HasOne(cc => cc.Member)
                 .WithMany(m => m.CreditCards)
@@ -110,6 +114,11 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 .WithMany(m => m.Orders)
                 .HasForeignKey(o => o.Member_ID)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Orders>()
+                .Property(o => o.TotalPrice)
+                .HasPrecision(8, 2);
+
             modelBuilder.Entity<Event>()
                 .HasMany(e => e.MemberEvents)
                 .WithOne(me => me.Event)
@@ -216,7 +225,7 @@ namespace ConestogaVirtualGameStore.AppDbContext
                     Password = "password789",
                     PreferredLanguage = "English",
                     PreferredPlatform = "Xbox",
-                    PreferredCategory = "Shooter",
+                    PreferredCategory = "Action",
                     ReceivePromotionalEmails = true,
                     Gender = "Non-binary",
                     DateOfBirth = new DateTime(1995, 11, 5),
@@ -450,6 +459,67 @@ namespace ConestogaVirtualGameStore.AppDbContext
                 }
 
             );
+
+            modelBuilder.Entity<Wishlist>().HasData(
+
+                new Wishlist { Wishlist_ID = 1, Wishlist_Name = "Wishlist 1", Member_ID = 1 },
+                new Wishlist { Wishlist_ID = 2, Wishlist_Name = "Wishlist 2", Member_ID = 1 },
+                new Wishlist { Wishlist_ID = 3, Wishlist_Name = "Wishlist 3", Member_ID = 2 },
+                new Wishlist { Wishlist_ID = 4, Wishlist_Name = "Wishlist 4", Member_ID = 3 },
+                new Wishlist { Wishlist_ID = 5, Wishlist_Name = "Wishlist 5", Member_ID = 3 },
+                new Wishlist { Wishlist_ID = 6, Wishlist_Name = "Wishlist 6", Member_ID = 4 },
+                new Wishlist { Wishlist_ID = 7, Wishlist_Name = "Wishlist 7", Member_ID = 5 },
+                new Wishlist { Wishlist_ID = 8, Wishlist_Name = "Wishlist 8", Member_ID = 6 },
+                new Wishlist { Wishlist_ID = 9, Wishlist_Name = "Wishlist 9", Member_ID = 7 },
+                new Wishlist { Wishlist_ID = 10, Wishlist_Name = "Wishlist 10", Member_ID = 8 },
+                new Wishlist { Wishlist_ID = 11, Wishlist_Name = "Wishlist 11", Member_ID = 9 },
+                new Wishlist { Wishlist_ID = 12, Wishlist_Name = "Wishlist 12", Member_ID = 10 },
+                new Wishlist { Wishlist_ID = 13, Wishlist_Name = "Wishlist 13", Member_ID = 11 },
+                new Wishlist { Wishlist_ID = 14, Wishlist_Name = "Wishlist 14", Member_ID = 12 },
+                new Wishlist { Wishlist_ID = 15, Wishlist_Name = "Wishlist 15", Member_ID = 13 },
+                new Wishlist { Wishlist_ID = 16, Wishlist_Name = "Wishlist 16", Member_ID = 13 }
+           );
+
+            modelBuilder.Entity<Wishlist_Games>().HasData(
+                new Wishlist_Games { Wishlist_ID = 1, GameId = 1 },
+                new Wishlist_Games { Wishlist_ID = 1, GameId = 2 },
+                new Wishlist_Games { Wishlist_ID = 1, GameId = 3 },
+                new Wishlist_Games { Wishlist_ID = 2, GameId = 4 },
+                new Wishlist_Games { Wishlist_ID = 2, GameId = 5 },
+                new Wishlist_Games { Wishlist_ID = 3, GameId = 6 },
+                new Wishlist_Games { Wishlist_ID = 3, GameId = 7 },
+                new Wishlist_Games { Wishlist_ID = 3, GameId = 8 },
+                new Wishlist_Games { Wishlist_ID = 4, GameId = 9 },
+                new Wishlist_Games { Wishlist_ID = 4, GameId = 10 },
+                new Wishlist_Games { Wishlist_ID = 5, GameId = 11 },
+                new Wishlist_Games { Wishlist_ID = 5, GameId = 12 },
+                new Wishlist_Games { Wishlist_ID = 5, GameId = 13 },
+                new Wishlist_Games { Wishlist_ID = 6, GameId = 14 },
+                new Wishlist_Games { Wishlist_ID = 6, GameId = 15 },
+                new Wishlist_Games { Wishlist_ID = 7, GameId = 16 },
+                new Wishlist_Games { Wishlist_ID = 7, GameId = 17 },
+                new Wishlist_Games { Wishlist_ID = 7, GameId = 18 },
+                new Wishlist_Games { Wishlist_ID = 8, GameId = 19 },
+                new Wishlist_Games { Wishlist_ID = 8, GameId = 20 },
+                new Wishlist_Games { Wishlist_ID = 9, GameId = 1 },
+                new Wishlist_Games { Wishlist_ID = 9, GameId = 2 },
+                new Wishlist_Games { Wishlist_ID = 10, GameId = 3 },
+                new Wishlist_Games { Wishlist_ID = 10, GameId = 4 },
+                new Wishlist_Games { Wishlist_ID = 11, GameId = 5 },
+                new Wishlist_Games { Wishlist_ID = 11, GameId = 6 },
+                new Wishlist_Games { Wishlist_ID = 12, GameId = 7 },
+                new Wishlist_Games { Wishlist_ID = 12, GameId = 8 },
+                new Wishlist_Games { Wishlist_ID = 13, GameId = 9 },
+                new Wishlist_Games { Wishlist_ID = 13, GameId = 10 },
+                new Wishlist_Games { Wishlist_ID = 14, GameId = 11 },
+                new Wishlist_Games { Wishlist_ID = 14, GameId = 12 },
+                new Wishlist_Games { Wishlist_ID = 15, GameId = 13 },
+                new Wishlist_Games { Wishlist_ID = 16, GameId = 14 },
+                new Wishlist_Games { Wishlist_ID = 16, GameId = 15 },
+                new Wishlist_Games { Wishlist_ID = 16, GameId = 16 }
+           );
+
+            
 
         }
     }
