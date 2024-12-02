@@ -4,6 +4,7 @@ using ConestogaVirtualGameStore.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    partial class VirtualGameStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20241202005009_UpdatedReviewDataStatus")]
+    partial class UpdatedReviewDataStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,8 +137,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
-                        .HasPrecision(8, 2)
-                        .HasColumnType("decimal(8,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Cart_ID", "Game_ID");
 
@@ -692,7 +694,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2755),
+                            Register_Date = new DateTime(2024, 12, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(1852),
                             StreetAddress = "123 Main St"
                         },
                         new
@@ -715,7 +717,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2838),
+                            Register_Date = new DateTime(2024, 12, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(1980),
                             StreetAddress = "456 Elm St"
                         },
                         new
@@ -733,12 +735,12 @@ namespace ConestogaVirtualGameStore.Migrations
                             Password = "password789",
                             Phone_Number = "321-654-9870",
                             Postal_Code = "V5K 1A1",
-                            PreferredCategory = "Action",
+                            PreferredCategory = "Shooter",
                             PreferredLanguage = "English",
                             PreferredPlatform = "Xbox",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2844),
+                            Register_Date = new DateTime(2024, 12, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(1985),
                             StreetAddress = "789 Maple Ave"
                         },
                         new
@@ -759,7 +761,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "AB",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2023, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2850),
+                            Register_Date = new DateTime(2023, 12, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(1988),
                             StreetAddress = "101 Cedar Blvd"
                         },
                         new
@@ -782,7 +784,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 16, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2858),
+                            Register_Date = new DateTime(2024, 11, 16, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2000),
                             StreetAddress = "303 Birch Lane"
                         },
                         new
@@ -803,7 +805,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 3, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2872),
+                            Register_Date = new DateTime(2024, 3, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2006),
                             StreetAddress = "567 Elm St"
                         },
                         new
@@ -825,7 +827,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Playstation",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 8, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2879),
+                            Register_Date = new DateTime(2024, 8, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2012),
                             StreetAddress = "234 Spruce Ave"
                         },
                         new
@@ -847,7 +849,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2022, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2883),
+                            Register_Date = new DateTime(2022, 12, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2016),
                             StreetAddress = "128 Cypress Ct"
                         },
                         new
@@ -868,7 +870,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 7, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2892),
+                            Register_Date = new DateTime(2024, 7, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2020),
                             StreetAddress = "104 Willow Dr"
                         },
                         new
@@ -891,7 +893,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 10, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2896),
+                            Register_Date = new DateTime(2024, 10, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2052),
                             StreetAddress = "789 Walnut St"
                         },
                         new
@@ -913,7 +915,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Switch",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 2, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2900),
+                            Register_Date = new DateTime(2024, 2, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2058),
                             StreetAddress = "562 Maple Grove"
                         },
                         new
@@ -934,7 +936,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 5, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2905),
+                            Register_Date = new DateTime(2024, 5, 1, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2062),
                             StreetAddress = "90 Forest Hill"
                         },
                         new
@@ -956,7 +958,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 6, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2909),
+                            Register_Date = new DateTime(2024, 11, 6, 19, 50, 9, 14, DateTimeKind.Local).AddTicks(2065),
                             StreetAddress = "456 King St"
                         });
                 });
@@ -1028,8 +1030,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasPrecision(8, 2)
-                        .HasColumnType("decimal(8,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Order_ID");
 
@@ -1333,104 +1334,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasIndex("Member_ID");
 
                     b.ToTable("Wishlist");
-
-                    b.HasData(
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            Member_ID = 1,
-                            Wishlist_Name = "Wishlist 1"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 2,
-                            Member_ID = 1,
-                            Wishlist_Name = "Wishlist 2"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            Member_ID = 2,
-                            Wishlist_Name = "Wishlist 3"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 4,
-                            Member_ID = 3,
-                            Wishlist_Name = "Wishlist 4"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            Member_ID = 3,
-                            Wishlist_Name = "Wishlist 5"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 6,
-                            Member_ID = 4,
-                            Wishlist_Name = "Wishlist 6"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            Member_ID = 5,
-                            Wishlist_Name = "Wishlist 7"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 8,
-                            Member_ID = 6,
-                            Wishlist_Name = "Wishlist 8"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 9,
-                            Member_ID = 7,
-                            Wishlist_Name = "Wishlist 9"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 10,
-                            Member_ID = 8,
-                            Wishlist_Name = "Wishlist 10"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 11,
-                            Member_ID = 9,
-                            Wishlist_Name = "Wishlist 11"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 12,
-                            Member_ID = 10,
-                            Wishlist_Name = "Wishlist 12"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 13,
-                            Member_ID = 11,
-                            Wishlist_Name = "Wishlist 13"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 14,
-                            Member_ID = 12,
-                            Wishlist_Name = "Wishlist 14"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 15,
-                            Member_ID = 13,
-                            Wishlist_Name = "Wishlist 15"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            Member_ID = 13,
-                            Wishlist_Name = "Wishlist 16"
-                        });
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Wishlist_Games", b =>
@@ -1446,188 +1349,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("Wishlist_Games");
-
-                    b.HasData(
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            GameId = 1
-                        },
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            GameId = 2
-                        },
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            GameId = 3
-                        },
-                        new
-                        {
-                            Wishlist_ID = 2,
-                            GameId = 4
-                        },
-                        new
-                        {
-                            Wishlist_ID = 2,
-                            GameId = 5
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            GameId = 6
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            GameId = 7
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            GameId = 8
-                        },
-                        new
-                        {
-                            Wishlist_ID = 4,
-                            GameId = 9
-                        },
-                        new
-                        {
-                            Wishlist_ID = 4,
-                            GameId = 10
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            GameId = 11
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            GameId = 12
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            GameId = 13
-                        },
-                        new
-                        {
-                            Wishlist_ID = 6,
-                            GameId = 14
-                        },
-                        new
-                        {
-                            Wishlist_ID = 6,
-                            GameId = 15
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            GameId = 16
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            GameId = 17
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            GameId = 18
-                        },
-                        new
-                        {
-                            Wishlist_ID = 8,
-                            GameId = 19
-                        },
-                        new
-                        {
-                            Wishlist_ID = 8,
-                            GameId = 20
-                        },
-                        new
-                        {
-                            Wishlist_ID = 9,
-                            GameId = 1
-                        },
-                        new
-                        {
-                            Wishlist_ID = 9,
-                            GameId = 2
-                        },
-                        new
-                        {
-                            Wishlist_ID = 10,
-                            GameId = 3
-                        },
-                        new
-                        {
-                            Wishlist_ID = 10,
-                            GameId = 4
-                        },
-                        new
-                        {
-                            Wishlist_ID = 11,
-                            GameId = 5
-                        },
-                        new
-                        {
-                            Wishlist_ID = 11,
-                            GameId = 6
-                        },
-                        new
-                        {
-                            Wishlist_ID = 12,
-                            GameId = 7
-                        },
-                        new
-                        {
-                            Wishlist_ID = 12,
-                            GameId = 8
-                        },
-                        new
-                        {
-                            Wishlist_ID = 13,
-                            GameId = 9
-                        },
-                        new
-                        {
-                            Wishlist_ID = 13,
-                            GameId = 10
-                        },
-                        new
-                        {
-                            Wishlist_ID = 14,
-                            GameId = 11
-                        },
-                        new
-                        {
-                            Wishlist_ID = 14,
-                            GameId = 12
-                        },
-                        new
-                        {
-                            Wishlist_ID = 15,
-                            GameId = 13
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            GameId = 14
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            GameId = 15
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            GameId = 16
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    [Migration("20241129194645_Initial")]
-    partial class Initial
+    [Migration("20241202004528_UpdatedReviewData")]
+    partial class UpdatedReviewData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -290,6 +290,9 @@ namespace ConestogaVirtualGameStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GameId"));
 
+                    b.Property<decimal>("AverageRating")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("CoverImageURL")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -336,6 +339,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 1,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/NFf86jgU4AeVYgJBEoEKBpxW.jpg",
                             Description = "An action RPG set in a historical setting, featuring stealth and combat elements.",
                             Genere = "Action RPG",
@@ -347,6 +351,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 2,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202308/1722/15f4ab1e0fe6a37609b164362a653c0e5bcee98a861d0f10.png",
                             Description = "The latest installment in the Call of Duty series, offering intense first-person shooter action.",
                             Genere = "First-Person Shooter",
@@ -358,6 +363,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 3,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202008/0416/6Bo40lnWU0BhgrOUm7Cb6by3.png",
                             Description = "A futuristic open-world RPG set in the dystopian Night City, filled with cybernetic enhancements and complex narratives.",
                             Genere = "Action RPG",
@@ -369,6 +375,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 4,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/4xJ8XB3bi888QTLZYdl7Oi0s.png",
                             Description = "An epic sequel to the critically acclaimed God of War, featuring Norse mythology and Kratos' journey.",
                             Genere = "Action-Adventure",
@@ -380,6 +387,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 5,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202207/2509/85p2Dwh5iDhUzRKe40QeNYh3.png",
                             Description = "A modern remake of the classic survival horror game, offering updated graphics and gameplay mechanics.",
                             Genere = "Survival Horror",
@@ -391,6 +399,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 6,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202312/0117/315718bce7eed62e3cf3fb02d61b81ff1782d6b6cf850fa4.png",
                             Description = "A narrative-driven action-adventure game that continues the story of Ellie and Joel in a post-apocalyptic world.",
                             Genere = "Action-Adventure",
@@ -402,6 +411,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 7,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/phvVT0qZfcRms5qDAk0SI3CM.png",
                             Description = "In a dark fantasy world created by Hidetaka Miyazaki (Dark Souls) and George R. R. Martin (A Song of Ice and Fire), the player is a Tarnished who is called back to the Lands Between to restore the Elden Ring and become the Elden Lord.",
                             Genere = "Action RPG",
@@ -413,6 +423,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 8,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202205/2800/W5uSEsW7yefCNTHatS03v5q7.png",
                             Description = "Task Force 141 faces its greatest threat yet - a newly aligned menace with deep, yet unknown, connections.",
                             Genere = "First-Person Shooter",
@@ -424,6 +435,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 9,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202009/2419/BWMVfyxONkIAlAJVQd96qPuN.png",
                             Description = "In the post-apocalyptic Boston, Massachusetts area, you play as the Sole Survivor of Vault 111, recently revived from centuries of forced cryostasis, determined to find your kidnapped son.",
                             Genere = "Action RPG",
@@ -435,6 +447,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 10,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/cdn/UP0002/CUSA08829_00/xmKUnAOenEAKspB3FlOg80aQZfEoCYcE.png",
                             Description = "Captain Price and the SAS partner with the CIA and the Urzikstani Liberation Force to retrieve stolen chemical weapons. The fight takes you from London to the Middle East and beyond, as this joint task force battles to stop a global war.",
                             Genere = "First-Person Shooter",
@@ -446,6 +459,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 11,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/1c7b75d8ed9271516546560d219ad0b22ee0a263b4537bd8.png",
                             Description = "Spider-Men, Peter Parker and Miles Morales, return for an exciting new adventure in the critically acclaimed Marvel's Spider-Man franchise.",
                             Genere = "Action-Adventure",
@@ -457,6 +471,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 12,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202405/2921/2819b5df32c19b4b9e972dc3281b474937bb2570312b38a2.png",
                             Description = "As the Gulf War seizes the world's attention, a covert and enigmatic group has penetrated the upper echelons of the CIA, labeling those who oppose them as betrayers. Black Ops veteran Frank Woods and his squad, once celebrated as heroes by their agency and nation, now find themselves banished and pursued by the very military entity that forged them. They are now outcasts in their own land, hunted by the machinery of war that they once served.",
                             Genere = "First-Person Shooter",
@@ -468,6 +483,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 13,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202401/2910/d48262b72a5a2daa3ca3aed6c8f42c44f3fdaf2902265a13.png",
                             Description = "Until Dawn is a branching narrative survival horror game in which any choice of action by the player may cause other consequences later in the story. It was rebuilt from the ground up with stunning visuals in Unreal Engine 5.",
                             Genere = "Survival Horror",
@@ -479,6 +495,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 14,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202210/2000/IgwsFz9BiBrFvyV7pIWpoVgd.png",
                             Description = "Having received a letter from his deceased wife, James heads to where they shared so many memories, in the hope of seeing her one more time: Silent Hill. There, by the lake, he finds a woman eerily similar to her.",
                             Genere = "Survival Horror",
@@ -490,6 +507,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 15,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/img/rnd/202010/2217/p3pYq0QxntZQREXRVdAzmn1w.png",
                             Description = "After wiping out the gods of Mount Olympus, Kratos moves on to the frigid lands of Scandinavia, where he and his son must embark on an odyssey across a dangerous world of gods and monsters.",
                             Genere = "Action-Adventure",
@@ -501,6 +519,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 16,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202305/2420/83ef93949d474052cc87b86617a5498505d4b50390280394.jpg",
                             Description = "13 years after bestselling writer Alan Wake went missing, a string of ritualistic murders occur in the town of Bright Falls, Washington. Saga Anderson, an FBI agent, is sent to Bright Falls to investigate the murders.",
                             Genere = "Survival Horror",
@@ -512,6 +531,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 17,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202405/3123/1abfc0f37be11993bd5e67fcb1a9e2c0d656142ace2f232e.png",
                             Description = "After millions have been slaughtered by the actions of the High Heavens and Burning Hells alike. In the power vacuum, a legendary name resurfaces - Lilith, daughter of Mephisto, the whispered progenitor of humanity.",
                             Genere = "Action RPG",
@@ -523,6 +543,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 18,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202209/2121/UlfMBx2yUHge8Vlz7eszqw13.png",
                             Description = "A team of soldiers and militarists are recruited into an elite counter terrorism unit. Their objective is to fight terrorism across the globe. A threat has emerged that targets the Western world and its interests around the world.",
                             Genere = "First-Person Shooter",
@@ -534,6 +555,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 19,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/img/cfn/113078vQ_SpN-Wt1Ejgw5dPLXKnMvMfvZuekrerzhAOXaNrwZuCL6R6YEP4lUSGhMDthl6iyr4LbA_w565pBSa1xbUcHXtH8.png",
                             Description = "You are Jesse Faden, a young woman with a troubled past. You become the new Director of the Bureau of Control - Our frontline in researching and fighting against supernatural enemies like the Hiss threatening our very existence.",
                             Genere = "Action-Adventure",
@@ -545,6 +567,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         new
                         {
                             GameId = 20,
+                            AverageRating = 0m,
                             CoverImageURL = "https://image.api.playstation.com/vulcan/ap/rnd/202101/0812/FkzwjnJknkrFlozkTdeQBMub.png",
                             Description = "Ethan Winters' world suddenly comes crashing down when Chris Redfield's appearance sets off a chain of events that ultimately leads him to a mysterious village.",
                             Genere = "Survival Horror",
@@ -671,7 +694,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(2962),
+                            Register_Date = new DateTime(2024, 12, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(7969),
                             StreetAddress = "123 Main St"
                         },
                         new
@@ -694,7 +717,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3049),
+                            Register_Date = new DateTime(2024, 12, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8041),
                             StreetAddress = "456 Elm St"
                         },
                         new
@@ -717,7 +740,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3059),
+                            Register_Date = new DateTime(2024, 12, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8047),
                             StreetAddress = "789 Maple Ave"
                         },
                         new
@@ -738,7 +761,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "AB",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2023, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3065),
+                            Register_Date = new DateTime(2023, 12, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8064),
                             StreetAddress = "101 Cedar Blvd"
                         },
                         new
@@ -761,7 +784,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 14, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3080),
+                            Register_Date = new DateTime(2024, 11, 16, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8077),
                             StreetAddress = "303 Birch Lane"
                         },
                         new
@@ -782,7 +805,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 2, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3089),
+                            Register_Date = new DateTime(2024, 3, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8084),
                             StreetAddress = "567 Elm St"
                         },
                         new
@@ -804,7 +827,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Playstation",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 7, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3098),
+                            Register_Date = new DateTime(2024, 8, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8090),
                             StreetAddress = "234 Spruce Ave"
                         },
                         new
@@ -826,7 +849,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2022, 11, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3105),
+                            Register_Date = new DateTime(2022, 12, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8095),
                             StreetAddress = "128 Cypress Ct"
                         },
                         new
@@ -847,7 +870,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 6, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3116),
+                            Register_Date = new DateTime(2024, 7, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8099),
                             StreetAddress = "104 Willow Dr"
                         },
                         new
@@ -870,7 +893,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 9, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3164),
+                            Register_Date = new DateTime(2024, 10, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8104),
                             StreetAddress = "789 Walnut St"
                         },
                         new
@@ -892,7 +915,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Switch",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 1, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3171),
+                            Register_Date = new DateTime(2024, 2, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8109),
                             StreetAddress = "562 Maple Grove"
                         },
                         new
@@ -913,7 +936,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 4, 29, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3178),
+                            Register_Date = new DateTime(2024, 5, 1, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8116),
                             StreetAddress = "90 Forest Hill"
                         },
                         new
@@ -935,7 +958,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 4, 14, 46, 44, 340, DateTimeKind.Local).AddTicks(3184),
+                            Register_Date = new DateTime(2024, 11, 6, 19, 45, 27, 436, DateTimeKind.Local).AddTicks(8120),
                             StreetAddress = "456 King St"
                         });
                 });
@@ -1042,6 +1065,231 @@ namespace ConestogaVirtualGameStore.Migrations
                         {
                             Relationship_ID = 2,
                             Relationship_Type = "Family"
+                        });
+                });
+
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Review", b =>
+                {
+                    b.Property<int>("Review_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Review_ID"));
+
+                    b.Property<int?>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Game_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Member_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReviewDescription")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("ReviewRating")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReviewTitle")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Review_ID");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("Member_ID");
+
+                    b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Review_ID = 1,
+                            Game_ID = 1,
+                            Member_ID = 1,
+                            ReviewDescription = "One of the best games I have ever played! would recommend!",
+                            ReviewRating = "5",
+                            ReviewTitle = "This game is great!"
+                        },
+                        new
+                        {
+                            Review_ID = 2,
+                            Game_ID = 2,
+                            Member_ID = 2,
+                            ReviewDescription = "I liked the previous games more",
+                            ReviewRating = "2",
+                            ReviewTitle = "Its alright"
+                        },
+                        new
+                        {
+                            Review_ID = 3,
+                            Game_ID = 3,
+                            Member_ID = 2,
+                            ReviewDescription = "I hope the next game is as good as this one!",
+                            ReviewRating = "4",
+                            ReviewTitle = "Very good!!"
+                        },
+                        new
+                        {
+                            Review_ID = 4,
+                            Game_ID = 4,
+                            Member_ID = 3,
+                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
+                            ReviewRating = "5",
+                            ReviewTitle = "Great game!"
+                        },
+                        new
+                        {
+                            Review_ID = 5,
+                            Game_ID = 5,
+                            Member_ID = 4,
+                            ReviewDescription = "Please add the previous games on this site",
+                            ReviewRating = "1",
+                            ReviewTitle = "Not my favourite"
+                        },
+                        new
+                        {
+                            Review_ID = 6,
+                            Game_ID = 6,
+                            Member_ID = 2,
+                            ReviewDescription = "I liked the previous games more",
+                            ReviewRating = "2",
+                            ReviewTitle = "Its alright"
+                        },
+                        new
+                        {
+                            Review_ID = 7,
+                            Game_ID = 7,
+                            Member_ID = 5,
+                            ReviewDescription = "Please add the previous games on this site",
+                            ReviewRating = "1",
+                            ReviewTitle = "Not my favourite"
+                        },
+                        new
+                        {
+                            Review_ID = 8,
+                            Game_ID = 8,
+                            Member_ID = 6,
+                            ReviewDescription = "I hope the next game is as good as this one!",
+                            ReviewRating = "4",
+                            ReviewTitle = "Very good!!"
+                        },
+                        new
+                        {
+                            Review_ID = 9,
+                            Game_ID = 9,
+                            Member_ID = 7,
+                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
+                            ReviewRating = "5",
+                            ReviewTitle = "Great game!"
+                        },
+                        new
+                        {
+                            Review_ID = 10,
+                            Game_ID = 10,
+                            Member_ID = 1,
+                            ReviewDescription = "One of the best games I have ever played! would recommend!",
+                            ReviewRating = "5",
+                            ReviewTitle = "This game is great!"
+                        },
+                        new
+                        {
+                            Review_ID = 11,
+                            Game_ID = 11,
+                            Member_ID = 8,
+                            ReviewDescription = "Please add the previous games on this site",
+                            ReviewRating = "1",
+                            ReviewTitle = "Not my favourite"
+                        },
+                        new
+                        {
+                            Review_ID = 12,
+                            Game_ID = 12,
+                            Member_ID = 8,
+                            ReviewDescription = "I hope the next game is as good as this one!",
+                            ReviewRating = "4",
+                            ReviewTitle = "Very good!!"
+                        },
+                        new
+                        {
+                            Review_ID = 13,
+                            Game_ID = 13,
+                            Member_ID = 9,
+                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
+                            ReviewRating = "5",
+                            ReviewTitle = "Great game!"
+                        },
+                        new
+                        {
+                            Review_ID = 14,
+                            Game_ID = 14,
+                            Member_ID = 10,
+                            ReviewDescription = "I hope the next game is as good as this one!",
+                            ReviewRating = "4",
+                            ReviewTitle = "Very good!!"
+                        },
+                        new
+                        {
+                            Review_ID = 15,
+                            Game_ID = 15,
+                            Member_ID = 11,
+                            ReviewDescription = "Please add the previous games on this site",
+                            ReviewRating = "1",
+                            ReviewTitle = "Not my favourite"
+                        },
+                        new
+                        {
+                            Review_ID = 16,
+                            Game_ID = 16,
+                            Member_ID = 1,
+                            ReviewDescription = "One of the best games I have ever played! would recommend!",
+                            ReviewRating = "5",
+                            ReviewTitle = "This game is great!"
+                        },
+                        new
+                        {
+                            Review_ID = 17,
+                            Game_ID = 17,
+                            Member_ID = 8,
+                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
+                            ReviewRating = "5",
+                            ReviewTitle = "Great game!"
+                        },
+                        new
+                        {
+                            Review_ID = 18,
+                            Game_ID = 18,
+                            Member_ID = 5,
+                            ReviewDescription = "Please add the previous games on this site",
+                            ReviewRating = "1",
+                            ReviewTitle = "Not my favourite"
+                        },
+                        new
+                        {
+                            Review_ID = 19,
+                            Game_ID = 19,
+                            Member_ID = 2,
+                            ReviewDescription = "I liked the previous games more",
+                            ReviewRating = "2",
+                            ReviewTitle = "Its alright"
+                        },
+                        new
+                        {
+                            Review_ID = 20,
+                            Game_ID = 20,
+                            Member_ID = 6,
+                            ReviewDescription = "I hope the next game is as good as this one!",
+                            ReviewRating = "4",
+                            ReviewTitle = "Very good!!"
                         });
                 });
 
@@ -1321,6 +1569,21 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.Navigation("Member");
                 });
 
+            modelBuilder.Entity("ConestogaVirtualGameStore.Models.Review", b =>
+                {
+                    b.HasOne("ConestogaVirtualGameStore.Models.Game", null)
+                        .WithMany("Game_Reviews")
+                        .HasForeignKey("GameId");
+
+                    b.HasOne("ConestogaVirtualGameStore.Models.Member", "Member")
+                        .WithMany("Reviews")
+                        .HasForeignKey("Member_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Wishlist", b =>
                 {
                     b.HasOne("ConestogaVirtualGameStore.Models.Member", "Member")
@@ -1416,6 +1679,8 @@ namespace ConestogaVirtualGameStore.Migrations
                 {
                     b.Navigation("Cart_Games");
 
+                    b.Navigation("Game_Reviews");
+
                     b.Navigation("Wishlist_Games");
                 });
 
@@ -1430,6 +1695,8 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.Navigation("MemberRelationshipRelated");
 
                     b.Navigation("Orders");
+
+                    b.Navigation("Reviews");
 
                     b.Navigation("Wishlists");
                 });

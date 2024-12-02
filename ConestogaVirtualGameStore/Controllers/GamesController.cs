@@ -14,19 +14,22 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using MimeKit;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace ConestogaVirtualGameStore.Controllers
 {
     public class GamesController : Controller
     {
         private readonly IRepository<Game> _gameRepository;
+        private readonly IRepository<Review> _reviewRepository;
         private readonly VirtualGameStoreContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public GamesController(VirtualGameStoreContext cvgs, IRepository<Game> gameRepository, UserManager<ApplicationUser> userManager)
+        public GamesController(VirtualGameStoreContext cvgs, IRepository<Game> gameRepository, IRepository<Review> reviewRepository, UserManager<ApplicationUser> userManager)
         {
             _context = cvgs;
             _gameRepository = gameRepository;
+            _reviewRepository = reviewRepository;
             _userManager = userManager;
         }
 
@@ -69,6 +72,7 @@ namespace ConestogaVirtualGameStore.Controllers
                     Description = model.Description,
                     Platform = model.SelectedPlatform,
                     Price = model.Price,
+                    AverageRating = 0,
                     CoverImageURL = model.CoverImageURL
                 };
 
@@ -169,12 +173,17 @@ namespace ConestogaVirtualGameStore.Controllers
 
             // Get currently selected game recommendations based on the games genre
             var gameRecommendations = GetGameRecommendations(game.Title, game.Genere);
-
+            
             int currentMemberId = await GetCurrentMemberId();
 
             var findCurrentGameIfBought = await _context.Orders
                 .Where(o => o.Member_ID == currentMemberId && o.Status == "Processed" && o.Games.Contains(game))
                 .FirstOrDefaultAsync();
+
+            var gameReviews = await _context.Reviews
+                .Where(r => r.Game_ID == id && r.Status == "Processed")
+                .Include(r => r.Member)
+                .ToListAsync();
 
             bool isBought;
 
@@ -185,13 +194,44 @@ namespace ConestogaVirtualGameStore.Controllers
             {
                 isBought = true;
             }
-            
+
+            float averageRating = 0;
+
+            foreach (var gameReview in gameReviews)
+            {
+                averageRating += float.Parse(gameReview.ReviewRating);
+            }
+
+            if (averageRating != 0) 
+            {
+                averageRating = averageRating / gameReviews.Count();
+            }
+
+            var userHasReviewedCurrentGame = await _context.Reviews
+                .Where(r => r.Member_ID == currentMemberId && r.Game_ID == id)
+                .FirstOrDefaultAsync();
+
+            bool hasReviewedGame;
+
+            if (userHasReviewedCurrentGame == null)
+            {
+                hasReviewedGame = false;
+            }
+            else 
+            {
+                hasReviewedGame = true;
+            }
+
             var gameDetails = new GameDetailViewModel
             {
                 Title = game.Title,
                 Game = game,
                 GameRecommendations = gameRecommendations,
-                IsBought = isBought
+                GameReviews = gameReviews,
+                IsBought = isBought,
+                Member_ID = currentMemberId,
+                AverageRating = averageRating,
+                HasBeenReviewed = hasReviewedGame,
             };
 
             return View(gameDetails);
@@ -211,6 +251,66 @@ namespace ConestogaVirtualGameStore.Controllers
             byte[] data = Encoding.UTF8.GetBytes(fileData);
 
             return File(data, mimeType, fileName);
+        }
+
+        [HttpGet]
+        public IActionResult AddGameReview(int gameId)
+        {
+            var model = new CreateGameReviewViewModel
+            {
+                Ratings = GetRatings(),
+                Game_ID = gameId
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGameReview(CreateGameReviewViewModel model)
+        {
+            var game = await _gameRepository.GetByIdAsync(model.Game_ID);
+
+            int currentMemberId = await GetCurrentMemberId();
+
+            ModelState.Remove("Ratings");
+
+            var checkIfReviewIsCreated = _context.Reviews
+                .Where(r => r.Member_ID == currentMemberId && r.Game_ID == model.Game_ID);
+
+            if (ModelState.IsValid)
+            {
+                var gameReview = new Review
+                {
+                    Game_ID = model.Game_ID,
+                    Member_ID = currentMemberId,
+                    ReviewTitle = model.ReviewTitle,
+                    ReviewDescription = model.ReviewDescription,
+                    ReviewRating = model.SelectedRating,
+                    Status = "Processing"
+                };
+                    
+                await _reviewRepository.AddAsync(gameReview);
+
+                return RedirectToAction($"Index");
+            }
+
+            model.Ratings = GetRatings();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            int currentMemberId = await GetCurrentMemberId();
+
+            var review = await _context.Reviews
+                .Where(r => r.Review_ID == id)
+                .Select(r => r.Review_ID)
+                .FirstOrDefaultAsync();
+
+            await _reviewRepository.DeleteAsync(review);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -296,6 +396,18 @@ namespace ConestogaVirtualGameStore.Controllers
                 new SelectListItem { Value = "PlayStation", Text = "PlayStation" },
                 new SelectListItem { Value = "Xbox", Text = "Xbox" },
                 new SelectListItem { Value = "Switch", Text = "Switch" }
+            };
+        }
+
+        private IEnumerable<SelectListItem> GetRatings()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "1" },
+                new SelectListItem { Value = "2", Text = "2" },
+                new SelectListItem { Value = "3", Text = "3" },
+                new SelectListItem { Value = "4", Text = "4" },
+                new SelectListItem { Value = "5", Text = "5" }
             };
         }
     }

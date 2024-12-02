@@ -4,6 +4,7 @@ using ConestogaVirtualGameStore.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConestogaVirtualGameStore.Migrations
 {
     [DbContext(typeof(VirtualGameStoreContext))]
-    partial class VirtualGameStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20241201220930_updatedReview")]
+    partial class updatedReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,8 +137,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
-                        .HasPrecision(8, 2)
-                        .HasColumnType("decimal(8,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Cart_ID", "Game_ID");
 
@@ -692,7 +694,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2755),
+                            Register_Date = new DateTime(2024, 12, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4117),
                             StreetAddress = "123 Main St"
                         },
                         new
@@ -715,7 +717,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2838),
+                            Register_Date = new DateTime(2024, 12, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4191),
                             StreetAddress = "456 Elm St"
                         },
                         new
@@ -733,12 +735,12 @@ namespace ConestogaVirtualGameStore.Migrations
                             Password = "password789",
                             Phone_Number = "321-654-9870",
                             Postal_Code = "V5K 1A1",
-                            PreferredCategory = "Action",
+                            PreferredCategory = "Shooter",
                             PreferredLanguage = "English",
                             PreferredPlatform = "Xbox",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2844),
+                            Register_Date = new DateTime(2024, 12, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4197),
                             StreetAddress = "789 Maple Ave"
                         },
                         new
@@ -759,7 +761,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "AB",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2023, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2850),
+                            Register_Date = new DateTime(2023, 12, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4201),
                             StreetAddress = "101 Cedar Blvd"
                         },
                         new
@@ -782,7 +784,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 16, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2858),
+                            Register_Date = new DateTime(2024, 11, 16, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4216),
                             StreetAddress = "303 Birch Lane"
                         },
                         new
@@ -803,7 +805,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 3, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2872),
+                            Register_Date = new DateTime(2024, 3, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4230),
                             StreetAddress = "567 Elm St"
                         },
                         new
@@ -825,7 +827,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Playstation",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 8, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2879),
+                            Register_Date = new DateTime(2024, 8, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4236),
                             StreetAddress = "234 Spruce Ave"
                         },
                         new
@@ -847,7 +849,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2022, 12, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2883),
+                            Register_Date = new DateTime(2022, 12, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4242),
                             StreetAddress = "128 Cypress Ct"
                         },
                         new
@@ -868,7 +870,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Xbox",
                             Province = "ON",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 7, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2892),
+                            Register_Date = new DateTime(2024, 7, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4247),
                             StreetAddress = "104 Willow Dr"
                         },
                         new
@@ -891,7 +893,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "QC",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 10, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2896),
+                            Register_Date = new DateTime(2024, 10, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4251),
                             StreetAddress = "789 Walnut St"
                         },
                         new
@@ -913,7 +915,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "Switch",
                             Province = "AB",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 2, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2900),
+                            Register_Date = new DateTime(2024, 2, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4260),
                             StreetAddress = "562 Maple Grove"
                         },
                         new
@@ -934,7 +936,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PC",
                             Province = "ON",
                             ReceivePromotionalEmails = false,
-                            Register_Date = new DateTime(2024, 5, 1, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2905),
+                            Register_Date = new DateTime(2024, 5, 1, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4265),
                             StreetAddress = "90 Forest Hill"
                         },
                         new
@@ -956,7 +958,7 @@ namespace ConestogaVirtualGameStore.Migrations
                             PreferredPlatform = "PlayStation",
                             Province = "BC",
                             ReceivePromotionalEmails = true,
-                            Register_Date = new DateTime(2024, 11, 6, 20, 25, 19, 639, DateTimeKind.Local).AddTicks(2909),
+                            Register_Date = new DateTime(2024, 11, 6, 17, 9, 30, 240, DateTimeKind.Local).AddTicks(4269),
                             StreetAddress = "456 King St"
                         });
                 });
@@ -1028,8 +1030,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
-                        .HasPrecision(8, 2)
-                        .HasColumnType("decimal(8,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Order_ID");
 
@@ -1099,6 +1100,7 @@ namespace ConestogaVirtualGameStore.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Review_ID");
@@ -1108,208 +1110,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasIndex("Member_ID");
 
                     b.ToTable("Reviews");
-
-                    b.HasData(
-                        new
-                        {
-                            Review_ID = 1,
-                            Game_ID = 1,
-                            Member_ID = 1,
-                            ReviewDescription = "One of the best games I have ever played! would recommend!",
-                            ReviewRating = "5",
-                            ReviewTitle = "This game is great!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 2,
-                            Game_ID = 2,
-                            Member_ID = 2,
-                            ReviewDescription = "I liked the previous games more",
-                            ReviewRating = "2",
-                            ReviewTitle = "Its alright",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 3,
-                            Game_ID = 3,
-                            Member_ID = 2,
-                            ReviewDescription = "I hope the next game is as good as this one!",
-                            ReviewRating = "4",
-                            ReviewTitle = "Very good!!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 4,
-                            Game_ID = 4,
-                            Member_ID = 3,
-                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
-                            ReviewRating = "5",
-                            ReviewTitle = "Great game!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 5,
-                            Game_ID = 5,
-                            Member_ID = 4,
-                            ReviewDescription = "Please add the previous games on this site",
-                            ReviewRating = "1",
-                            ReviewTitle = "Not my favourite",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 6,
-                            Game_ID = 6,
-                            Member_ID = 2,
-                            ReviewDescription = "I liked the previous games more",
-                            ReviewRating = "2",
-                            ReviewTitle = "Its alright",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 7,
-                            Game_ID = 7,
-                            Member_ID = 5,
-                            ReviewDescription = "Please add the previous games on this site",
-                            ReviewRating = "1",
-                            ReviewTitle = "Not my favourite",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 8,
-                            Game_ID = 8,
-                            Member_ID = 6,
-                            ReviewDescription = "I hope the next game is as good as this one!",
-                            ReviewRating = "4",
-                            ReviewTitle = "Very good!!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 9,
-                            Game_ID = 9,
-                            Member_ID = 7,
-                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
-                            ReviewRating = "5",
-                            ReviewTitle = "Great game!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 10,
-                            Game_ID = 10,
-                            Member_ID = 1,
-                            ReviewDescription = "One of the best games I have ever played! would recommend!",
-                            ReviewRating = "5",
-                            ReviewTitle = "This game is great!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 11,
-                            Game_ID = 11,
-                            Member_ID = 8,
-                            ReviewDescription = "Please add the previous games on this site",
-                            ReviewRating = "1",
-                            ReviewTitle = "Not my favourite",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 12,
-                            Game_ID = 12,
-                            Member_ID = 8,
-                            ReviewDescription = "I hope the next game is as good as this one!",
-                            ReviewRating = "4",
-                            ReviewTitle = "Very good!!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 13,
-                            Game_ID = 13,
-                            Member_ID = 9,
-                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
-                            ReviewRating = "5",
-                            ReviewTitle = "Great game!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 14,
-                            Game_ID = 14,
-                            Member_ID = 10,
-                            ReviewDescription = "I hope the next game is as good as this one!",
-                            ReviewRating = "4",
-                            ReviewTitle = "Very good!!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 15,
-                            Game_ID = 15,
-                            Member_ID = 11,
-                            ReviewDescription = "Please add the previous games on this site",
-                            ReviewRating = "1",
-                            ReviewTitle = "Not my favourite",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 16,
-                            Game_ID = 16,
-                            Member_ID = 1,
-                            ReviewDescription = "One of the best games I have ever played! would recommend!",
-                            ReviewRating = "5",
-                            ReviewTitle = "This game is great!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 17,
-                            Game_ID = 17,
-                            Member_ID = 8,
-                            ReviewDescription = "They put a lot of effort into this game, this is a must buy",
-                            ReviewRating = "5",
-                            ReviewTitle = "Great game!",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 18,
-                            Game_ID = 18,
-                            Member_ID = 5,
-                            ReviewDescription = "Please add the previous games on this site",
-                            ReviewRating = "1",
-                            ReviewTitle = "Not my favourite",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 19,
-                            Game_ID = 19,
-                            Member_ID = 2,
-                            ReviewDescription = "I liked the previous games more",
-                            ReviewRating = "2",
-                            ReviewTitle = "Its alright",
-                            Status = "Processed"
-                        },
-                        new
-                        {
-                            Review_ID = 20,
-                            Game_ID = 20,
-                            Member_ID = 6,
-                            ReviewDescription = "I hope the next game is as good as this one!",
-                            ReviewRating = "4",
-                            ReviewTitle = "Very good!!",
-                            Status = "Processed"
-                        });
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Wishlist", b =>
@@ -1333,104 +1133,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasIndex("Member_ID");
 
                     b.ToTable("Wishlist");
-
-                    b.HasData(
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            Member_ID = 1,
-                            Wishlist_Name = "Wishlist 1"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 2,
-                            Member_ID = 1,
-                            Wishlist_Name = "Wishlist 2"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            Member_ID = 2,
-                            Wishlist_Name = "Wishlist 3"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 4,
-                            Member_ID = 3,
-                            Wishlist_Name = "Wishlist 4"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            Member_ID = 3,
-                            Wishlist_Name = "Wishlist 5"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 6,
-                            Member_ID = 4,
-                            Wishlist_Name = "Wishlist 6"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            Member_ID = 5,
-                            Wishlist_Name = "Wishlist 7"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 8,
-                            Member_ID = 6,
-                            Wishlist_Name = "Wishlist 8"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 9,
-                            Member_ID = 7,
-                            Wishlist_Name = "Wishlist 9"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 10,
-                            Member_ID = 8,
-                            Wishlist_Name = "Wishlist 10"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 11,
-                            Member_ID = 9,
-                            Wishlist_Name = "Wishlist 11"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 12,
-                            Member_ID = 10,
-                            Wishlist_Name = "Wishlist 12"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 13,
-                            Member_ID = 11,
-                            Wishlist_Name = "Wishlist 13"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 14,
-                            Member_ID = 12,
-                            Wishlist_Name = "Wishlist 14"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 15,
-                            Member_ID = 13,
-                            Wishlist_Name = "Wishlist 15"
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            Member_ID = 13,
-                            Wishlist_Name = "Wishlist 16"
-                        });
                 });
 
             modelBuilder.Entity("ConestogaVirtualGameStore.Models.Wishlist_Games", b =>
@@ -1446,188 +1148,6 @@ namespace ConestogaVirtualGameStore.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("Wishlist_Games");
-
-                    b.HasData(
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            GameId = 1
-                        },
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            GameId = 2
-                        },
-                        new
-                        {
-                            Wishlist_ID = 1,
-                            GameId = 3
-                        },
-                        new
-                        {
-                            Wishlist_ID = 2,
-                            GameId = 4
-                        },
-                        new
-                        {
-                            Wishlist_ID = 2,
-                            GameId = 5
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            GameId = 6
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            GameId = 7
-                        },
-                        new
-                        {
-                            Wishlist_ID = 3,
-                            GameId = 8
-                        },
-                        new
-                        {
-                            Wishlist_ID = 4,
-                            GameId = 9
-                        },
-                        new
-                        {
-                            Wishlist_ID = 4,
-                            GameId = 10
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            GameId = 11
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            GameId = 12
-                        },
-                        new
-                        {
-                            Wishlist_ID = 5,
-                            GameId = 13
-                        },
-                        new
-                        {
-                            Wishlist_ID = 6,
-                            GameId = 14
-                        },
-                        new
-                        {
-                            Wishlist_ID = 6,
-                            GameId = 15
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            GameId = 16
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            GameId = 17
-                        },
-                        new
-                        {
-                            Wishlist_ID = 7,
-                            GameId = 18
-                        },
-                        new
-                        {
-                            Wishlist_ID = 8,
-                            GameId = 19
-                        },
-                        new
-                        {
-                            Wishlist_ID = 8,
-                            GameId = 20
-                        },
-                        new
-                        {
-                            Wishlist_ID = 9,
-                            GameId = 1
-                        },
-                        new
-                        {
-                            Wishlist_ID = 9,
-                            GameId = 2
-                        },
-                        new
-                        {
-                            Wishlist_ID = 10,
-                            GameId = 3
-                        },
-                        new
-                        {
-                            Wishlist_ID = 10,
-                            GameId = 4
-                        },
-                        new
-                        {
-                            Wishlist_ID = 11,
-                            GameId = 5
-                        },
-                        new
-                        {
-                            Wishlist_ID = 11,
-                            GameId = 6
-                        },
-                        new
-                        {
-                            Wishlist_ID = 12,
-                            GameId = 7
-                        },
-                        new
-                        {
-                            Wishlist_ID = 12,
-                            GameId = 8
-                        },
-                        new
-                        {
-                            Wishlist_ID = 13,
-                            GameId = 9
-                        },
-                        new
-                        {
-                            Wishlist_ID = 13,
-                            GameId = 10
-                        },
-                        new
-                        {
-                            Wishlist_ID = 14,
-                            GameId = 11
-                        },
-                        new
-                        {
-                            Wishlist_ID = 14,
-                            GameId = 12
-                        },
-                        new
-                        {
-                            Wishlist_ID = 15,
-                            GameId = 13
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            GameId = 14
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            GameId = 15
-                        },
-                        new
-                        {
-                            Wishlist_ID = 16,
-                            GameId = 16
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -26,12 +26,17 @@ namespace ConestogaVirtualGameStore.Models
 		[Range(1, 200)]
 		public decimal Price { get; set; }
 
-		[Required]
+		[Range(0, 5)]
+        public decimal AverageRating { get; set; }
+
+        [Required]
 		[StringLength(255)]
 		public string CoverImageURL { get; set; }
         public ICollection<Wishlist_Games> Wishlist_Games { get; set; }
 
 		public ICollection<CartGames> Cart_Games { get; set; }
+
+		public ICollection<Review> Game_Reviews { get; set; }
 
         public List<int>? Purchased_Member_ID { get; set; }
 
