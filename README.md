@@ -2,6 +2,8 @@
 
 ## Project Overview
 This is a **video game store website** where users can:
+- Register and Create a Member Account
+- Search for their favorit video games by name or genre 
 - Browse and purchase games.
 - View game ratings and reviews.
 - Register for events.
@@ -13,7 +15,7 @@ Admins can:
 - Generate reports in PDF/Excel.
 
 ## Tech Stack
-- **Frontend:** ASP.NET MVC, HTML, CSS, JavaScript
+- **Frontend:** ASP.NET MVC, HTML, CSS, JavaScript, Bootstrap
 - **Backend:** C#, .NET Framework
 - **Database:** SQL Server (SSMS)
 
